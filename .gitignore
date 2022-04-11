@@ -1,0 +1,9 @@
+**/.DS_Store
+*/input/*
+*/output/*
+
+!output/*
+.Rproj.user
+
+data/drh.csv
+
