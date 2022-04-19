@@ -38,7 +38,7 @@ land_valid <- st_intersection(all_land, regions_valid)
 land_valid <- st_make_valid(land_valid)
 
 # Recombine polygons
-land_valid <- land_valid %>%
+land_valid_join <- land_valid %>%
   group_by(`Entry.ID`, `Entry.name`, `Branching.question`, `Region.ID`, `Region.name`, start_year, end_year) %>% 
   summarize(geometry = st_union(geometry), .groups = "keep") %>%
   distinct()
@@ -53,7 +53,7 @@ regions_invalid <- st_make_valid(regions_invalid)
 land_invalid <- st_intersection(all_land, regions_invalid)
 
 # Recombine polygons
-land_invalid <- land_invalid %>%
+land_invalid_join <- land_invalid %>%
   group_by(`Entry.ID`, `Entry.name`, `Branching.question`, `Region.ID`, `Region.name`, start_year, end_year) %>% 
   summarize(geometry = st_union(geometry), .groups = "keep") %>%
   distinct()
@@ -62,7 +62,7 @@ land_invalid <- land_invalid %>%
 sf_use_s2(TRUE)
 
 # Recombine valid and invalid
-regions_land <- bind_rows(land_valid, land_invalid) %>%
+regions_land <- bind_rows(land_valid_join, land_invalid_join) %>%
   # Rename variables to original
   rename(`Entry ID` = Entry.ID, `Entry name` = Entry.name, `Branching question` = Branching.question, `Region ID` = Region.ID, `Region name` = Region.name)
 
@@ -73,13 +73,13 @@ regions_missing <- regions %>%
   anti_join(regions_land_no_geo)
 
 # Recombine regions 
-regions_land <- bind_rows(regions_land, regions_missing)
+regions_land_join <- bind_rows(regions_land, regions_missing)
 
-expect_equal(nrow(regions_land), nrow(regions))
+expect_equal(nrow(regions_land_join), nrow(regions))
 
 # Create output directory
 make.dir("./output")
 
 # Save cleaned regions
-saveRDS(regions_land, file = "./output/drh_regions_clean.rds")
+saveRDS(regions_land_join, file = "./output/drh_regions_clean.rds")
 

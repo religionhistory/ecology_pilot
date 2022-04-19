@@ -402,7 +402,8 @@ data_multi_ans_cor <- data_multi_ans %>%
 data_single_ans <- anti_join(data_all, data_multi_ans)
 
 # Recombine
-data_all_ans <- bind_rows(data_single_ans, data_multi_ans_cor)
+#data_all_ans <- bind_rows(data_single_ans, data_multi_ans_cor)
+data_all_ans <- bind_rows(data_single_ans)
 
 expect_equal((nrow(data_single_ans) + nrow(data_multi_ans)), nrow(data_all))
 

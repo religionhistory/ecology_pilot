@@ -89,5 +89,10 @@ for(i in 1:nrow(analysis_questions)) {
   run_gls(data = data_ppca, var = var)
 }
 
+
+# Create overall table of results
+results <- create_results_table()
+
 # Save output
 write_csv(ppca_loadings, "./output/ppca_loadings.csv")
+write_csv(results, "./output/results.csv")
