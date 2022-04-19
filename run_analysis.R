@@ -66,3 +66,7 @@ setwd("./07_figures/")
 source("figures.R")
 setwd("..")
 
+# Save results to results folder
+make.dir("results")
+files <- c("./06_analysis/output/results.csv", "./06_analysis/output/ppca_loadings.csv")
+file.copy(files, "./results", overwrite = TRUE)
