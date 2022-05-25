@@ -7,3 +7,4 @@
 
 data/drh.csv
 data/kml/*
+!notebooks/*
