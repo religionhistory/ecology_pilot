@@ -1,6 +1,5 @@
 
 # Load libraries
-library(pcaMethods)
 library(raster)
 library(tidyverse)
 library(data.table)
@@ -1072,180 +1071,30 @@ get_biomes <- function(data) {
     left_join(data)
 }
 
-# Get population size
-get_population <- function (data) {
-  
-  # Extract raster layer names
-  pop_names <- names(pop)
-  
-  # Extract the years of population rasterstack
-  pop_raster_years <- data.frame(name = pop_names) %>%
-    mutate(date = gsub("popc_", "", name)) %>%
-    mutate(year = as.character(parse_number(date))) %>%
-    mutate(year = ifelse(grepl("BC", date), paste0("-", year), year)) %>%
-    mutate(year = as.numeric(year))
-  
-  # Extract population per time period
-  pop_list <- list()
-  # Extract years
-  for (i in 1:nrow(data)){
-    if(data$start_year[i] < 1 & data$end_year[i] < 1){
-      years <- pop_raster_years %>%
-        filter(year >= data$start_millennium[i] & year <= data$end_millennium[i])
-    } else if(data$start_year[i] < 1 & data$end_year[i] > 1 & data$end_year[i] <= 1700){
-      years <- pop_raster_years %>%
-        filter(year >= data$start_millennium[i] & year <= data$end_century[i])
-    } else if(data$start_year[i] < 1 & data$end_year[i] > 1700 & data$end_year[i] <= 2000){
-      years <- pop_raster_years %>%
-        filter(year >= data$start_millennium[i] & year <= data$end_decade[i]) 
-    } else if(data$start_year[i] < 1 & data$end_year[i] > 2000){
-      years <- pop_raster_years %>%
-        filter(year >= data$start_millennium[i] & year <= data$end_year_2017[i]) 
-    } else if(data$start_year[i] >= 1 & data$start_year[i] <= 1700 & data$end_year[i] <= 1700){
-      years <- pop_raster_years %>%
-        filter(year >= data$start_century[i] & year <= data$end_century[i]) 
-    } else if(data$start_year[i] >= 1 & data$start_year[i] <= 1700 & data$end_year[i] > 1700 & data$end_year[i] <= 2000){
-      years <- pop_raster_years %>%
-        filter(year >= data$start_century[i] & year <= data$end_decade[i]) 
-    } else if(data$start_year[i] >= 1 & data$start_year[i] <= 1700 & data$end_year[i] > 2000){
-      years <- pop_raster_years %>%
-        filter(year >= data$start_century[i] & year <= data$end_year_2017[i]) 
-    } else if(data$start_year[i] > 1700 & data$start_year[i] <= 2000 & data$end_year[i] <= 2000){
-      years <- pop_raster_years %>%
-        filter(year >= data$start_decade[i] & year <= data$end_decade[i]) 
-    } else if(data$start_year[i] > 1700 & data$start_year[i] <= 2000 & data$end_year[i] > 2000){
-      years <- pop_raster_years %>%
-        filter(year >= data$start_decade[i] & year <= data$end_year_2017[i]) 
-    } else if(data$start_year[i] > 2000){
-      years <- pop_raster_years %>%
-        filter(year >= data$start_year_2017[i] & year <= data$end_year_2017[i]) 
-    }
-    # Subset population by years
-    pop_years <- subset(pop, years$name)
-    if(nrow(years) > 1) {
-      values <- exact_extract(pop_years, data$geometry[i], fun = "sum")
-      start_pop <- values[,1]
-      mid_pop <- values[,round(ncol(values)/2)]
-      end_pop <- values[,ncol(values)]
-      pop_values <- values %>%
-        # Find mean over years
-        mutate(avg_pop = rowMeans(.)) %>%
-        dplyr::select(avg_pop) %>%
-        mutate(start_pop = start_pop, mid_pop = mid_pop, end_pop = end_pop)
-      pop_list[[i]] <- pop_values 
-    } else {
-      pop_values <- exact_extract(pop_years, data$geometry[i], fun = "sum") 
-      pop_list[[i]] <- data.frame(avg_pop = pop_values, start_pop = pop_values, mid_pop = pop_values, end_pop = pop_values)
-    }
-  } 
-  data_pop <- bind_rows(pop_list) 
-  data_pop <- bind_cols(data, data_pop)
-  data_pop
-}
-
-# Find the number of words the match between strings
-# from https://stackoverflow.com/questions/65409395/countidentify-common-words-in-two-string-vectors-r
-num_words <- function(str1, str2) {
-  mapply(function(x, y) length(intersect(x, y)), 
-         strsplit(str1, ' '), strsplit(str2, ' '))
-}
-
-# Find the words the match between strings
-# from https://stackoverflow.com/questions/65409395/countidentify-common-words-in-two-string-vectors-r
-match_words <- function(str1, str2) {
-  mapply(function(x, y) paste0(intersect(x, y),collapse = " "), 
-         strsplit(str1, ' '), strsplit(str2, ' '))
-}
-
-# Calculate similarity in answers between entries for variable of interest
-calc_similarity <- function(data, variable) {
-  # Extract variable of interest
-  analysis_variable <- data[[variable]]
-  
-  # Join with ID
-  variable_ID <- as_tibble(cbind(ID = data$ID, analysis_variable)) %>%
-    drop_na()
-  
-  # Create pairs of entries and calculate similarity
-  entry_pairs <- expand.grid(variable_ID$ID, variable_ID$ID) %>%
-    rename(ID = Var1) %>%
-    left_join(variable_ID) %>%
-    rename(ID_1 = ID, var_1 = analysis_variable, ID = Var2) %>%
-    left_join(variable_ID) %>%
-    rename(ID_2 = ID, var_2 = analysis_variable) %>%
-    mutate(similarity = case_when(var_1 == var_2 ~ 0, var_1 != var_2 ~ 1)) 
-  
-  # Return pairwise matrix
-  variable_distance <- xtabs(similarity ~ ID_1 + ID_2, data = entry_pairs)
-}
-
-# Create distance matrix of ecological principal components
-calc_pc_distance <- function(data, pc) {
-  # Extract principal component of interest
-  analysis_pc <- data[[pc]]
-  
-  # Join with ID
-  pc_ID <- as_tibble(cbind(ID = data$ID, analysis_pc)) %>%
-    drop_na()
-  
-  # Create pairs of entries and calculate distance
-  entry_pairs <- expand.grid(pc_ID$ID, pc_ID$ID) %>%
-    rename(ID = Var1) %>%
-    left_join(pc_ID) %>%
-    rename(ID_1 = ID, var_1 = analysis_pc, ID = Var2) %>%
-    left_join(pc_ID) %>%
-    rename(ID_2 = ID, var_2 = analysis_pc) %>%
-    mutate(across(starts_with("var_"), ~ as.numeric(.))) %>%
-    mutate(distance = abs(var_1 - var_2))
-
-  # Return pairwise matrix
-  variable_distance <- xtabs(distance ~ ID_1 + ID_2, data = entry_pairs)
-}
-
-# Perform PPCA and extract matrices of PCs per sample
-ppca_sample <- function(data, analysis) {
-  
-  # Prepare data for PPCA
-  ppca_data <- data %>%
-    select(start_temp_avg, start_temp_min, start_temp_max, start_prep_avg, start_prep_min, start_prep_max, dist_coastline, dist_lakes, dist_rivers, elevation, mammals, plants) %>%
-    # Convert -Inf and NaN to NA
-    mutate(across(start_temp_avg:plants, ~ ifelse(is.nan(.), NA, .))) %>%
-    mutate(across(start_temp_avg:plants, ~ ifelse(is.infinite(.), NA, .))) %>%
-    # Scale distance and numeric variables
-    mutate(across(start_temp_avg:plants, ~ as.numeric(scale(., center = TRUE, scale = TRUE)))) 
-  
-  # Probabilistic PCA (PPCA) with 5 principal components
-  ppca_output <- pca(ppca_data, method="ppca", nPcs=4, center=FALSE)
-  
-  # Extract PC scores
-  pca_scores <- as_tibble(scores(ppca_output))
-  
-  # Join with metadata
-  pca_meta <- data %>%
-    select(ID) %>%
-    bind_cols(pca_scores)
-  
-  # Extract at PC loadings
-  ppca_loadings <- loadings(ppca_output)
-  ppca_loadings <- round(ppca_loadings, 2)
-  
-  # Extract cumulative R2
-  cum_R2 <- R2cum(ppca_output)
-  cum_R2 <- round(cum_R2, 2)
-  
-  # Extract PC distance between entries
-  pc_1 <- calc_pc_distance(pca_meta, "PC1")
-  pc_2 <- calc_pc_distance(pca_meta, "PC2")
-  pc_3 <- calc_pc_distance(pca_meta, "PC3")
-  pc_4 <- calc_pc_distance(pca_meta, "PC4")
-  
-  # Save output
-  write.csv(pc_1, paste0("./output/pc_1_", analysis, ".csv"))
-  write.csv(pc_2, paste0("./output/pc_2_", analysis, ".csv"))
-  write.csv(pc_3, paste0("./output/pc_3_", analysis, ".csv"))
-  write.csv(pc_4, paste0("./output/pc_4_", analysis, ".csv"))
-  write.csv(ppca_loadings, paste0("./output/ppca_loadings_", analysis, ".csv"))
-  write.csv(cum_R2, paste0("./output/ppca_cum_R2_", analysis, ".csv"))
+# Extract sample size per analysis condition
+analysis_sample_size <- function() {
+  # Analysis 1
+  analysis_1_samples <- data %>% 
+    group_by(`Entry name`, `Entry ID`, `Region name`, `Region ID`) %>% 
+    tally()
+  sample_size_1 <- nrow(analysis_1_samples)
+  # Analysis 2
+  analysis_2_samples <- analysis_2_dict %>% 
+    group_by(`Entry name`, `Entry ID`, `Region name`, `Region ID`) %>% 
+    tally()
+  sample_size_2 <- nrow(analysis_2_samples)
+  # Analysis 3
+  analysis_3_samples <- analysis_3_dict %>% 
+    group_by(`Entry name`, `Entry ID`, `Region name`, `Region ID`) %>% 
+    tally()
+  sample_size_3 <- nrow(analysis_3_samples)
+  # Analysis 4
+  analysis_4_samples <- analysis_4_dict %>% 
+    group_by(`Entry name`, `Entry ID`, `Region name`, `Region ID`) %>% 
+    tally()
+  sample_size_4 <- nrow(analysis_4_samples)
+  # Create output table
+  sample_size <- tibble(Analysis = c(1, 2, 3, 4), `Sample Size` = c(sample_size_1, sample_size_2, sample_size_3, sample_size_4))
 }
 
 # Run GLS
@@ -1304,127 +1153,171 @@ run_gls <- function(data, var) {
   a4_data <- a1_data %>%
     filter(id %in% analysis_4_sample$ID) 
   
+  # Function to run GLS model
+  gls_model <- function(data) {
+    set.seed(10)
+    gls(var ~ start_temp_avg + start_prep_avg + start_prep_var + elevation + mammals + plants + dist_coastline + dist_freshwater + (mammals * plants * start_prep_avg) + (mammals * start_temp_avg) + (elevation * start_temp_avg) + (start_prep_avg * start_prep_var) + (start_prep_var * dist_coastline), data = data, correlation = corSpher(form = ~ latitude + longitude), na.action = na.omit)
+  }
+  gls_model_poss <- possibly(gls_model, otherwise = "The model failed to converge")
+  
   # Run models if nrow > 1
-  a1_model <- gls(var ~ PC1 + PC2 + PC3 + dist_coastline + dist_freshwater, data = a1_data, correlation = corSpher(form = ~ latitude + longitude), na.action = na.omit)
-  a2_model <- gls(var ~ PC1 + PC2 + PC3 + dist_coastline + dist_freshwater, data = a2_data, correlation = corSpher(form = ~ latitude + longitude), na.action = na.omit)
-  a3_model <- gls(var ~ PC1 + PC2 + PC3 + dist_coastline + dist_freshwater, data = a3_data, correlation = corSpher(form = ~ latitude + longitude), na.action = na.omit)
-  a4_model <- gls(var ~ PC1 + PC2 + PC3 + dist_coastline + dist_freshwater, data = a4_data, correlation = corSpher(form = ~ latitude + longitude), na.action = na.omit)
+  a1_model <- gls_model_poss(data = a1_data)
+  a2_model <- gls_model_poss(data = a2_data)
+  a3_model <- gls_model_poss(data = a3_data)
+  a4_model <- gls_model_poss(data = a4_data)
   
-  # Summary
-  a1_model <- summary(a1_model)
-  a2_model <- summary(a2_model)
-  a3_model <- summary(a3_model)
-  a4_model <- summary(a4_model)
-  
-  # Save output
-  saveRDS(a1_model, paste0("./output/a1_m_", var, ".rds"))
-  saveRDS(a2_model, paste0("./output/a2_m_", var, ".rds"))
-  saveRDS(a3_model, paste0("./output/a3_m_", var, ".rds"))
-  saveRDS(a4_model, paste0("./output/a4_m_", var, ".rds"))
+  # Summary and save output 
+  if(class(a1_model) == "gls") {
+    saveRDS(a1_model, paste0("./output/a1_m_", var, ".rds"))
+  } else {
+    write.table(a1_model, paste0("./output/a1_m_", var, ".txt"))
+  }
+  if(class(a2_model) == "gls") {
+    saveRDS(a2_model, paste0("./output/a2_m_", var, ".rds"))
+  } else {
+    write.table(a2_model, paste0("./output/a2_m_", var, ".txt"))
+  }
+  if(class(a3_model) == "gls") {
+    saveRDS(a3_model, paste0("./output/a3_m_", var, ".rds"))
+  } else {
+    write.table(a3_model, paste0("./output/a3_m_", var, ".txt"))
+  }
+  if(class(a4_model) == "gls") {
+    saveRDS(a4_model, paste0("./output/a4_m_", var, ".rds"))
+  } else {
+    write.table(a4_model, paste0("./output/a4_m_", var, ".txt"))
+  }
 }
 
-# Extract results
-extract_results <- function(data) {
-  variables = names(data$coefficients)
-  coefficients = data$coefficients
-  t_table = as.data.frame(data$tTable)
-  p_value = t_table$`p-value`
-  log_lik = data$logLik
-  p_dims = data$dims$p
-  AIC = (2 * p_dims) - (2 * log_lik)
-  output = data.frame(Variables = variables, Coefficients = coefficients, p_value = p_value, AIC = rep(AIC, 6))
-  output = output %>%
-    mutate(Coefficients = round(Coefficients, 2)) %>%
+# Get sample size per variable and condition
+get_sample_size <- function(var) {
+  a1_data <- analysis_data %>%
+    rename(var = all_of(var)) %>%
+    filter(!is.na(var)) %>%
+    # Add ID
+    mutate(id = paste0(`Entry ID`, "_", gsub(",", "", `Branching question`), "_", `Region ID`, "_", start_year, "_", end_year))
+  
+  # Subset data
+  a2_data <- a1_data %>%
+    filter(id %in% analysis_2_sample$ID) 
+  a3_data <- a1_data %>%
+    filter(id %in% analysis_3_sample$ID) 
+  a4_data <- a1_data %>%
+    filter(id %in% analysis_4_sample$ID) 
+  
+  # Extract sample size per condition
+  a1_sample <- tibble(`Question ID` = var, Sample = 1, `Sample Size` = nrow(a1_data))
+  a2_sample <- tibble(`Question ID` = var, Sample = 2, `Sample Size` = nrow(a2_data))
+  a3_sample <- tibble(`Question ID` = var, Sample = 3, `Sample Size` = nrow(a3_data))
+  a4_sample <- tibble(`Question ID` = var, Sample = 4, `Sample Size` = nrow(a4_data))
+  
+  # Combine into single tibble
+  sample_size <- bind_rows(a1_sample, a2_sample, a3_sample, a4_sample)
+}
+
+
+# Extract results and apply multiple testing correction
+extract_results <- function(model) {
+  model <- summary(model)
+  variables <- names(model$coefficients)
+  coefficients <- model$coefficients
+  t_table <- as.data.frame(model$tTable)
+  p_value <- t_table$`p-value`
+  log_lik <- model$logLik
+  p_dims <- model$dims$p
+  AIC <- (2 * p_dims) - (2 * log_lik)
+  output <- data.frame(variables = variables, coefficients = coefficients, p_value = p_value, AIC = AIC)
+  output <- output %>%
+    mutate(adjust_p_value = p.adjust(p_value, method = "BH", n = 1768)) %>%
+    mutate(coefficients = round(coefficients, 2), adjust_p_value = signif(adjust_p_value, 2)) %>%
     mutate(AIC = round(AIC, 2)) %>%
-    mutate(Sig = case_when(p_value < 0.001 ~ "***", 
-                           p_value >= 0.001 & p_value < 0.01 ~ "**",
-                           p_value >= 0.01 &  p_value < 0.05 ~ "*", 
-                           p_value >= 0.05 ~ "" )) %>%
-    mutate(Coefficients = paste0(Coefficients, " (", Sig, ")")) %>%
-    mutate(Coefficients = gsub(" \\(\\)", "", Coefficients)) %>%
-    select(-p_value, -Sig) %>%
-    group_by(AIC) %>%
-    pivot_wider(names_from = Variables, values_from = Coefficients) %>%
-    select(-AIC, AIC) %>%
-    ungroup()
+    mutate(sig = case_when(adjust_p_value < 0.001 ~ "***", 
+                           adjust_p_value >= 0.001 & adjust_p_value < 0.01 ~ "**",
+                           adjust_p_value >= 0.01 &  adjust_p_value < 0.05 ~ "*", 
+                           adjust_p_value >= 0.05 ~ "" )) %>%
+    select(-p_value) %>%
+    relocate(AIC, .after = last_col())
 }
 
-# Create results table
-create_results_table <- function(){
+# Create results tables
+create_results_tables <- function(){
   # Load data
   results_files <- list.files(path = "./output", pattern = "*.rds", full.names = T, recursive = T)
   results_list <- lapply(results_files, readRDS)
   results_files_names <- gsub(".rds", "", list.files(path = "./output", pattern = "*.rds", recursive = T))
-  results_files_names <- gsub("output/", "", results_files_names)
   names(results_list) <- results_files_names
-  invisible(list2env(results_list, envir = .GlobalEnv))
+  txt_files <- list.files(path = "./output", pattern = "*.txt", full.names = T, recursive = T)
+  txt_list <- lapply(txt_files, read.table)
+  txt_files_names <- gsub(".txt", "", list.files(path = "./output", pattern = "*.txt",  recursive = T))
+  names(txt_list) <- txt_files_names
   
-  # Extract results for high gods
-  high_gods <- list(a1_m_4828, a2_m_4828, a3_m_4828, a4_m_4828)
-  high_gods <- lapply(high_gods, extract_results)
-  high_gods <- bind_rows(high_gods) %>%
-    mutate(Variable = "High Gods") %>%
-    mutate(Sample = row_number()) %>%
-    select(Variable, Sample, everything())
-  
-  # Extract results for vaiables
-  # High gods
-  high_gods <- list(a1_m_4828, a2_m_4828, a3_m_4828, a4_m_4828)
-  high_gods <- lapply(high_gods, extract_results)
-  high_gods <- bind_rows(high_gods) %>%
-    mutate(Variable = "High Gods") %>%
-    mutate(Sample = row_number()) %>%
-    select(Variable, Sample, everything())
-  
-  # Good Weather/Healthy Crops
-  good_weather <- list(a1_m_5007, a2_m_5007, a3_m_5007, a4_m_5007)
-  good_weather <- lapply(good_weather, extract_results)
-  good_weather <- bind_rows(good_weather) %>%
-    mutate(Variable = "Good Weather/Healthy Crops") %>%
-    mutate(Sample = row_number()) %>%
-    select(Variable, Sample, everything())
-  
-  # Bad Weather/Crop Failure 
-  bad_weather <- list(a1_m_5038, a2_m_5038, a3_m_5038, a4_m_5038)
-  bad_weather <- lapply(bad_weather, extract_results)
-  bad_weather <- bind_rows(bad_weather) %>%
-    mutate(Variable = "Bad Weather/Crop Failure") %>%
-    mutate(Sample = row_number()) %>%
-    select(Variable, Sample, everything())
-  
-  # Fishing
-  fishing <- list(a1_m_5227_3, a2_m_5227_3, a3_m_5227_3, a4_m_5227_3)
-  fishing <- lapply(fishing, extract_results)
-  fishing <- bind_rows(fishing) %>%
-    mutate(Variable = "Fishing") %>%
-    mutate(Sample = row_number()) %>%
-    select(Variable, Sample, everything())
-  
-  # Previously Human Spirits
-  human_spirits <- list(a1_m_4866, a2_m_4866, a3_m_4866, a4_m_4866)
-  human_spirits <- lapply(human_spirits, extract_results)
-  human_spirits <- bind_rows(human_spirits) %>%
-    mutate(Variable = "Previously Human Spirits") %>%
-    mutate(Sample = row_number()) %>%
-    select(Variable, Sample, everything())
-  
-  # Non-human Supernatural Beings
-  non_human <- list(a1_m_4897, a2_m_4897, a3_m_4897, a4_m_4897)
-  non_human <- lapply(non_human, extract_results)
-  non_human <- bind_rows(non_human) %>%
-    mutate(Variable = "Non-human Supernatural Beings") %>%
-    mutate(Sample = row_number()) %>%
-    select(Variable, Sample, everything())
-  
-  # Mixed Human-divine Beings
-  mixed_human_divine <- list(a1_m_4919, a2_m_4919, a3_m_4919, a4_m_4919)
-  mixed_human_divine <- lapply(mixed_human_divine, extract_results)
-  mixed_human_divine <- bind_rows(mixed_human_divine) %>%
-    mutate(Variable = "Mixed Human-divine Beings") %>%
-    mutate(Sample = row_number()) %>%
-    select(Variable, Sample, everything())
-  
-  # Combine into single data.frame
-  results <- bind_rows(high_gods, good_weather, bad_weather, fishing, human_spirits, non_human, mixed_human_divine)
+  # Extract results for each question
+  for(i in 1:nrow(analysis_questions)) {
+    var = analysis_questions$`Question ID`[i]
+    var_results <- results_list[grepl(var, names(results_list))]
+    var_txt <- txt_list[grepl(var, names(txt_list))]
+    if(length(var_results) > 0) {
+      var_results_list <- lapply(var_results, extract_results)
+      var_list <- list()
+      for(i in 1:length(var_results_list)) {
+        name <- names(var_results_list[i])
+        number <- gsub("(.+?)(\\_.*)", "\\1", name)
+        number <- gsub("a", "", number)
+        var_list[[i]] <- var_results_list[[i]] %>% 
+          rename_with(., ~ paste0(., "_", number))
+      }
+      var_tib <- bind_cols(var_list) %>%
+        mutate(`Question ID` = var) %>%
+        select(`Question ID`, everything())  
+      if(var != "5154") {
+        var_tib <- var_tib %>%
+          rename(Variable = variables_1)
+      } else {
+        var_tib <- var_tib %>%
+          rename(Variable = variables_3)
+      }
+    }
+    if(length(var_txt) > 0) {
+      number_list <- list()
+      for(i in 1:length(var_txt)) {
+        name <- names(var_txt[i])
+        number <- gsub("(.+?)(\\_.*)", "\\1", name)
+        number <- gsub("a", "", number) 
+        number_list[[i]] <- number
+      }
+      failed_analysis <- c(number_list)
+    } 
+    
+    if(length(var_results) == 4) {
+      var_tib <- var_tib %>%
+        select(-variables_2, -variables_3, - variables_4) 
+      var_tib
+    } else if(length(var_results) > 0 & length(var_txt) > 0) {
+      if(length(var_txt) == 1) {
+        sample_missing <- tibble(coefficients = rep("-", nrow(var_tib)), adjust_p_value = rep("-", nrow(var_tib)), sig = rep("-", nrow(var_tib)), AIC = rep("-", nrow(var_tib))) %>% 
+          rename_with(., ~ paste0(., "_", failed_analysis[[1]]))
+      } else if(length(var_txt) > 1) {
+        missing_list <- list()
+        for(i in 1:length(failed_analysis)) {
+          number <- failed_analysis[[i]]
+          missing_list[[i]] <- tibble(coefficients = rep("-", nrow(var_tib)), adjust_p_value = rep("-", nrow(var_tib)), sig = rep("-", nrow(var_tib)), AIC = rep("-", nrow(var_tib))) %>% 
+            rename_with(., ~ paste0(., "_", number))
+        }
+        sample_missing <- bind_cols(missing_list)
+      }
+      var_tib <- bind_cols(var_tib, sample_missing) %>%
+        select(`Question ID`, Variable, coefficients_1, adjust_p_value_1, sig_1, AIC_1, coefficients_2, adjust_p_value_2, sig_2, AIC_2, coefficients_3, adjust_p_value_3, sig_3, AIC_3, coefficients_4, adjust_p_value_4, sig_4, AIC_4) 
+    }
+    # Join with question name 
+    if(length(var_results) > 0) {
+      output <- var_tib %>%
+        left_join(analysis_questions, by = "Question ID") %>%
+        select(Question, everything())
+      write_csv(output, paste0("../results/", var, ".csv"))
+    } else {
+      output <- "The algorithm failed to converge in all sample conditions."
+      write.table(output, paste0("../results/", var, ".txt"), quote = FALSE, row.names = FALSE)
+    }
+  }
 }
 

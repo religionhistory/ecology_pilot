@@ -32,4 +32,10 @@ write_csv(analysis_2_dict, "./output/a_2_dict.csv")
 write_csv(analysis_3_dict, "./output/a_3_dict.csv")
 write_csv(analysis_4_dict, "./output/a_4_dict.csv")
 
+# Find the sample size per analysis condition
+sample_sizes <- analysis_sample_size()
+
+# Save to results
+write_csv(sample_sizes, "./../results/sample_sizes.csv")
+
 
