@@ -1,0 +1,18 @@
+Question,Question ID,Variable,coefficients_1,adjust_p_value_1,sig_1,AIC_1,coefficients_2,adjust_p_value_2,sig_2,AIC_2,coefficients_3,adjust_p_value_3,sig_3,AIC_3,coefficients_4,adjust_p_value_4,sig_4,AIC_4
+Does the religious group have a general process/system for assigning religious affiliation:,4660,(Intercept),0.53,0.22,,399.58,0.51,1,,268.7,2.06,1,,102.9,-1.03,1,,122.52
+Does the religious group have a general process/system for assigning religious affiliation:,4660,start_temp_avg,-0.04,1,,399.58,-0.01,1,,268.7,0.22,1,,102.9,0.08,1,,122.52
+Does the religious group have a general process/system for assigning religious affiliation:,4660,start_prep_avg,-0.04,1,,399.58,-0.19,1,,268.7,-1.11,1,,102.9,-2.49,1,,122.52
+Does the religious group have a general process/system for assigning religious affiliation:,4660,start_prep_var,0.02,1,,399.58,0.03,1,,268.7,-0.25,1,,102.9,0.2,1,,122.52
+Does the religious group have a general process/system for assigning religious affiliation:,4660,elevation,0.07,1,,399.58,0.11,1,,268.7,0.59,1,,102.9,0.37,1,,122.52
+Does the religious group have a general process/system for assigning religious affiliation:,4660,mammals,0.08,1,,399.58,-0.05,1,,268.7,0.13,1,,102.9,0.16,1,,122.52
+Does the religious group have a general process/system for assigning religious affiliation:,4660,plants,0.02,1,,399.58,-0,1,,268.7,-0.45,1,,102.9,-0.31,1,,122.52
+Does the religious group have a general process/system for assigning religious affiliation:,4660,dist_coastline,-0.04,1,,399.58,-0.09,1,,268.7,-0.23,1,,102.9,-0.39,1,,122.52
+Does the religious group have a general process/system for assigning religious affiliation:,4660,dist_freshwater,0,1,,399.58,0,1,,268.7,-0,1,,102.9,-0,1,,122.52
+Does the religious group have a general process/system for assigning religious affiliation:,4660,mammals:plants,-0.06,1,,399.58,-0.31,1,,268.7,-0.36,1,,102.9,-0.32,1,,122.52
+Does the religious group have a general process/system for assigning religious affiliation:,4660,start_prep_avg:mammals,0.05,1,,399.58,0.21,1,,268.7,0.3,1,,102.9,0.33,1,,122.52
+Does the religious group have a general process/system for assigning religious affiliation:,4660,start_prep_avg:plants,0.02,1,,399.58,0.1,1,,268.7,-0.57,1,,102.9,-0.45,1,,122.52
+Does the religious group have a general process/system for assigning religious affiliation:,4660,start_temp_avg:mammals,-0.04,1,,399.58,0.02,1,,268.7,0.12,1,,102.9,0.11,1,,122.52
+Does the religious group have a general process/system for assigning religious affiliation:,4660,start_temp_avg:elevation,-0.03,1,,399.58,0.01,1,,268.7,-0.21,1,,102.9,-0.22,1,,122.52
+Does the religious group have a general process/system for assigning religious affiliation:,4660,start_prep_avg:start_prep_var,0,1,,399.58,0.02,1,,268.7,0.26,1,,102.9,0.37,1,,122.52
+Does the religious group have a general process/system for assigning religious affiliation:,4660,start_prep_var:dist_coastline,-0.01,1,,399.58,-0,1,,268.7,0,1,,102.9,0.02,1,,122.52
+Does the religious group have a general process/system for assigning religious affiliation:,4660,start_prep_avg:mammals:plants,0.03,1,,399.58,0.13,1,,268.7,-0.54,1,,102.9,-0.42,1,,122.52

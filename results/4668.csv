@@ -1,0 +1,18 @@
+Question,Question ID,Variable,coefficients_1,adjust_p_value_1,sig_1,AIC_1,coefficients_2,adjust_p_value_2,sig_2,AIC_2,coefficients_3,adjust_p_value_3,sig_3,AIC_3,coefficients_4,adjust_p_value_4,sig_4,AIC_4
+Does the religious group actively proselytize and recruit new members:,4668,(Intercept),0.05,1,,419.49,0.08,1,,296.04,-,-,-,-,-0.22,1,,101.32
+Does the religious group actively proselytize and recruit new members:,4668,start_temp_avg,0.02,1,,419.49,0.03,1,,296.04,-,-,-,-,0.26,1,,101.32
+Does the religious group actively proselytize and recruit new members:,4668,start_prep_avg,-0.27,1,,419.49,-0.34,1,,296.04,-,-,-,-,-0.87,1,,101.32
+Does the religious group actively proselytize and recruit new members:,4668,start_prep_var,0.06,1,,419.49,0.06,1,,296.04,-,-,-,-,0.04,1,,101.32
+Does the religious group actively proselytize and recruit new members:,4668,elevation,0.17,1,,419.49,0.2,1,,296.04,-,-,-,-,0.61,1,,101.32
+Does the religious group actively proselytize and recruit new members:,4668,mammals,-0.01,1,,419.49,0.17,1,,296.04,-,-,-,-,-0.14,1,,101.32
+Does the religious group actively proselytize and recruit new members:,4668,plants,0.01,1,,419.49,-0.19,1,,296.04,-,-,-,-,-0.1,1,,101.32
+Does the religious group actively proselytize and recruit new members:,4668,dist_coastline,0.03,1,,419.49,0.06,1,,296.04,-,-,-,-,-0.13,1,,101.32
+Does the religious group actively proselytize and recruit new members:,4668,dist_freshwater,-0,1,,419.49,0,1,,296.04,-,-,-,-,-0,1,,101.32
+Does the religious group actively proselytize and recruit new members:,4668,mammals:plants,-0.05,1,,419.49,-0.2,1,,296.04,-,-,-,-,-0.21,1,,101.32
+Does the religious group actively proselytize and recruit new members:,4668,start_prep_avg:mammals,0.14,1,,419.49,0.02,1,,296.04,-,-,-,-,0.16,1,,101.32
+Does the religious group actively proselytize and recruit new members:,4668,start_prep_avg:plants,-0.09,1,,419.49,0.08,1,,296.04,-,-,-,-,-0.18,1,,101.32
+Does the religious group actively proselytize and recruit new members:,4668,start_temp_avg:mammals,0.05,1,,419.49,-0.02,1,,296.04,-,-,-,-,0.27,1,,101.32
+Does the religious group actively proselytize and recruit new members:,4668,start_temp_avg:elevation,0.07,1,,419.49,0.09,1,,296.04,-,-,-,-,0.09,1,,101.32
+Does the religious group actively proselytize and recruit new members:,4668,start_prep_avg:start_prep_var,0.04,1,,419.49,0.04,1,,296.04,-,-,-,-,0.13,1,,101.32
+Does the religious group actively proselytize and recruit new members:,4668,start_prep_var:dist_coastline,-0.02,1,,419.49,-0.02,1,,296.04,-,-,-,-,-0,1,,101.32
+Does the religious group actively proselytize and recruit new members:,4668,start_prep_avg:mammals:plants,-0.04,1,,419.49,0.08,1,,296.04,-,-,-,-,-0.29,1,,101.32

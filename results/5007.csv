@@ -1,0 +1,18 @@
+Question,Question ID,Variable,coefficients_1,adjust_p_value_1,sig_1,AIC_1,coefficients_2,adjust_p_value_2,sig_2,AIC_2,coefficients_3,adjust_p_value_3,sig_3,AIC_3,coefficients_4,adjust_p_value_4,sig_4,AIC_4
+Punishment in this life consists of crop failure or bad weather:,5007,(Intercept),0.73,0.013,*,339.93,0.53,1,,236.89,-,-,-,-,-9.45,1,,72.29
+Punishment in this life consists of crop failure or bad weather:,5007,start_temp_avg,0.08,1,,339.93,0.01,1,,236.89,-,-,-,-,-0.09,1,,72.29
+Punishment in this life consists of crop failure or bad weather:,5007,start_prep_avg,0.06,1,,339.93,0.19,1,,236.89,-,-,-,-,-4.35,1,,72.29
+Punishment in this life consists of crop failure or bad weather:,5007,start_prep_var,-0.02,1,,339.93,-0.02,1,,236.89,-,-,-,-,1.26,1,,72.29
+Punishment in this life consists of crop failure or bad weather:,5007,elevation,0.03,1,,339.93,-0.1,1,,236.89,-,-,-,-,0,1,,72.29
+Punishment in this life consists of crop failure or bad weather:,5007,mammals,-0.04,1,,339.93,-0.33,1,,236.89,-,-,-,-,-0.92,1,,72.29
+Punishment in this life consists of crop failure or bad weather:,5007,plants,0.04,1,,339.93,0.28,1,,236.89,-,-,-,-,3.42,1,,72.29
+Punishment in this life consists of crop failure or bad weather:,5007,dist_coastline,0.11,1,,339.93,0.21,1,,236.89,-,-,-,-,-0.79,1,,72.29
+Punishment in this life consists of crop failure or bad weather:,5007,dist_freshwater,0,1,,339.93,-0,1,,236.89,-,-,-,-,0,1,,72.29
+Punishment in this life consists of crop failure or bad weather:,5007,mammals:plants,0.13,1,,339.93,0.28,1,,236.89,-,-,-,-,-1.07,1,,72.29
+Punishment in this life consists of crop failure or bad weather:,5007,start_prep_avg:mammals,-0.05,1,,339.93,0.22,1,,236.89,-,-,-,-,-1.03,1,,72.29
+Punishment in this life consists of crop failure or bad weather:,5007,start_prep_avg:plants,0.05,1,,339.93,-0.19,1,,236.89,-,-,-,-,2.5,1,,72.29
+Punishment in this life consists of crop failure or bad weather:,5007,start_temp_avg:mammals,-0.03,1,,339.93,-0.17,1,,236.89,-,-,-,-,0.6,1,,72.29
+Punishment in this life consists of crop failure or bad weather:,5007,start_temp_avg:elevation,-0.01,1,,339.93,-0.1,1,,236.89,-,-,-,-,0.38,1,,72.29
+Punishment in this life consists of crop failure or bad weather:,5007,start_prep_avg:start_prep_var,0,1,,339.93,0.01,1,,236.89,-,-,-,-,0.33,1,,72.29
+Punishment in this life consists of crop failure or bad weather:,5007,start_prep_var:dist_coastline,-0,1,,339.93,-0.02,1,,236.89,-,-,-,-,0.14,1,,72.29
+Punishment in this life consists of crop failure or bad weather:,5007,start_prep_avg:mammals:plants,0.09,1,,339.93,-0.01,1,,236.89,-,-,-,-,-0.79,1,,72.29

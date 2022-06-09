@@ -1,0 +1,18 @@
+Question,Question ID,Variable,coefficients_1,adjust_p_value_1,sig_1,AIC_1,coefficients_2,adjust_p_value_2,sig_2,AIC_2,coefficients_3,adjust_p_value_3,sig_3,AIC_3,coefficients_4,adjust_p_value_4,sig_4,AIC_4
+A supreme high god is present:,4828,(Intercept),0.81,6.6e-28,***,473.62,0.95,2.8e-19,***,306.82,0.03,1,,151,-0.27,1,,160.97
+A supreme high god is present:,4828,start_temp_avg,0.02,1,,473.62,0.03,1,,306.82,0.16,1,,151,0.14,1,,160.97
+A supreme high god is present:,4828,start_prep_avg,0,1,,473.62,-0.05,1,,306.82,-0.48,1,,151,-0.8,1,,160.97
+A supreme high god is present:,4828,start_prep_var,-0,1,,473.62,-0,1,,306.82,0.09,1,,151,0.14,1,,160.97
+A supreme high god is present:,4828,elevation,0.05,1,,473.62,0.1,1,,306.82,0.21,1,,151,0.18,1,,160.97
+A supreme high god is present:,4828,mammals,-0.05,1,,473.62,0.17,1,,306.82,-0.2,1,,151,-0.15,1,,160.97
+A supreme high god is present:,4828,plants,-0.05,1,,473.62,-0.2,1,,306.82,-0.18,1,,151,-0.16,1,,160.97
+A supreme high god is present:,4828,dist_coastline,0.04,1,,473.62,-0,1,,306.82,0.39,1,,151,0.14,1,,160.97
+A supreme high god is present:,4828,dist_freshwater,-0,1,,473.62,-0,1,,306.82,0,1,,151,0,1,,160.97
+A supreme high god is present:,4828,mammals:plants,0.07,1,,473.62,-0.19,1,,306.82,0.3,1,,151,0.25,1,,160.97
+A supreme high god is present:,4828,start_prep_avg:mammals,-0.04,1,,473.62,-0.14,1,,306.82,0,1,,151,-0,1,,160.97
+A supreme high god is present:,4828,start_prep_avg:plants,-0.03,1,,473.62,0.15,1,,306.82,-0.02,1,,151,-0.08,1,,160.97
+A supreme high god is present:,4828,start_temp_avg:mammals,-0.03,1,,473.62,-0.14,1,,306.82,0.03,1,,151,0.01,1,,160.97
+A supreme high god is present:,4828,start_temp_avg:elevation,0.11,1,,473.62,0.1,1,,306.82,0.15,1,,151,0.15,1,,160.97
+A supreme high god is present:,4828,start_prep_avg:start_prep_var,0.01,1,,473.62,-0,1,,306.82,0.07,1,,151,0.11,1,,160.97
+A supreme high god is present:,4828,start_prep_var:dist_coastline,-0.01,1,,473.62,-0.01,1,,306.82,-0.07,1,,151,-0.03,1,,160.97
+A supreme high god is present:,4828,start_prep_avg:mammals:plants,0.07,1,,473.62,0.15,1,,306.82,0.14,1,,151,0.15,1,,160.97

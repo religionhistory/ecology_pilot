@@ -1,0 +1,18 @@
+Question,Question ID,Variable,coefficients_1,adjust_p_value_1,sig_1,AIC_1,coefficients_2,adjust_p_value_2,sig_2,AIC_2,coefficients_3,adjust_p_value_3,sig_3,AIC_3,coefficients_4,adjust_p_value_4,sig_4,AIC_4
+Is water management provided to the group’s adherents by an institution(s) other than the religious group in question:,5191,(Intercept),0.85,1.1e-6,***,335.1,0.94,0.0096,**,264.03,-,-,-,-,-,-,-,-
+Is water management provided to the group’s adherents by an institution(s) other than the religious group in question:,5191,start_temp_avg,0.01,1,,335.1,0.11,1,,264.03,-,-,-,-,-,-,-,-
+Is water management provided to the group’s adherents by an institution(s) other than the religious group in question:,5191,start_prep_avg,-0.15,1,,335.1,-0.17,1,,264.03,-,-,-,-,-,-,-,-
+Is water management provided to the group’s adherents by an institution(s) other than the religious group in question:,5191,start_prep_var,-0.02,1,,335.1,-0.02,1,,264.03,-,-,-,-,-,-,-,-
+Is water management provided to the group’s adherents by an institution(s) other than the religious group in question:,5191,elevation,0.01,1,,335.1,0.01,1,,264.03,-,-,-,-,-,-,-,-
+Is water management provided to the group’s adherents by an institution(s) other than the religious group in question:,5191,mammals,-0.01,1,,335.1,-0.08,1,,264.03,-,-,-,-,-,-,-,-
+Is water management provided to the group’s adherents by an institution(s) other than the religious group in question:,5191,plants,0.18,1,,335.1,0.47,1,,264.03,-,-,-,-,-,-,-,-
+Is water management provided to the group’s adherents by an institution(s) other than the religious group in question:,5191,dist_coastline,0.1,1,,335.1,0.19,1,,264.03,-,-,-,-,-,-,-,-
+Is water management provided to the group’s adherents by an institution(s) other than the religious group in question:,5191,dist_freshwater,0,1,,335.1,0,1,,264.03,-,-,-,-,-,-,-,-
+Is water management provided to the group’s adherents by an institution(s) other than the religious group in question:,5191,mammals:plants,-0.09,1,,335.1,0.1,1,,264.03,-,-,-,-,-,-,-,-
+Is water management provided to the group’s adherents by an institution(s) other than the religious group in question:,5191,start_prep_avg:mammals,0.04,1,,335.1,-0,1,,264.03,-,-,-,-,-,-,-,-
+Is water management provided to the group’s adherents by an institution(s) other than the religious group in question:,5191,start_prep_avg:plants,-0.04,1,,335.1,-0.18,1,,264.03,-,-,-,-,-,-,-,-
+Is water management provided to the group’s adherents by an institution(s) other than the religious group in question:,5191,start_temp_avg:mammals,-0.06,1,,335.1,-0.1,1,,264.03,-,-,-,-,-,-,-,-
+Is water management provided to the group’s adherents by an institution(s) other than the religious group in question:,5191,start_temp_avg:elevation,0.03,1,,335.1,0.02,1,,264.03,-,-,-,-,-,-,-,-
+Is water management provided to the group’s adherents by an institution(s) other than the religious group in question:,5191,start_prep_avg:start_prep_var,-0.01,1,,335.1,-0.01,1,,264.03,-,-,-,-,-,-,-,-
+Is water management provided to the group’s adherents by an institution(s) other than the religious group in question:,5191,start_prep_var:dist_coastline,0.01,1,,335.1,-0,1,,264.03,-,-,-,-,-,-,-,-
+Is water management provided to the group’s adherents by an institution(s) other than the religious group in question:,5191,start_prep_avg:mammals:plants,0.04,1,,335.1,-0.05,1,,264.03,-,-,-,-,-,-,-,-

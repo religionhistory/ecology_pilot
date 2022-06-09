@@ -1,0 +1,18 @@
+Question,Question ID,Variable,coefficients_1,adjust_p_value_1,sig_1,AIC_1,coefficients_2,adjust_p_value_2,sig_2,AIC_2,coefficients_3,adjust_p_value_3,sig_3,AIC_3,coefficients_4,adjust_p_value_4,sig_4,AIC_4
+Reward in this life consists of healthy crops or good weather:,5038,(Intercept),0.69,6.1e-4,***,327.2,0.47,1,,234.41,-,-,-,-,-,-,-,-
+Reward in this life consists of healthy crops or good weather:,5038,start_temp_avg,0.07,1,,327.2,-0.05,1,,234.41,-,-,-,-,-,-,-,-
+Reward in this life consists of healthy crops or good weather:,5038,start_prep_avg,-0.06,1,,327.2,-0.01,1,,234.41,-,-,-,-,-,-,-,-
+Reward in this life consists of healthy crops or good weather:,5038,start_prep_var,-0,1,,327.2,0.01,1,,234.41,-,-,-,-,-,-,-,-
+Reward in this life consists of healthy crops or good weather:,5038,elevation,0.09,1,,327.2,0.07,1,,234.41,-,-,-,-,-,-,-,-
+Reward in this life consists of healthy crops or good weather:,5038,mammals,-0.04,1,,327.2,-0.17,1,,234.41,-,-,-,-,-,-,-,-
+Reward in this life consists of healthy crops or good weather:,5038,plants,0.01,1,,327.2,-0.08,1,,234.41,-,-,-,-,-,-,-,-
+Reward in this life consists of healthy crops or good weather:,5038,dist_coastline,0.16,1,,327.2,0.14,1,,234.41,-,-,-,-,-,-,-,-
+Reward in this life consists of healthy crops or good weather:,5038,dist_freshwater,0,1,,327.2,0,1,,234.41,-,-,-,-,-,-,-,-
+Reward in this life consists of healthy crops or good weather:,5038,mammals:plants,0.08,1,,327.2,-0.07,1,,234.41,-,-,-,-,-,-,-,-
+Reward in this life consists of healthy crops or good weather:,5038,start_prep_avg:mammals,-0.04,1,,327.2,0.26,1,,234.41,-,-,-,-,-,-,-,-
+Reward in this life consists of healthy crops or good weather:,5038,start_prep_avg:plants,0.02,1,,327.2,0.02,1,,234.41,-,-,-,-,-,-,-,-
+Reward in this life consists of healthy crops or good weather:,5038,start_temp_avg:mammals,-0.09,1,,327.2,-0.06,1,,234.41,-,-,-,-,-,-,-,-
+Reward in this life consists of healthy crops or good weather:,5038,start_temp_avg:elevation,0.02,1,,327.2,0.02,1,,234.41,-,-,-,-,-,-,-,-
+Reward in this life consists of healthy crops or good weather:,5038,start_prep_avg:start_prep_var,0.02,1,,327.2,0.04,1,,234.41,-,-,-,-,-,-,-,-
+Reward in this life consists of healthy crops or good weather:,5038,start_prep_var:dist_coastline,-0.02,1,,327.2,-0.02,1,,234.41,-,-,-,-,-,-,-,-
+Reward in this life consists of healthy crops or good weather:,5038,start_prep_avg:mammals:plants,0.08,1,,327.2,0.09,1,,234.41,-,-,-,-,-,-,-,-
