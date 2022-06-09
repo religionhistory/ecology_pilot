@@ -60,13 +60,9 @@ setwd("..")
 
 # Create figures
 make.dir("./07_figures/input")
-files <- c("./04_join_ecology/output/data_ecology_wide.rds", "./05_analyses_samples/output/a_2_dict.csv", "./05_analyses_samples/output/a_3_dict.csv", "./05_analyses_samples/output/a_4_dict.csv")
+files <- c("./04_join_ecology/output/data_ecology_wide.rds", "./05_analysis_samples/output/a_2_dict.csv", "./05_analysis_samples/output/a_3_dict.csv", "./05_analysis_samples/output/a_4_dict.csv")
 file.copy(files, "./07_figures/input", overwrite = TRUE)
 setwd("./07_figures/")
 source("figures.R")
 setwd("..")
 
-# Save results to results folder
-make.dir("results")
-files <- c("./06_analysis/output/results.csv", "./06_analysis/output/ppca_loadings.csv")
-file.copy(files, "./results", overwrite = TRUE)
