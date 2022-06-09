@@ -126,11 +126,11 @@ data_ecology <- data %>%
   group_by(`Entry ID`, `Region ID`) %>%
   mutate(dist_freshwater = min(dist_lakes, dist_rivers)) %>%
   ungroup() %>%
-  select(start_temp_avg, start_temp_var, start_prep_avg, start_prep_var, start_spei, start_pdsi, dist_coastline, dist_freshwater, elevation, mammals, plants) %>%
+  select(start_temp_avg, start_prep_avg, start_prep_var, start_spei, start_pdsi, dist_coastline, dist_freshwater, elevation, mammals, plants) %>%
   mutate(dist_coastline = as.numeric(dist_coastline)) %>%
   mutate(dist_freshwater = as.numeric(dist_freshwater)) %>%
   distinct() %>%
-  rename(`Average Temperature` = start_temp_avg, `Temperature Variation` = start_temp_var, `Average Precipitation` = start_prep_avg, `Precipitation Variation` = start_prep_var, `SPEI` = start_spei, `PDSI` = start_pdsi, `Distance to Coast` = dist_coastline, `Distance to Freshwater` = dist_freshwater, Elevation = elevation, `Mammal Richness` = mammals, `Plant Biodiversity` = plants)
+  rename(`Average Temperature` = start_temp_avg, `Average Precipitation` = start_prep_avg, `Precipitation Variation` = start_prep_var, `SPEI` = start_spei, `PDSI` = start_pdsi, `Distance to Coast` = dist_coastline, `Distance to Freshwater` = dist_freshwater, Elevation = elevation, `Mammal Richness` = mammals, `Plant Biodiversity` = plants)
 
 # Find correlations
 correlations <- cor(data_ecology, method = "spearman", use = "pairwise.complete.obs")
