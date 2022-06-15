@@ -18,13 +18,13 @@ question_statistics <- data %>%
   group_by(`Question ID`) %>%
   mutate(Percent = Frequency/ sum(Frequency) * 100) %>%
   mutate(Percent = round(Percent, 2)) %>%
-  mutate(Answers = case_when(Answers == 1 ~ "Yes", Answers == 0 ~ "No", Answers == 2 ~ "Yes & No")) %>%
+  mutate(Answers = case_when(Answers == 1 ~ "Yes", Answers == 0 ~ "No")) %>%
   pivot_wider(names_from = Answers, values_from = c(Frequency, Percent), names_sep = " ") %>%
-  mutate(N = sum(`Frequency No`, `Frequency Yes`, `Frequency Yes`)) %>%
+  mutate(N = sum(`Frequency No`, `Frequency Yes`)) %>%
   ungroup() %>%
   mutate(across(everything(), ~ ifelse(is.na(.), "-", .))) %>%
   left_join(analysis_questions, by = "Question ID") %>%
-  select(Question, N, `Frequency Yes`, `Frequency No`, `Frequency Yes & No`, `Percent Yes`, `Percent No`, `Percent Yes & No`) 
+  select(Question, N, `Frequency Yes`, `Frequency No`, `Percent Yes`, `Percent No`) 
 
 # Calculate descriptive statistics for ecological variables
 ecology_statistics <- data %>%

@@ -406,8 +406,12 @@ data_all_ans <- bind_rows(data_single_ans, data_multi_ans_cor)
 
 expect_equal((nrow(data_single_ans) + nrow(data_multi_ans)), nrow(data_all))
 
+# Remove multiple answers
+data_no_multi <- data_all_ans %>%
+  filter(Answers != "Yes; No")
+
 # Select only questions of interest
-data_qoi <- data_all_ans %>%
+data_qoi <- data_no_multi %>%
   filter(`Question ID` %in% analysis_questions$`Question ID`)
 
 # Transpose question and answer data
@@ -418,13 +422,13 @@ data_t <- data_qoi %>%
   pivot_wider(names_from = `Question ID`, values_from = `Answer values`)
 
 # Extract regions used for analysis
-regions <- drh_regions(data_all_ans) 
+regions <- drh_regions(data_qoi) 
 
 # Join with Entry data
-region_id <- data_all_ans %>%
+region_id <- data_qoi %>%
   select(`Region ID`, `Region name`) %>%
   distinct()
-regions_all <- data_all_ans %>%
+regions_all <- data_qoi %>%
   select(`Entry ID`, `Entry name`, `Branching question`, `Region ID`, `Region name`, start_year, end_year) %>%
   distinct() %>%
   left_join(region_id) %>%

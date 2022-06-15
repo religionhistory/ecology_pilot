@@ -1,8 +1,0 @@
-variable,PC1,PC2,PC3
-start_temp_avg,0.16,-0.46,0.20
-start_temp_var,-0.31,0.51,0.01
-start_prep_avg,0.48,0.01,-0.27
-start_prep_var,0.25,0.28,-0.75
-elevation,-0.14,0.58,0.28
-mammals,0.51,0.20,0.48
-plants,0.51,0.25,0.15
