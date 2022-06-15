@@ -90,8 +90,13 @@ for(i in 1:nrow(analysis_questions)) {
 }
 sample_sizes <- bind_rows(sample_size_list)
 
+# Join with metadata
+sample_sizes <- sample_sizes %>%
+  left_join(analysis_questions) %>%
+  select(Question, everything())
+
 # Save output
-write_csv(sample_sizes, "./output/sample_sizes.csv")
+write_csv(sample_sizes, "./../results/sample_sizes.csv")
 
 # Create tables of results
 create_results_tables()
