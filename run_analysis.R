@@ -58,11 +58,19 @@ setwd("./06_analysis/")
 source("analysis.R")
 setwd("..")
 
+# Create tables of descriptive statistics 
+make.dir("./07_descriptive_statistics/input")
+files <- c("./04_join_ecology/output/data_ecology_wide.rds", "./data/analysis_questions.csv")
+file.copy(files, "./07_descriptive_statistics/input", overwrite = TRUE)
+setwd("./07_descriptive_statistics/")
+source("descriptive_statistics.R")
+setwd("..")
+
 # Create figures
-make.dir("./07_figures/input")
+make.dir("./08_figures/input")
 files <- c("./04_join_ecology/output/data_ecology_wide.rds", "./05_analysis_samples/output/a_2_dict.csv", "./05_analysis_samples/output/a_3_dict.csv", "./05_analysis_samples/output/a_4_dict.csv")
-file.copy(files, "./07_figures/input", overwrite = TRUE)
-setwd("./07_figures/")
+file.copy(files, "./08_figures/input", overwrite = TRUE)
+setwd("./08_figures/")
 source("figures.R")
 setwd("..")
 
