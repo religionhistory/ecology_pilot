@@ -1,9 +1,9 @@
-Variable,Mean,SD
-Average Temperature (°C),17.74,7.73
-Average Precipitation (mm),594.54,560.12
-Precipitation Variation (mm),1290.17,1969.34
-Elevation (m),631.39,815.86
-Mammal Richness (N Species),52.9,31.03
-Plant Biodiversity (N Species),1494.68,767.02
-Distance to Coast (km),127.87,289.29
-Distance to Freshwater (km),82.02,369.39
+Variable,Mean,SD,Range
+Average Temperature (°C),17.74,7.73,-7.63  -  29
+Average Precipitation (mm),594.54,560.12,1.48  -  3176.38
+Precipitation Variation (mm),1290.17,1969.34,0  -  15000
+Elevation (m),631.39,815.86,0.59  -  4695.54
+Mammal Richness (N Species),52.9,31.03,1  -  178.37
+Plant Biodiversity (N Species),1494.68,767.02,119.53  -  4336.09
+Distance to Coast (km),127.87,289.29,0  -  1821.16
+Distance to Freshwater (km),82.02,369.39,0  -  5072.12

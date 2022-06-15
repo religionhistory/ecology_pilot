@@ -20,11 +20,11 @@ question_statistics <- data %>%
   mutate(Percent = round(Percent, 2)) %>%
   mutate(Answers = case_when(Answers == 1 ~ "Yes", Answers == 0 ~ "No", Answers == 2 ~ "Yes & No")) %>%
   pivot_wider(names_from = Answers, values_from = c(Frequency, Percent), names_sep = " ") %>%
+  mutate(N = sum(`Frequency No`, `Frequency Yes`, `Frequency Yes`)) %>%
   ungroup() %>%
   mutate(across(everything(), ~ ifelse(is.na(.), "-", .))) %>%
-  left_join(analysis_questions) %>%
-  select(Question, everything()) %>%
-  select(-`Question ID`)
+  left_join(analysis_questions, by = "Question ID") %>%
+  select(Question, N, `Frequency Yes`, `Frequency No`, `Frequency Yes & No`, `Percent Yes`, `Percent No`, `Percent Yes & No`) 
 
 # Calculate descriptive statistics for ecological variables
 ecology_statistics <- data %>%
@@ -38,7 +38,7 @@ ecology_statistics <- data %>%
   pivot_longer(cols = everything(), names_to = "Variable", values_to = "Value") %>%
   filter(!is.na(Value) & !is.infinite(Value)) %>%
   group_by(Variable) %>%
-  summarise(Mean = mean(Value), SD = sd(Value)) %>%
+  summarise(Mean = mean(Value), SD = sd(Value), Range = paste(round(min(Value), 2), " - ", round(max(Value), 2))) %>%
   mutate(across(Mean:SD, ~ round(., 2))) %>%
   mutate(Variable = case_when(Variable == "start_temp_avg" ~ "Average Temperature (°C)",
                               Variable == "start_prep_avg" ~ "Average Precipitation (mm)",
