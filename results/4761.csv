@@ -1,18 +1,18 @@
-Question,Question ID,Variable,coefficients_1,adjust_p_value_1,sig_1,AIC_1,coefficients_2,adjust_p_value_2,sig_2,AIC_2,coefficients_3,adjust_p_value_3,sig_3,AIC_3,coefficients_4,adjust_p_value_4,sig_4,AIC_4
-Are sacred sites oriented to environmental features:,4761,(Intercept),0.68,2.8e-6,***,221.61,0.69,0.11,,154.04,-,-,-,-,-,-,-,-
-Are sacred sites oriented to environmental features:,4761,start_temp_avg,0.1,1,,221.61,0.08,1,,154.04,-,-,-,-,-,-,-,-
-Are sacred sites oriented to environmental features:,4761,start_prep_avg,0.08,1,,221.61,0.06,1,,154.04,-,-,-,-,-,-,-,-
-Are sacred sites oriented to environmental features:,4761,start_prep_var,-0.01,1,,221.61,-0.01,1,,154.04,-,-,-,-,-,-,-,-
-Are sacred sites oriented to environmental features:,4761,elevation,0.1,1,,221.61,0.13,1,,154.04,-,-,-,-,-,-,-,-
-Are sacred sites oriented to environmental features:,4761,mammals,-0.08,1,,221.61,0.12,1,,154.04,-,-,-,-,-,-,-,-
-Are sacred sites oriented to environmental features:,4761,plants,0.03,1,,221.61,-0.03,1,,154.04,-,-,-,-,-,-,-,-
-Are sacred sites oriented to environmental features:,4761,dist_coastline,0,1,,221.61,-0.04,1,,154.04,-,-,-,-,-,-,-,-
-Are sacred sites oriented to environmental features:,4761,dist_freshwater,0,1,,221.61,0,1,,154.04,-,-,-,-,-,-,-,-
-Are sacred sites oriented to environmental features:,4761,mammals:plants,0.02,1,,221.61,0.08,1,,154.04,-,-,-,-,-,-,-,-
-Are sacred sites oriented to environmental features:,4761,start_prep_avg:mammals,0.05,1,,221.61,-0.14,1,,154.04,-,-,-,-,-,-,-,-
-Are sacred sites oriented to environmental features:,4761,start_prep_avg:plants,0.07,1,,221.61,0.13,1,,154.04,-,-,-,-,-,-,-,-
-Are sacred sites oriented to environmental features:,4761,start_temp_avg:mammals,-0.02,1,,221.61,0.08,1,,154.04,-,-,-,-,-,-,-,-
-Are sacred sites oriented to environmental features:,4761,start_temp_avg:elevation,0.01,1,,221.61,0,1,,154.04,-,-,-,-,-,-,-,-
-Are sacred sites oriented to environmental features:,4761,start_prep_avg:start_prep_var,0,1,,221.61,0.01,1,,154.04,-,-,-,-,-,-,-,-
-Are sacred sites oriented to environmental features:,4761,start_prep_var:dist_coastline,-0,1,,221.61,-0.01,1,,154.04,-,-,-,-,-,-,-,-
-Are sacred sites oriented to environmental features:,4761,start_prep_avg:mammals:plants,0.01,1,,221.61,-0.03,1,,154.04,-,-,-,-,-,-,-,-
+Question,Question ID,Variable,coefficients_1,p_value_1,adjust_p_value_1,sig_1,AIC_1,coefficients_2,p_value_2,adjust_p_value_2,sig_2,AIC_2,coefficients_3,p_value_3,adjust_p_value_3,sig_3,AIC_3,coefficients_4,p_value_4,adjust_p_value_4,sig_4,AIC_4
+Are sacred sites oriented to environmental features:,4761,(Intercept),0.68,1.6e-9,2.8e-6,***,221.61,0.69,6.2e-5,0.11,,154.04,-,-,-,-,-,-,-,-,-,-
+Are sacred sites oriented to environmental features:,4761,start_temp_avg,0.1,0.17,1,,221.61,0.08,0.57,1,,154.04,-,-,-,-,-,-,-,-,-,-
+Are sacred sites oriented to environmental features:,4761,start_prep_avg,0.08,0.37,1,,221.61,0.06,0.68,1,,154.04,-,-,-,-,-,-,-,-,-,-
+Are sacred sites oriented to environmental features:,4761,start_prep_var,-0.01,0.64,1,,221.61,-0.01,0.32,1,,154.04,-,-,-,-,-,-,-,-,-,-
+Are sacred sites oriented to environmental features:,4761,elevation,0.1,0.33,1,,221.61,0.13,0.42,1,,154.04,-,-,-,-,-,-,-,-,-,-
+Are sacred sites oriented to environmental features:,4761,mammals,-0.08,0.44,1,,221.61,0.12,0.65,1,,154.04,-,-,-,-,-,-,-,-,-,-
+Are sacred sites oriented to environmental features:,4761,plants,0.03,0.68,1,,221.61,-0.03,0.91,1,,154.04,-,-,-,-,-,-,-,-,-,-
+Are sacred sites oriented to environmental features:,4761,dist_coastline,0,0.98,1,,221.61,-0.04,0.65,1,,154.04,-,-,-,-,-,-,-,-,-,-
+Are sacred sites oriented to environmental features:,4761,dist_freshwater,0,0.82,1,,221.61,0,0.51,1,,154.04,-,-,-,-,-,-,-,-,-,-
+Are sacred sites oriented to environmental features:,4761,mammals:plants,0.02,0.83,1,,221.61,0.08,0.67,1,,154.04,-,-,-,-,-,-,-,-,-,-
+Are sacred sites oriented to environmental features:,4761,start_prep_avg:mammals,0.05,0.57,1,,221.61,-0.14,0.54,1,,154.04,-,-,-,-,-,-,-,-,-,-
+Are sacred sites oriented to environmental features:,4761,start_prep_avg:plants,0.07,0.29,1,,221.61,0.13,0.48,1,,154.04,-,-,-,-,-,-,-,-,-,-
+Are sacred sites oriented to environmental features:,4761,start_temp_avg:mammals,-0.02,0.84,1,,221.61,0.08,0.58,1,,154.04,-,-,-,-,-,-,-,-,-,-
+Are sacred sites oriented to environmental features:,4761,start_temp_avg:elevation,0.01,0.92,1,,221.61,0,1,1,,154.04,-,-,-,-,-,-,-,-,-,-
+Are sacred sites oriented to environmental features:,4761,start_prep_avg:start_prep_var,0,1,1,,221.61,0.01,0.48,1,,154.04,-,-,-,-,-,-,-,-,-,-
+Are sacred sites oriented to environmental features:,4761,start_prep_var:dist_coastline,-0,0.79,1,,221.61,-0.01,0.42,1,,154.04,-,-,-,-,-,-,-,-,-,-
+Are sacred sites oriented to environmental features:,4761,start_prep_avg:mammals:plants,0.01,0.84,1,,221.61,-0.03,0.8,1,,154.04,-,-,-,-,-,-,-,-,-,-

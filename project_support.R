@@ -1229,13 +1229,12 @@ extract_results <- function(model) {
   output <- data.frame(variables = variables, coefficients = coefficients, p_value = p_value, AIC = AIC)
   output <- output %>%
     mutate(adjust_p_value = p.adjust(p_value, method = "BH", n = 1768)) %>%
-    mutate(coefficients = round(coefficients, 2), adjust_p_value = signif(adjust_p_value, 2)) %>%
+    mutate(coefficients = round(coefficients, 2), p_value = signif(p_value, 2), adjust_p_value = signif(adjust_p_value, 2)) %>%
     mutate(AIC = round(AIC, 2)) %>%
     mutate(sig = case_when(adjust_p_value < 0.001 ~ "***", 
                            adjust_p_value >= 0.001 & adjust_p_value < 0.01 ~ "**",
                            adjust_p_value >= 0.01 &  adjust_p_value < 0.05 ~ "*", 
                            adjust_p_value >= 0.05 ~ "" )) %>%
-    select(-p_value) %>%
     relocate(AIC, .after = last_col())
 }
 
@@ -1294,19 +1293,19 @@ create_results_tables <- function(){
       var_tib
     } else if(length(var_results) > 0 & length(var_txt) > 0) {
       if(length(var_txt) == 1) {
-        sample_missing <- tibble(coefficients = rep("-", nrow(var_tib)), adjust_p_value = rep("-", nrow(var_tib)), sig = rep("-", nrow(var_tib)), AIC = rep("-", nrow(var_tib))) %>% 
+        sample_missing <- tibble(coefficients = rep("-", nrow(var_tib)), p_value = rep("-", nrow(var_tib)), adjust_p_value = rep("-", nrow(var_tib)), sig = rep("-", nrow(var_tib)), AIC = rep("-", nrow(var_tib))) %>% 
           rename_with(., ~ paste0(., "_", failed_analysis[[1]]))
       } else if(length(var_txt) > 1) {
         missing_list <- list()
         for(i in 1:length(failed_analysis)) {
           number <- failed_analysis[[i]]
-          missing_list[[i]] <- tibble(coefficients = rep("-", nrow(var_tib)), adjust_p_value = rep("-", nrow(var_tib)), sig = rep("-", nrow(var_tib)), AIC = rep("-", nrow(var_tib))) %>% 
+          missing_list[[i]] <- tibble(coefficients = rep("-", nrow(var_tib)), p_value = rep("-", nrow(var_tib)), adjust_p_value = rep("-", nrow(var_tib)), sig = rep("-", nrow(var_tib)), AIC = rep("-", nrow(var_tib))) %>% 
             rename_with(., ~ paste0(., "_", number))
         }
         sample_missing <- bind_cols(missing_list)
       }
       var_tib <- bind_cols(var_tib, sample_missing) %>%
-        select(`Question ID`, Variable, coefficients_1, adjust_p_value_1, sig_1, AIC_1, coefficients_2, adjust_p_value_2, sig_2, AIC_2, coefficients_3, adjust_p_value_3, sig_3, AIC_3, coefficients_4, adjust_p_value_4, sig_4, AIC_4) 
+        select(`Question ID`, Variable, coefficients_1, p_value_1, adjust_p_value_1, sig_1, AIC_1, coefficients_2, p_value_2, adjust_p_value_2, sig_2, AIC_2, coefficients_3, p_value_3, adjust_p_value_3, sig_3, AIC_3, coefficients_4, p_value_4, adjust_p_value_4, sig_4, AIC_4) 
     }
     # Join with question name 
     if(length(var_results) > 0) {

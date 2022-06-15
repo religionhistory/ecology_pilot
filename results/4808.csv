@@ -1,18 +1,18 @@
-Question,Question ID,Variable,coefficients_1,adjust_p_value_1,sig_1,AIC_1,coefficients_2,adjust_p_value_2,sig_2,AIC_2,coefficients_3,adjust_p_value_3,sig_3,AIC_3,coefficients_4,adjust_p_value_4,sig_4,AIC_4
-Are co-sacrifices present in tomb/burial:,4808,(Intercept),0.17,1,,373.16,0.09,1,,282.22,-3.82,1,,112.72,0.1,1,,120.75
-Are co-sacrifices present in tomb/burial:,4808,start_temp_avg,-0.04,1,,373.16,-0.17,1,,282.22,-0.04,1,,112.72,-0.05,1,,120.75
-Are co-sacrifices present in tomb/burial:,4808,start_prep_avg,0.07,1,,373.16,0.17,1,,282.22,-2.49,1,,112.72,-0.38,1,,120.75
-Are co-sacrifices present in tomb/burial:,4808,start_prep_var,0,1,,373.16,0.01,1,,282.22,0.6,1,,112.72,0.04,1,,120.75
-Are co-sacrifices present in tomb/burial:,4808,elevation,0,1,,373.16,0.06,1,,282.22,-0.14,1,,112.72,-0.02,1,,120.75
-Are co-sacrifices present in tomb/burial:,4808,mammals,0.03,1,,373.16,-0.25,1,,282.22,0.38,1,,112.72,0.26,1,,120.75
-Are co-sacrifices present in tomb/burial:,4808,plants,-0.01,1,,373.16,0.04,1,,282.22,-0.03,1,,112.72,-0.23,1,,120.75
-Are co-sacrifices present in tomb/burial:,4808,dist_coastline,0.12,1,,373.16,0.06,1,,282.22,-0.04,1,,112.72,-0,1,,120.75
-Are co-sacrifices present in tomb/burial:,4808,dist_freshwater,-0,1,,373.16,-0,1,,282.22,-0,1,,112.72,0,1,,120.75
-Are co-sacrifices present in tomb/burial:,4808,mammals:plants,0.03,1,,373.16,-0.16,1,,282.22,-0.06,1,,112.72,-0.01,1,,120.75
-Are co-sacrifices present in tomb/burial:,4808,start_prep_avg:mammals,-0.01,1,,373.16,0.47,1,,282.22,0.03,1,,112.72,0.01,1,,120.75
-Are co-sacrifices present in tomb/burial:,4808,start_prep_avg:plants,0.03,1,,373.16,-0.05,1,,282.22,-0.09,1,,112.72,-0.18,1,,120.75
-Are co-sacrifices present in tomb/burial:,4808,start_temp_avg:mammals,-0.03,1,,373.16,-0.09,1,,282.22,-0.15,1,,112.72,-0.03,1,,120.75
-Are co-sacrifices present in tomb/burial:,4808,start_temp_avg:elevation,0.04,1,,373.16,0.08,1,,282.22,0.04,1,,112.72,0.04,1,,120.75
-Are co-sacrifices present in tomb/burial:,4808,start_prep_avg:start_prep_var,-0,1,,373.16,-0.01,1,,282.22,0.31,1,,112.72,0.09,1,,120.75
-Are co-sacrifices present in tomb/burial:,4808,start_prep_var:dist_coastline,-0.02,1,,373.16,-0.02,1,,282.22,-0.01,1,,112.72,-0.02,1,,120.75
-Are co-sacrifices present in tomb/burial:,4808,start_prep_avg:mammals:plants,0.02,1,,373.16,0.02,1,,282.22,0.15,1,,112.72,0.15,1,,120.75
+Question,Question ID,Variable,coefficients_1,p_value_1,adjust_p_value_1,sig_1,AIC_1,coefficients_2,p_value_2,adjust_p_value_2,sig_2,AIC_2,coefficients_3,p_value_3,adjust_p_value_3,sig_3,AIC_3,coefficients_4,p_value_4,adjust_p_value_4,sig_4,AIC_4
+Are co-sacrifices present in tomb/burial:,4808,(Intercept),0.17,0.0054,1,,373.16,0.09,0.33,1,,282.22,-3.82,0.5,1,,112.72,0.1,0.97,1,,120.75
+Are co-sacrifices present in tomb/burial:,4808,start_temp_avg,-0.04,0.34,1,,373.16,-0.17,0.018,1,,282.22,-0.04,0.84,1,,112.72,-0.05,0.76,1,,120.75
+Are co-sacrifices present in tomb/burial:,4808,start_prep_avg,0.07,0.21,1,,373.16,0.17,0.055,1,,282.22,-2.49,0.56,1,,112.72,-0.38,0.88,1,,120.75
+Are co-sacrifices present in tomb/burial:,4808,start_prep_var,0,0.52,1,,373.16,0.01,0.54,1,,282.22,0.6,0.42,1,,112.72,0.04,0.92,1,,120.75
+Are co-sacrifices present in tomb/burial:,4808,elevation,0,0.96,1,,373.16,0.06,0.61,1,,282.22,-0.14,0.48,1,,112.72,-0.02,0.92,1,,120.75
+Are co-sacrifices present in tomb/burial:,4808,mammals,0.03,0.58,1,,373.16,-0.25,0.068,1,,282.22,0.38,0.047,1,,112.72,0.26,0.059,1,,120.75
+Are co-sacrifices present in tomb/burial:,4808,plants,-0.01,0.82,1,,373.16,0.04,0.69,1,,282.22,-0.03,0.95,1,,112.72,-0.23,0.53,1,,120.75
+Are co-sacrifices present in tomb/burial:,4808,dist_coastline,0.12,0.064,1,,373.16,0.06,0.44,1,,282.22,-0.04,0.96,1,,112.72,-0,1,1,,120.75
+Are co-sacrifices present in tomb/burial:,4808,dist_freshwater,-0,0.68,1,,373.16,-0,0.19,1,,282.22,-0,0.98,1,,112.72,0,0.67,1,,120.75
+Are co-sacrifices present in tomb/burial:,4808,mammals:plants,0.03,0.47,1,,373.16,-0.16,0.17,1,,282.22,-0.06,0.73,1,,112.72,-0.01,0.93,1,,120.75
+Are co-sacrifices present in tomb/burial:,4808,start_prep_avg:mammals,-0.01,0.74,1,,373.16,0.47,7.4e-4,1,,282.22,0.03,0.84,1,,112.72,0.01,0.95,1,,120.75
+Are co-sacrifices present in tomb/burial:,4808,start_prep_avg:plants,0.03,0.41,1,,373.16,-0.05,0.49,1,,282.22,-0.09,0.84,1,,112.72,-0.18,0.53,1,,120.75
+Are co-sacrifices present in tomb/burial:,4808,start_temp_avg:mammals,-0.03,0.53,1,,373.16,-0.09,0.31,1,,282.22,-0.15,0.23,1,,112.72,-0.03,0.7,1,,120.75
+Are co-sacrifices present in tomb/burial:,4808,start_temp_avg:elevation,0.04,0.37,1,,373.16,0.08,0.28,1,,282.22,0.04,0.76,1,,112.72,0.04,0.7,1,,120.75
+Are co-sacrifices present in tomb/burial:,4808,start_prep_avg:start_prep_var,-0,0.58,1,,373.16,-0.01,0.48,1,,282.22,0.31,0.53,1,,112.72,0.09,0.79,1,,120.75
+Are co-sacrifices present in tomb/burial:,4808,start_prep_var:dist_coastline,-0.02,0.051,1,,373.16,-0.02,0.038,1,,282.22,-0.01,0.9,1,,112.72,-0.02,0.87,1,,120.75
+Are co-sacrifices present in tomb/burial:,4808,start_prep_avg:mammals:plants,0.02,0.54,1,,373.16,0.02,0.73,1,,282.22,0.15,0.46,1,,112.72,0.15,0.44,1,,120.75
