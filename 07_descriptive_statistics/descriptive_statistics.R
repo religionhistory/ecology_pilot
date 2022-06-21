@@ -7,6 +7,9 @@ source("../project_support.r")
 # Load data
 data <- readRDS("./input/data_ecology_wide.rds")
 analysis_questions <- fread("./input/analysis_questions.csv")
+analysis_2_sample <- read_csv("./input/a_2_dict.csv")
+analysis_3_sample <- read_csv("./input/a_3_dict.csv")
+analysis_4_sample <- read_csv("./input/a_4_dict.csv")
 
 # Calculate descriptive statistics for analysis questions
 question_statistics <- data %>%
@@ -59,8 +62,12 @@ ecology_statistics <- data %>%
   arrange(row_n) %>%
   select(-row_n)
 
+# Get descriptive statistics for analysis questions per sample
+sample_stats <- get_sample_stats()
+
 # Save outputs
 write_csv(question_statistics, "./../results/question_statistics.csv")
 write_csv(ecology_statistics, "./../results/ecology_statistics.csv")
+write_csv(sample_stats, "./../results/sample_question_statistics.csv")
 
 

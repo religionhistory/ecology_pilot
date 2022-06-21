@@ -1215,7 +1215,6 @@ get_sample_size <- function(var) {
   sample_size <- bind_rows(a1_sample, a2_sample, a3_sample, a4_sample)
 }
 
-
 # Extract results and apply multiple testing correction
 extract_results <- function(model) {
   model <- summary(model)
@@ -1320,3 +1319,85 @@ create_results_tables <- function(){
   }
 }
 
+# Get descriptive statistics for analysis questions per sample
+get_sample_stats <- function() {
+  # Sample 1
+  sample_1 <- data %>%
+    select(all_of(analysis_questions$`Question ID`)) %>%
+    pivot_longer(cols = everything(), names_to = "Question ID", values_to = "Answers") %>%
+    filter(!is.na(Answers)) %>%
+    group_by(`Question ID`, Answers) %>%
+    tally(name = "Frequency") %>%
+    group_by(`Question ID`) %>%
+    mutate(Percent = Frequency/ sum(Frequency) * 100) %>%
+    mutate(Percent = round(Percent, 2)) %>%
+    mutate(Answers = case_when(Answers == 1 ~ "Yes", Answers == 0 ~ "No")) %>%
+    pivot_wider(names_from = Answers, values_from = c(Frequency, Percent), names_sep = " ") %>%
+    mutate(N = sum(`Frequency No`, `Frequency Yes`, na.rm = T)) %>%
+    ungroup() %>%
+    left_join(analysis_questions, by = "Question ID") %>%
+    mutate(Sample = 1)
+  
+  # Sample 2
+  sample_2 <- data %>%
+    mutate(id = paste0(`Entry ID`, "_", gsub(",", "", `Branching question`), "_", `Region ID`, "_", start_year, "_", end_year)) %>%
+    filter(id %in% analysis_2_sample$ID) %>%
+    select(all_of(analysis_questions$`Question ID`)) %>%
+    pivot_longer(cols = everything(), names_to = "Question ID", values_to = "Answers") %>%
+    filter(!is.na(Answers)) %>%
+    group_by(`Question ID`, Answers) %>%
+    tally(name = "Frequency") %>%
+    group_by(`Question ID`) %>%
+    mutate(Percent = Frequency/ sum(Frequency) * 100) %>%
+    mutate(Percent = round(Percent, 2)) %>%
+    mutate(Answers = case_when(Answers == 1 ~ "Yes", Answers == 0 ~ "No")) %>%
+    pivot_wider(names_from = Answers, values_from = c(Frequency, Percent), names_sep = " ") %>%
+    mutate(N = sum(`Frequency No`, `Frequency Yes`, na.rm = T)) %>%
+    ungroup() %>%
+    left_join(analysis_questions, by = "Question ID") %>%
+    mutate(Sample = 2)
+  
+  # Sample 3
+  sample_3 <- data %>%
+    mutate(id = paste0(`Entry ID`, "_", gsub(",", "", `Branching question`), "_", `Region ID`, "_", start_year, "_", end_year)) %>%
+    filter(id %in% analysis_3_sample$ID) %>%
+    select(all_of(analysis_questions$`Question ID`)) %>%
+    pivot_longer(cols = everything(), names_to = "Question ID", values_to = "Answers") %>%
+    filter(!is.na(Answers)) %>%
+    group_by(`Question ID`, Answers) %>%
+    tally(name = "Frequency") %>%
+    group_by(`Question ID`) %>%
+    mutate(Percent = Frequency/ sum(Frequency) * 100) %>%
+    mutate(Percent = round(Percent, 2)) %>%
+    mutate(Answers = case_when(Answers == 1 ~ "Yes", Answers == 0 ~ "No")) %>%
+    pivot_wider(names_from = Answers, values_from = c(Frequency, Percent), names_sep = " ") %>%
+    mutate(N = sum(`Frequency No`, `Frequency Yes`, na.rm = T)) %>%
+    ungroup() %>%
+    left_join(analysis_questions, by = "Question ID") %>%
+    mutate(Sample = 3) 
+  
+  # Sample 4
+  sample_4 <- data %>%
+    mutate(id = paste0(`Entry ID`, "_", gsub(",", "", `Branching question`), "_", `Region ID`, "_", start_year, "_", end_year)) %>%
+    filter(id %in% analysis_4_sample$ID) %>%
+    select(all_of(analysis_questions$`Question ID`)) %>%
+    pivot_longer(cols = everything(), names_to = "Question ID", values_to = "Answers") %>%
+    filter(!is.na(Answers)) %>%
+    group_by(`Question ID`, Answers) %>%
+    tally(name = "Frequency") %>%
+    group_by(`Question ID`) %>%
+    mutate(Percent = Frequency/ sum(Frequency) * 100) %>%
+    mutate(Percent = round(Percent, 2)) %>%
+    mutate(Answers = case_when(Answers == 1 ~ "Yes", Answers == 0 ~ "No")) %>%
+    pivot_wider(names_from = Answers, values_from = c(Frequency, Percent), names_sep = " ") %>%
+    mutate(N = sum(`Frequency No`, `Frequency Yes`, na.rm = T)) %>%
+    ungroup() %>%
+    left_join(analysis_questions, by = "Question ID") %>%
+    mutate(Sample = 4) 
+  
+  # Combine into single tibble
+  sample_stats <- bind_rows(sample_1, sample_2, sample_3, sample_4) %>%
+    arrange(`Question ID`) %>%
+    select(Question, Sample, N, `Frequency Yes`, `Frequency No`, `Percent Yes`, `Percent No`) %>%
+    mutate(across(`Frequency Yes`:`Percent No`, ~ ifelse(is.na(.), 0.00, .)))
+}

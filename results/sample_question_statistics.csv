@@ -1,0 +1,105 @@
+Question,Sample,N,Frequency Yes,Frequency No,Percent Yes,Percent No
+Does the religious group have a general process/system for assigning religious affiliation:,1,350,224,126,64,36
+Does the religious group have a general process/system for assigning religious affiliation:,2,158,112,46,70.89,29.11
+Does the religious group have a general process/system for assigning religious affiliation:,3,54,9,45,16.67,83.33
+Does the religious group have a general process/system for assigning religious affiliation:,4,60,14,46,23.33,76.67
+Does the religious group actively proselytize and recruit new members:,1,353,117,236,33.14,66.86
+Does the religious group actively proselytize and recruit new members:,2,152,55,97,36.18,63.82
+Does the religious group actively proselytize and recruit new members:,3,67,1,66,1.49,98.51
+Does the religious group actively proselytize and recruit new members:,4,73,3,70,4.11,95.89
+Is there a conception of apostasy in the religious group:,1,328,136,192,41.46,58.54
+Is there a conception of apostasy in the religious group:,2,161,70,91,43.48,56.52
+Is there a conception of apostasy in the religious group:,3,42,2,40,4.76,95.24
+Is there a conception of apostasy in the religious group:,4,49,4,45,8.16,91.84
+Are sacred sites oriented to environmental features:,1,179,118,61,65.92,34.08
+Are sacred sites oriented to environmental features:,2,73,58,15,79.45,20.55
+Are sacred sites oriented to environmental features:,3,27,22,5,81.48,18.52
+Are sacred sites oriented to environmental features:,4,32,25,7,78.12,21.88
+Are co-sacrifices present in tomb/burial:,1,407,72,335,17.69,82.31
+Are co-sacrifices present in tomb/burial:,2,201,45,156,22.39,77.61
+Are co-sacrifices present in tomb/burial:,3,74,19,55,25.68,74.32
+Are co-sacrifices present in tomb/burial:,4,79,19,60,24.05,75.95
+Are grave goods present:,1,413,203,210,49.15,50.85
+Are grave goods present:,2,200,109,91,54.5,45.5
+Are grave goods present:,3,80,56,24,70,30
+Are grave goods present:,4,84,56,28,66.67,33.33
+Are formal burials present:,1,452,339,113,75,25
+Are formal burials present:,2,212,150,62,70.75,29.25
+Are formal burials present:,3,96,84,12,87.5,12.5
+Are formal burials present:,4,100,88,12,88,12
+A supreme high god is present:,1,489,340,149,69.53,30.47
+A supreme high god is present:,2,229,169,60,73.8,26.2
+A supreme high god is present:,3,92,50,42,54.35,45.65
+A supreme high god is present:,4,98,54,44,55.1,44.9
+The supreme high god exhibits negative emotion:,1,340,138,202,40.59,59.41
+The supreme high god exhibits negative emotion:,2,156,71,85,45.51,54.49
+The supreme high god exhibits negative emotion:,3,50,4,46,8,92
+The supreme high god exhibits negative emotion:,4,56,6,50,10.71,89.29
+The supreme high god possesses hunger:,1,328,43,285,13.11,86.89
+The supreme high god possesses hunger:,2,149,22,127,14.77,85.23
+The supreme high god possesses hunger:,3,48,3,45,6.25,93.75
+The supreme high god possesses hunger:,4,54,4,50,7.41,92.59
+Previously human spirits are present:,1,399,281,118,70.43,29.57
+Previously human spirits are present:,2,174,117,57,67.24,32.76
+Previously human spirits are present:,3,86,83,3,96.51,3.49
+Previously human spirits are present:,4,92,86,6,93.48,6.52
+Non-human supernatural beings are present:,1,434,368,66,84.79,15.21
+Non-human supernatural beings are present:,2,200,176,24,88,12
+Non-human supernatural beings are present:,3,93,87,6,93.55,6.45
+Non-human supernatural beings are present:,4,98,90,8,91.84,8.16
+Mixed human-divine beings are present:,1,259,113,146,43.63,56.37
+Mixed human-divine beings are present:,2,134,63,71,47.01,52.99
+Mixed human-divine beings are present:,3,37,25,12,67.57,32.43
+Mixed human-divine beings are present:,4,43,27,16,62.79,37.21
+Punishment in this life consists of crop failure or bad weather:,1,265,150,115,56.6,43.4
+Punishment in this life consists of crop failure or bad weather:,2,115,71,44,61.74,38.26
+Punishment in this life consists of crop failure or bad weather:,3,34,23,11,67.65,32.35
+Punishment in this life consists of crop failure or bad weather:,4,38,27,11,71.05,28.95
+Reward in this life consists of healthy crops or good weather:,1,246,149,97,60.57,39.43
+Reward in this life consists of healthy crops or good weather:,2,119,86,33,72.27,27.73
+Reward in this life consists of healthy crops or good weather:,3,17,6,11,35.29,64.71
+Reward in this life consists of healthy crops or good weather:,4,21,9,12,42.86,57.14
+Does membership in this religious group require celibacy (full sexual abstinence):,1,361,49,312,13.57,86.43
+Does membership in this religious group require celibacy (full sexual abstinence):,2,160,33,127,20.62,79.38
+Does membership in this religious group require celibacy (full sexual abstinence):,3,68,2,66,2.94,97.06
+Does membership in this religious group require celibacy (full sexual abstinence):,4,74,3,71,4.05,95.95
+Does membership in this religious group require sacrifice of property/valuable items:,1,298,134,164,44.97,55.03
+Does membership in this religious group require sacrifice of property/valuable items:,2,160,88,72,55,45
+Does membership in this religious group require sacrifice of property/valuable items:,3,12,4,8,33.33,66.67
+Does membership in this religious group require sacrifice of property/valuable items:,4,17,4,13,23.53,76.47
+"Does membership in this religious group require participation in small-scale rituals (private, household):",1,360,255,105,70.83,29.17
+"Does membership in this religious group require participation in small-scale rituals (private, household):",2,185,163,22,88.11,11.89
+"Does membership in this religious group require participation in small-scale rituals (private, household):",3,32,7,25,21.88,78.12
+"Does membership in this religious group require participation in small-scale rituals (private, household):",4,38,11,27,28.95,71.05
+Does membership in this religious group require participation in large-scale rituals:,1,410,316,94,77.07,22.93
+Does membership in this religious group require participation in large-scale rituals:,2,207,178,29,85.99,14.01
+Does membership in this religious group require participation in large-scale rituals:,3,62,42,20,67.74,32.26
+Does membership in this religious group require participation in large-scale rituals:,4,68,48,20,70.59,29.41
+Are extra-ritual in-group markers present:,1,301,148,153,49.17,50.83
+Are extra-ritual in-group markers present:,2,157,80,77,50.96,49.04
+Are extra-ritual in-group markers present:,3,14,14,0,100,0
+Are extra-ritual in-group markers present:,4,21,19,2,90.48,9.52
+Does the group employ fictive kinship terminology:,1,234,143,91,61.11,38.89
+Does the group employ fictive kinship terminology:,2,120,71,49,59.17,40.83
+Does the group employ fictive kinship terminology:,3,1,1,0,100,0
+Does the group employ fictive kinship terminology:,4,6,4,2,66.67,33.33
+Does the religious group in question provide public food storage:,1,381,81,300,21.26,78.74
+Does the religious group in question provide public food storage:,2,144,47,97,32.64,67.36
+Does the religious group in question provide public food storage:,3,90,4,86,4.44,95.56
+Does the religious group in question provide public food storage:,4,95,5,90,5.26,94.74
+Is public food storage provided to the group’s adherents by an institution(s) other than the religious group in question:,1,289,100,189,34.6,65.4
+Is public food storage provided to the group’s adherents by an institution(s) other than the religious group in question:,2,116,54,62,46.55,53.45
+Is public food storage provided to the group’s adherents by an institution(s) other than the religious group in question:,3,37,0,37,0,100
+Is public food storage provided to the group’s adherents by an institution(s) other than the religious group in question:,4,41,1,40,2.44,97.56
+"Does the religious group in question provide water management (irrigation, flood control):",1,309,75,234,24.27,75.73
+"Does the religious group in question provide water management (irrigation, flood control):",2,159,55,104,34.59,65.41
+"Does the religious group in question provide water management (irrigation, flood control):",3,15,2,13,13.33,86.67
+"Does the religious group in question provide water management (irrigation, flood control):",4,19,3,16,15.79,84.21
+Is water management provided to the group’s adherents by an institution(s) other than the religious group in question:,1,279,181,98,64.87,35.13
+Is water management provided to the group’s adherents by an institution(s) other than the religious group in question:,2,138,81,57,58.7,41.3
+Is water management provided to the group’s adherents by an institution(s) other than the religious group in question:,3,6,4,2,66.67,33.33
+Is water management provided to the group’s adherents by an institution(s) other than the religious group in question:,4,11,8,3,72.73,27.27
+Fishing,1,296,147,149,49.66,50.34
+Fishing,2,112,41,71,36.61,63.39
+Fishing,3,99,67,32,67.68,32.32
+Fishing,4,102,67,35,65.69,34.31
