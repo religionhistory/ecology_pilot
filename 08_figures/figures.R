@@ -6,6 +6,7 @@ source("../project_support.r")
 library(ggpubr)
 library(patchwork)
 library(corrplot)
+library(tmap)
 
 # Load data
 data <- readRDS("./input/data_ecology_wide.rds")
@@ -14,7 +15,7 @@ analysis_2_sample <- read_csv("./input/a_2_dict.csv")
 analysis_3_sample <- read_csv("./input/a_3_dict.csv")
 analysis_4_sample <- read_csv("./input/a_4_dict.csv")
 
-# Create corrplot
+### Create corrplot
 # Remove ID variables
 data_ecology <- data %>%
   ungroup() %>%
@@ -48,7 +49,7 @@ corrplot(correlations, method="color",
 )
 dev.off()
 
-# Plot historical scope of religion variables 
+### Plot historical scope of religion variables 
 # Convert from wide to long
 data_long <- data %>%
   select(`Entry ID`, `Entry name`, `Branching question`, `Region ID`, `Region name`, start_year, end_year, all_of(analysis_questions$`Question ID`)) %>%
@@ -83,7 +84,7 @@ ggplot(data_long, aes(x = start_year, color = Answers, fill = Answers)) +
 ggsave("../figures/historical_scope.pdf", width = 10, height = 30)
 ggsave("../figures/historical_scope.png", width = 10, height = 30)
 
-# Amount of missingness per variable
+### Amount of missingness per variable
 data_miss <- data %>%
   select(all_of(analysis_questions$`Question ID`)) %>%
   pivot_longer(cols = all_of(analysis_questions$`Question ID`), names_to = "Question ID", values_to = "Answers") %>%
@@ -114,107 +115,84 @@ ggplot(data = data_miss, aes(x = Question, y = Percent, fill = Variable, Percent
 ggsave("../figures/missing_data.pdf", width = 11, height = 6)
 ggsave("../figures/missing_data.png", width = 11, height = 6)
 
-# Calculate distance to freshwater
-data <- data %>%
-  group_by(`Entry ID`, `Entry name`, start_year, end_year, `Region ID`, `Region name`, `Branching question`) %>%
-  mutate(dist_freshwater = min(dist_lakes, dist_rivers)) %>%
-  ungroup() %>%
-  # Convert to numeric
-  mutate(dist_freshwater = as.numeric(dist_freshwater)) %>%
-  mutate(dist_coastline = as.numeric(dist_coastline)) %>%
-  # Convert to km
-  mutate(dist_freshwater = dist_freshwater/1000) %>%
-  mutate(dist_coastline = dist_coastline/1000) %>%
+### Plot maps of question answers
+# Convert to sf
+data_sf <- st_as_sf(data)
+
+# Make valid
+data_sf <- st_make_valid(data_sf)
+
+# Calculate centroids
+data_centroid <- st_centroid(data_sf) %>%
+  select(`Entry ID`, `Entry name`, `Branching question`, `Region ID`, `Region name`, start_year, end_year, geometry)
+
+# Join with answers
+data_centroid_ans <- data_long %>%
+  left_join(data_centroid, by = c("Entry ID", "Entry name", "Branching question", "Region ID", "Region name", "start_year", "end_year"))
+
+# Convert to sf
+data_centroid_ans <- st_as_sf(data_centroid_ans)
+
+# Load map data
+data(land, World)
+
+# Plot distributions of answers
+tmap_mode("plot")
+questions_map <- tm_shape(World) +
+  tm_fill() +
+  tm_shape(data_centroid_ans) +  
+  tm_symbols(col = "Answers", palette = "viridis") +
+  tm_facets(by = "Question", ncol = 3, sync = TRUE) +
+  tm_layout(legend.show = FALSE)
+
+# Plot maps
+pdf("../figures/question_maps.pdf", width = 15, height = 20)
+questions_map
+dev.off()
+
+### Plot maps of elevation and fishing
+# Extract fishing data
+fish_s2 <- data_centroid_ans %>%
+  filter(Question == "Fishing") %>%
   # Add ID
-  mutate(id = paste0(`Entry ID`, "_", gsub(",", "", `Branching question`), "_", `Region ID`, "_", start_year, "_", end_year))
-
-# Extract distance to freshwater per sample
-freshwater_s1 <- data %>%
-  mutate(Sample = "Sample 1") %>%
-  select(Sample, dist_freshwater)
-freshwater_s2 <- data %>%
+  mutate(id = paste0(`Entry ID`, "_", gsub(",", "", `Branching question`), "_", `Region ID`, "_", start_year, "_", end_year)) %>%
   filter(id %in% analysis_2_sample$ID) %>%
-  mutate(Sample = "Sample 2") %>%
-  select(Sample, dist_freshwater)
-freshwater_s3 <- data %>%
-  filter(id %in% analysis_3_sample$ID) %>%
-  mutate(Sample = "Sample 3") %>%
-  select(Sample, dist_freshwater)
-freshwater_s4 <- data %>%
-  filter(id %in% analysis_4_sample$ID) %>%
-  mutate(Sample = "Sample 4") %>%
-  select(Sample, dist_freshwater)
-freshwater <- bind_rows(freshwater_s1, freshwater_s2, freshwater_s3, freshwater_s4) 
+  filter(Answers != "Missing") %>%
+  rename("Fishing" = Answers) %>%
+  mutate(Fishing = case_when(Fishing == "Yes" ~ "Present", Fishing == "No" ~ "Absent"))
 
-# Add comparisons
-freshwater_sample_comparisons <- list(c("Sample 1", "Sample 2"), c("Sample 2", "Sample 3"), c("Sample 1", "Sample 3"), c("Sample 2", "Sample 4"), c("Sample 1", "Sample 4"))
+# Extract elevation data
+elevation_s2 <- data %>%
+  select(`Entry ID`, `Entry name`, `Branching question`, `Region ID`, `Region name`, start_year, end_year, elevation, geometry) %>%
+  # Add ID
+  mutate(id = paste0(`Entry ID`, "_", gsub(",", "", `Branching question`), "_", `Region ID`, "_", start_year, "_", end_year)) %>%
+  filter(id %in% fish_s2$id) %>%
+  rename("Elevation" = elevation) %>%
+  filter(!is.na(Elevation))
 
-# Plot data
-freshwater_plot <- ggboxplot(freshwater, x = "Sample", y = "dist_freshwater") + 
-  ylab("Distance to Freshwater (km)") +
-  stat_compare_means(label.x = 2, label.y = 8300) +
-  stat_compare_means(comparisons = freshwater_sample_comparisons, label =  "p.signif") 
-freshwater_plot
-ggsave("../figures/freshwater.pdf", width = 5, height = 5)
-ggsave("../figures/freshwater.png", width = 5, height = 5)
+# Convert to sf
+elevation_s2 <- st_as_sf(elevation_s2)
 
-# Look at start year and distance to coast
-ggplot(data, aes(x = start_year, y = dist_freshwater)) +
-  geom_point() + 
-  ylab("Distance to Freshwater (km)") +
-  xlab("Start Year") +
-  scale_y_continuous(expand = c(0, 0), limits = c(-50, 5500)) +
-  theme_classic2() +
-  theme(
-    axis.text = element_text(colour = "black"))
-ggsave("../figures/start_year_freshwater.pdf", width = 6, height = 4)
-ggsave("../figures/start_year_freshwater.png", width = 6, height = 4)
+# Plot map of fishing
+fishing_map <- tm_shape(World) +
+  tm_fill() +
+  tm_shape(fish_s2) +  
+  tm_symbols(col = "Fishing", palette = "Dark2", size = 0.5) +
+  tm_layout(title= 'A')
 
-# Extract distance to coast per sample
-coastline_s1 <- data %>%
-  mutate(Sample = "Sample 1") %>%
-  select(Sample, dist_coastline)
-coastline_s2 <- data %>%
-  filter(id %in% analysis_2_sample$ID) %>%
-  mutate(Sample = "Sample 2") %>%
-  select(Sample, dist_coastline)
-coastline_s3 <- data %>%
-  filter(id %in% analysis_3_sample$ID) %>%
-  mutate(Sample = "Sample 3") %>%
-  select(Sample, dist_coastline)
-coastline_s4 <- data %>%
-  filter(id %in% analysis_4_sample$ID) %>%
-  mutate(Sample = "Sample 4") %>%
-  select(Sample, dist_coastline)
-coastline <- bind_rows(coastline_s1, coastline_s2, coastline_s3, coastline_s4) 
+# Plot map of elevation
+elevation_map <- tm_shape(World) +
+  tm_fill() +
+  tm_shape(elevation_s2) +  
+  tm_symbols(col = "Elevation", palette = "-viridis", size = 0.5,
+             breaks = c(0, 200, 400, 600, 800, 1000, 2000, 3000, 4000, Inf),
+             legend.hist = TRUE, legend.size.z = 1) +
+  tm_layout(title= 'B')
 
-# Add comparisons
-coastline_sample_comparisons <- list(c("Sample 2", "Sample 3"), c("Sample 1", "Sample 3"), c("Sample 2", "Sample 4"), c("Sample 1", "Sample 4"))
+# Combine maps
+figure_maps <- tmap_arrange(fishing_map, elevation_map)
 
-# Plot data
-coastline_plot <- ggboxplot(coastline, x = "Sample", y = "dist_coastline") + 
-  ylab("Distance to Coast (km)") +
-  stat_compare_means(label.x = 2, label.y = 2800) +
-  stat_compare_means(comparisons = coastline_sample_comparisons, label =  "p.signif") 
-coastline_plot
-ggsave("../figures/coastline.pdf", width = 5, height = 5)
-ggsave("../figures/coastline.png", width = 5, height = 5)
-
-# Look at start year and distance to coast
-ggplot(data, aes(x = start_year, y = dist_coastline)) +
-  geom_point() + 
-  ylab("Distance to Coast (km)") +
-  xlab("Start Year") +
-  scale_y_continuous(expand = c(0, 0), limits = c(-20, 2000)) +
-  theme_classic2() +
-  theme(
-    axis.text = element_text(colour = "black"))
-ggsave("../figures/start_year_coastline.pdf", width = 6, height = 4)
-ggsave("../figures/start_year_coastline.png", width = 6, height = 4)
-
-# Combine figures
-patchwork <- freshwater_plot + coastline_plot
-patchwork + plot_annotation(tag_levels = 'A')
-ggsave("../figures/figure_1.pdf", width = 10, height = 5)
-ggsave("../figures/figure_1.png", width = 10, height = 5)
-
+# Save maps
+pdf("../figures/elevation_fishing_maps.pdf", width = 6, height = 6.5)
+figure_maps
+dev.off()
