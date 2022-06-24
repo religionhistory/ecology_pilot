@@ -3,8 +3,6 @@
 rm(list = ls())
 
 source("../project_support.r")
-library(ggpubr)
-library(patchwork)
 library(corrplot)
 library(tmap)
 
