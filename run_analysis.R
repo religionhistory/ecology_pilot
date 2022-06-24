@@ -5,6 +5,7 @@ source("./project_support.r")
 
 # Unzip data
 unzip("./data/drh.csv.zip", exdir = "./data")
+unzip("./data/kml.zip")
 
 # Make figures and results folders
 make.dir("figures")
