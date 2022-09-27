@@ -65,9 +65,15 @@ ecology_statistics <- data %>%
 # Get descriptive statistics for analysis questions per sample
 sample_stats <- get_sample_stats()
 
+# Extract N per sample, per question
+n_samples <- sample_stats %>%
+  select(Question, Sample, N) %>%
+  pivot_wider(names_from = Sample, names_prefix = "N Sample ", values_from = N)
+
 # Save outputs
 write_csv(question_statistics, "./../results/question_statistics.csv")
 write_csv(ecology_statistics, "./../results/ecology_statistics.csv")
 write_csv(sample_stats, "./../results/sample_question_statistics.csv")
+write_csv(n_samples, "./../results/sample_question_n.csv")
 
 
