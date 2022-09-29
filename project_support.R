@@ -1097,8 +1097,8 @@ analysis_sample_size <- function() {
   sample_size <- tibble(Analysis = c(1, 2, 3, 4), `Sample Size` = c(sample_size_1, sample_size_2, sample_size_3, sample_size_4))
 }
 
-# Run GLS
-run_gls <- function(data, var) {
+# Run models, first running vif
+run_models <- function(data, var) {
   a1_data <- data %>%
     rename(var = all_of(var)) %>%
     mutate(var = as.numeric(var)) %>%
@@ -1153,39 +1153,505 @@ run_gls <- function(data, var) {
   a4_data <- a1_data %>%
     filter(id %in% analysis_4_sample$ID) 
   
-  # Function to run GLS model
-  gls_model <- function(data) {
+  # Functions to run GLS models
+  # average temperature + average precipitation + precipitation variation 
+  gls_model_1 <- function(data) {
     set.seed(10)
-    gls(var ~ start_temp_avg + start_prep_avg + start_prep_var + elevation + mammals + plants + dist_coastline + dist_freshwater + (mammals * plants * start_prep_avg) + (mammals * start_temp_avg) + (elevation * start_temp_avg) + (start_prep_avg * start_prep_var) + (start_prep_var * dist_coastline), data = data, correlation = corSpher(form = ~ latitude + longitude), na.action = na.omit)
+    gls(var ~ start_temp_avg + start_prep_avg + start_prep_var, data = data, correlation = corSpher(form = ~ latitude + longitude), na.action = na.omit)
   }
-  gls_model_poss <- possibly(gls_model, otherwise = "The model failed to converge")
-  
   # Run models if nrow > 1
-  a1_model <- gls_model_poss(data = a1_data)
-  a2_model <- gls_model_poss(data = a2_data)
-  a3_model <- gls_model_poss(data = a3_data)
-  a4_model <- gls_model_poss(data = a4_data)
+  gls_model_poss_1 <- possibly(gls_model_1, otherwise = "The model failed to converge")
   
-  # Summary and save output 
-  if(class(a1_model) == "gls") {
-    saveRDS(a1_model, paste0("./output/a1_m_", var, ".rds"))
-  } else {
-    write.table(a1_model, paste0("./output/a1_m_", var, ".txt"))
+  # average temperature + average precipitation + precipitation variation + elevation 
+  gls_model_2 <- function(data) {
+    set.seed(10)
+    gls(var ~ start_temp_avg + start_prep_avg + start_prep_var + elevation, data = data, correlation = corSpher(form = ~ latitude + longitude), na.action = na.omit)
   }
-  if(class(a2_model) == "gls") {
-    saveRDS(a2_model, paste0("./output/a2_m_", var, ".rds"))
-  } else {
-    write.table(a2_model, paste0("./output/a2_m_", var, ".txt"))
+  gls_model_poss_2 <- possibly(gls_model_2, otherwise = "The model failed to converge")
+  
+  # average temperature + average precipitation + precipitation variation + elevation + plants 
+  gls_model_3 <- function(data) {
+    set.seed(10)
+    gls(var ~ start_temp_avg + start_prep_avg + start_prep_var + elevation + plants, data = data, correlation = corSpher(form = ~ latitude + longitude), na.action = na.omit)
   }
-  if(class(a3_model) == "gls") {
-    saveRDS(a3_model, paste0("./output/a3_m_", var, ".rds"))
-  } else {
-    write.table(a3_model, paste0("./output/a3_m_", var, ".txt"))
+  gls_model_poss_3 <- possibly(gls_model_3, otherwise = "The model failed to converge")
+  
+  # average temperature + average precipitation + precipitation variation + elevation + plants + mammals
+  gls_model_4 <- function(data) {
+    set.seed(10)
+    gls(var ~ start_temp_avg + start_prep_avg + start_prep_var + elevation + plants + mammals, data = data, correlation = corSpher(form = ~ latitude + longitude), na.action = na.omit)
   }
-  if(class(a4_model) == "gls") {
-    saveRDS(a4_model, paste0("./output/a4_m_", var, ".rds"))
+  gls_model_poss_4 <- possibly(gls_model_4, otherwise = "The model failed to converge")
+  
+  # average temperature + average precipitation + precipitation variation + elevation + plants + mammals + dist_freshwater
+  gls_model_5 <- function(data) {
+    set.seed(10)
+    gls(var ~ start_temp_avg + start_prep_avg + start_prep_var + elevation + plants + mammals + dist_freshwater, data = data, correlation = corSpher(form = ~ latitude + longitude), na.action = na.omit)
+  }
+  gls_model_poss_5 <- possibly(gls_model_5, otherwise = "The model failed to converge")
+  
+  # average temperature + average precipitation + precipitation variation + elevation + plants + mammals + dist_freshwater + dist_coastline
+  gls_model_6 <- function(data) {
+    set.seed(10)
+    gls(var ~ start_temp_avg + start_prep_avg + start_prep_var + elevation + plants + mammals + dist_freshwater + dist_coastline, data = data, correlation = corSpher(form = ~ latitude + longitude), na.action = na.omit)
+  }
+  # Run models if nrow > 1
+  gls_model_poss_6 <- possibly(gls_model_6, otherwise = "The model failed to converge")
+  
+  # If GLS model converges, run vif
+  a1_model_1 <- gls_model_poss_1(data = a1_data)
+  a2_model_1 <- gls_model_poss_1(data = a2_data)
+  a3_model_1 <- gls_model_poss_1(data = a3_data)
+  a4_model_1 <- gls_model_poss_1(data = a4_data)
+  
+  # Run VIF for each model: average temperature, average precipitation, precipitation variation
+  if(class(a1_model_1) == "gls") {
+    set.seed(10)
+    a1_vif_1 <- vif(gls(var ~ start_temp_avg + start_prep_avg + start_prep_var, data = a1_data, correlation = corSpher(form = ~ latitude + longitude), na.action = na.omit))
+    # Save output
+    write.csv(a1_vif_1, paste0("./output/a1_vif_1_", var, ".csv"))
+    if(max(a1_vif_1) <= 5) {
+      # Save output 
+      if(class(a1_model_1) == "gls") {
+        saveRDS(a1_model_1, paste0("./output/a1_m_1_", var, ".rds"))
+      } else {
+        write.table(a1_model_1, paste0("./output/a1_m_1_", var, ".txt"))
+      }
+      a1_model_2 <- gls_model_poss_2(data = a1_data)
+      if(class(a1_model_2) == "gls") {
+        # Run VIF for average temperature + average precipitation + precipitation variation + elevation
+        set.seed(10)
+        a1_vif_2 <- vif(gls(var ~ start_temp_avg + start_prep_avg + start_prep_var + elevation, data = a1_data, correlation = corSpher(form = ~ latitude + longitude), na.action = na.omit))
+        # Save output
+        write.csv(a1_vif_2, paste0("./output/a1_vif_2_", var, ".csv"))
+        if(max(a1_vif_2) <= 5) {
+          # Save output 
+          if(class(a1_model_2) == "gls") {
+            saveRDS(a1_model_2, paste0("./output/a1_m_2_", var, ".rds"))
+          } else {
+            write.table(a1_model_2, paste0("./output/a1_m_2_", var, ".txt"))
+          }
+        } 
+        a1_model_3 <- gls_model_poss_3(data = a1_data)
+        if(class(a1_model_3) == "gls") {
+          # Run VIF for average temperature + average precipitation + precipitation variation + elevation + plants
+          set.seed(10)
+          a1_vif_3 <- vif(gls(var ~ start_temp_avg + start_prep_avg + start_prep_var + elevation + plants, data = a1_data, correlation = corSpher(form = ~ latitude + longitude), na.action = na.omit))
+          # Save output
+          write.csv(a1_vif_3, paste0("./output/a1_vif_3_", var, ".csv"))
+          if(max(a1_vif_3) <= 5) {
+            # Save output 
+            if(class(a1_model_3) == "gls") {
+              saveRDS(a1_model_3, paste0("./output/a1_m_3_", var, ".rds"))
+            } else {
+              write.table(a1_model_3, paste0("./output/a1_m_3_", var, ".txt"))
+            }
+          } 
+          a1_model_4 <- gls_model_poss_4(data = a1_data)
+          if(class(a1_model_4) == "gls") {
+            # Run VIF for average temperature + average precipitation + precipitation variation + elevation + plants + mammals
+            set.seed(10)
+            a1_vif_4 <- vif(gls(var ~ start_temp_avg + start_prep_avg + start_prep_var + elevation + plants + mammals, data = a1_data, correlation = corSpher(form = ~ latitude + longitude), na.action = na.omit))
+            # Save output
+            write.csv(a1_vif_4, paste0("./output/a1_vif_4_", var, ".csv"))
+            if(max(a1_vif_4) <= 5) {
+              # Save output 
+              if(class(a1_model_4) == "gls") {
+                saveRDS(a1_model_4, paste0("./output/a1_m_4_", var, ".rds"))
+              } else {
+                write.table(a1_model_4, paste0("./output/a1_m_4_", var, ".txt"))
+              }
+            } 
+            a1_model_5 <- gls_model_poss_5(data = a1_data)
+            if(class(a1_model_5) == "gls") {
+              # Run VIF for average temperature + average precipitation + precipitation variation + elevation + plants + mammals + distance to freshwater
+              set.seed(10)
+              a1_vif_5 <- vif(gls(var ~ start_temp_avg + start_prep_avg + start_prep_var + elevation + plants + mammals + dist_freshwater, data = a1_data, correlation = corSpher(form = ~ latitude + longitude), na.action = na.omit))
+              # Save output
+              write.csv(a1_vif_5, paste0("./output/a1_vif_5_", var, ".csv"))
+              if(max(a1_vif_5) <= 5) {
+                # Save output 
+                if(class(a1_model_5) == "gls") {
+                  saveRDS(a1_model_5, paste0("./output/a1_m_5_", var, ".rds"))
+                } else {
+                  write.table(a1_model_5, paste0("./output/a1_m_5_", var, ".txt"))
+                }
+              } 
+              a1_model_6 <- gls_model_poss_6(data = a1_data)
+              if(class(a1_model_6) == "gls") {
+                # Run VIF for average temperature + average precipitation + precipitation variation + elevation + plants + mammals + distance to freshwater + distance to coastline
+                set.seed(10)
+                a1_vif_6 <- vif(gls(var ~ start_temp_avg + start_prep_avg + start_prep_var + elevation + plants + mammals + dist_freshwater + dist_coastline, data = a1_data, correlation = corSpher(form = ~ latitude + longitude), na.action = na.omit))
+                # Save output
+                write.csv(a1_vif_6, paste0("./output/a1_vif_6_", var, ".csv"))
+                if(max(a1_vif_6) <= 5) {
+                  # Save output 
+                  if(class(a1_model_6) == "gls") {
+                    saveRDS(a1_model_6, paste0("./output/a1_m_6_", var, ".rds"))
+                  } else {
+                    write.table(a1_model_6, paste0("./output/a1_m_6_", var, ".txt"))
+                  }
+                }
+              } else {
+                a1_vif_6 <- "The model failed to converge"
+                write.table(a1_vif_6, paste0("./output/a1_m_6_", var, ".txt"))
+              }
+            } else {
+              a1_vif_5 <- "The model failed to converge"
+              write.table(a1_vif_5, paste0("./output/a1_m_5_", var, ".txt"))
+            }
+          } else {
+            a1_vif_4 <- "The model failed to converge"
+            write.table(a1_vif_4, paste0("./output/a1_m_4_", var, ".txt"))
+          }
+        } else {
+          a1_vif_3 <- "The model failed to converge"
+          write.table(a1_vif_3, paste0("./output/a1_m_3_", var, ".txt"))
+        }
+      } else {
+        a1_vif_2 <- "The model failed to converge"
+        write.table(a1_vif_2, paste0("./output/a1_m_2_", var, ".txt"))
+      }
+    }
   } else {
-    write.table(a4_model, paste0("./output/a4_m_", var, ".txt"))
+    a1_vif_1 <- "The model failed to converge"
+    write.table(a1_vif_1, paste0("./output/a1_m_1_", var, ".txt"))
+  }
+  if(class(a2_model_1) == "gls") {
+    set.seed(10)
+    a2_vif_1 <- vif(gls(var ~ start_temp_avg + start_prep_avg + start_prep_var, data = a2_data, correlation = corSpher(form = ~ latitude + longitude), na.action = na.omit))
+    # Save output
+    write.csv(a2_vif_1, paste0("./output/a2_vif_1_", var, ".csv"))
+    if(max(a2_vif_1) <= 5) {
+      # Save output 
+      if(class(a2_model_1) == "gls") {
+        saveRDS(a2_model_1, paste0("./output/a2_m_1_", var, ".rds"))
+      } else {
+        write.table(a2_model_1, paste0("./output/a2_m_1_", var, ".txt"))
+      }
+      a2_model_2 <- gls_model_poss_2(data = a2_data)
+      if(class(a2_model_2) == "gls") {
+        set.seed(10)
+        # Run VIF for average temperature + average precipitation + precipitation variation + elevation
+        a2_vif_2 <- vif(gls(var ~ start_temp_avg + start_prep_avg + start_prep_var + elevation, data = a2_data, correlation = corSpher(form = ~ latitude + longitude), na.action = na.omit))
+        # Save output
+        write.csv(a2_vif_2, paste0("./output/a2_vif_2_", var, ".csv"))
+        if(max(a2_vif_2) <= 5) {
+          # Save output 
+          if(class(a2_model_2) == "gls") {
+            saveRDS(a2_model_2, paste0("./output/a2_m_2_", var, ".rds"))
+          } else {
+            write.table(a2_model_2, paste0("./output/a2_m_2_", var, ".txt"))
+          }
+        }
+        a2_model_3 <- gls_model_poss_3(data = a2_data)
+        if(class(a2_model_3) == "gls") {
+          set.seed(10)
+          # Run VIF for average temperature + average precipitation + precipitation variation + elevation + plants
+          a2_vif_3 <- vif(gls(var ~ start_temp_avg + start_prep_avg + start_prep_var + elevation + plants, data = a2_data, correlation = corSpher(form = ~ latitude + longitude), na.action = na.omit))
+          # Save output
+          write.csv(a2_vif_3, paste0("./output/a2_vif_3_", var, ".csv"))
+          if(max(a2_vif_3) <= 5) {
+            # Save output 
+            if(class(a2_model_3) == "gls") {
+              saveRDS(a2_model_3, paste0("./output/a2_m_3_", var, ".rds"))
+            } else {
+              write.table(a2_model_3, paste0("./output/a2_m_3_", var, ".txt"))
+            }
+          } 
+          a2_model_4 <- gls_model_poss_4(data = a2_data)
+          if(class(a2_model_4) == "gls") {
+            set.seed(10)
+            # Run VIF for average temperature + average precipitation + precipitation variation + elevation + plants + mammals
+            a2_vif_4 <- vif(gls(var ~ start_temp_avg + start_prep_avg + start_prep_var + elevation + plants + mammals, data = a2_data, correlation = corSpher(form = ~ latitude + longitude), na.action = na.omit))
+            # Save output
+            write.csv(a2_vif_4, paste0("./output/a2_vif_4_", var, ".csv"))
+            if(max(a2_vif_4) <= 5) {
+              # Save output 
+              if(class(a2_model_4) == "gls") {
+                saveRDS(a2_model_4, paste0("./output/a2_m_4_", var, ".rds"))
+              } else {
+                write.table(a2_model_4, paste0("./output/a2_m_4_", var, ".txt"))
+              }
+            } 
+            a2_model_5 <- gls_model_poss_5(data = a2_data)
+            if(class(a2_model_5) == "gls") {
+              set.seed(10)
+              # Run VIF for average temperature + average precipitation + precipitation variation + elevation + plants + mammals + distance to freshwater
+              a2_vif_5 <- vif(gls(var ~ start_temp_avg + start_prep_avg + start_prep_var + elevation + plants + mammals + dist_freshwater, data = a2_data, correlation = corSpher(form = ~ latitude + longitude), na.action = na.omit))
+              # Save output
+              write.csv(a2_vif_5, paste0("./output/a2_vif_5_", var, ".csv"))
+              if(max(a2_vif_5) <= 5) {
+                # Save output 
+                if(class(a2_model_5) == "gls") {
+                  saveRDS(a2_model_5, paste0("./output/a2_m_5_", var, ".rds"))
+                } else {
+                  write.table(a2_model_5, paste0("./output/a2_m_5_", var, ".txt"))
+                }
+              }  
+              a2_model_6 <- gls_model_poss_6(data = a2_data)
+              if(class(a2_model_6) == "gls") {
+                set.seed(10)
+                # Run VIF for average temperature + average precipitation + precipitation variation + elevation + plants + mammals + distance to freshwater + distance to coastline
+                a2_vif_6 <- vif(gls(var ~ start_temp_avg + start_prep_avg + start_prep_var + elevation + plants + mammals + dist_freshwater + dist_coastline, data = a2_data, correlation = corSpher(form = ~ latitude + longitude), na.action = na.omit))
+                # Save output
+                write.csv(a2_vif_6, paste0("./output/a2_vif_6_", var, ".csv"))
+                if(max(a2_vif_6) <= 5) {
+                  # Save output 
+                  if(class(a2_model_6) == "gls") {
+                    saveRDS(a2_model_6, paste0("./output/a2_m_6_", var, ".rds"))
+                  } else {
+                    write.table(a2_model_6, paste0("./output/a2_m_6_", var, ".txt"))
+                  }
+                }
+              } else {
+                a2_vif_6 <- "The model failed to converge"
+                write.table(a2_vif_6, paste0("./output/a2_m_6_", var, ".txt"))
+              }
+            } else {
+              a2_vif_5 <- "The model failed to converge"
+              write.table(a2_vif_5, paste0("./output/a2_m_5_", var, ".txt"))
+            }
+          } else {
+            a2_vif_4 <- "The model failed to converge"
+            write.table(a2_vif_4, paste0("./output/a2_m_4_", var, ".txt"))
+          }
+        } else {
+          a2_vif_3 <- "The model failed to converge"
+          write.table(a2_vif_3, paste0("./output/a2_m_3_", var, ".txt"))
+        }
+      } else {
+        a2_vif_2 <- "The model failed to converge"
+        write.table(a2_vif_2, paste0("./output/a2_m_2_", var, ".txt"))
+      }
+    }
+  } else {
+    a2_vif_1 <- "The model failed to converge"
+    write.table(a2_vif_1, paste0("./output/a2_m_1_", var, ".txt"))
+  }
+  if(class(a3_model_1) == "gls") {
+    set.seed(10)
+    a3_vif_1 <- vif(gls(var ~ start_temp_avg + start_prep_avg + start_prep_var, data = a3_data, correlation = corSpher(form = ~ latitude + longitude), na.action = na.omit))
+    # Save output
+    write.csv(a3_vif_1, paste0("./output/a3_vif_1_", var, ".csv"))
+    if(max(a3_vif_1) <= 5) {
+      # Save output 
+      if(class(a3_model_1) == "gls") {
+        saveRDS(a3_model_1, paste0("./output/a3_m_1_", var, ".rds"))
+      } else {
+        write.table(a3_model_1, paste0("./output/a3_m_1_", var, ".txt"))
+      }
+      a3_model_2 <- gls_model_poss_2(data = a3_data)
+      if(class(a3_model_2) == "gls") {
+        set.seed(10)
+        # Run VIF for average temperature + average precipitation + precipitation variation + elevation
+        a3_vif_2 <- vif(gls(var ~ start_temp_avg + start_prep_avg + start_prep_var  + elevation, data = a3_data, correlation = corSpher(form = ~ latitude + longitude), na.action = na.omit))
+        # Save output
+        write.csv(a3_vif_2, paste0("./output/a3_vif_2_", var, ".csv"))
+        if(max(a3_vif_2) <= 5) {
+          # Save output 
+          if(class(a3_model_2) == "gls") {
+            saveRDS(a3_model_2, paste0("./output/a3_m_2_", var, ".rds"))
+          } else {
+            write.table(a3_model_2, paste0("./output/a3_m_2_", var, ".txt"))
+          }
+        }
+        a3_model_3 <- gls_model_poss_3(data = a3_data)
+        if(class(a3_model_3) == "gls") {
+          set.seed(10)
+          # Run VIF for average temperature + average precipitation + precipitation variation + elevation + plants
+          a3_vif_3 <- vif(gls(var ~ start_temp_avg + start_prep_avg + start_prep_var  + elevation + plants, data = a3_data, correlation = corSpher(form = ~ latitude + longitude), na.action = na.omit))
+          # Save output
+          write.csv(a3_vif_3, paste0("./output/a3_vif_3_", var, ".csv"))
+          if(max(a3_vif_3) <= 5) {
+            # Save output 
+            if(class(a3_model_3) == "gls") {
+              saveRDS(a3_model_3, paste0("./output/a3_m_3_", var, ".rds"))
+            } else {
+              write.table(a3_model_3, paste0("./output/a3_m_3_", var, ".txt"))
+            }
+          }  
+          a3_model_4 <- gls_model_poss_4(data = a3_data)
+          if(class(a3_model_4) == "gls") {
+            set.seed(10)
+            # Run VIF for average temperature + average precipitation + precipitation variation + elevation + plants + mammals
+            a3_vif_4 <- vif(gls(var ~ start_temp_avg + start_prep_avg + start_prep_var  + elevation + plants + mammals, data = a3_data, correlation = corSpher(form = ~ latitude + longitude), na.action = na.omit))
+            # Save output
+            write.csv(a3_vif_4, paste0("./output/a3_vif_4_", var, ".csv"))
+            if(max(a3_vif_4) <= 5) {
+              # Save output 
+              if(class(a3_model_4) == "gls") {
+                saveRDS(a3_model_4, paste0("./output/a3_m_4_", var, ".rds"))
+              } else {
+                write.table(a3_model_4, paste0("./output/a3_m_4_", var, ".txt"))
+              }
+            } 
+            a3_model_5 <- gls_model_poss_5(data = a3_data)
+            if(class(a3_model_5) == "gls") {
+              set.seed(10)
+              # Run VIF for average temperature + average precipitation + precipitation variation + elevation + plants + mammals + distance to freshwater
+              a3_vif_5 <- vif(gls(var ~ start_temp_avg + start_prep_avg + start_prep_var  + elevation + plants + mammals + dist_freshwater, data = a3_data, correlation = corSpher(form = ~ latitude + longitude), na.action = na.omit))
+              # Save output
+              write.csv(a3_vif_5, paste0("./output/a3_vif_5_", var, ".csv"))
+              if(max(a3_vif_5) <= 5) {
+                # Save output 
+                if(class(a3_model_5) == "gls") {
+                  saveRDS(a3_model_5, paste0("./output/a3_m_5_", var, ".rds"))
+                } else {
+                  write.table(a3_model_5, paste0("./output/a3_m_5_", var, ".txt"))
+                }
+              } 
+              a3_model_6 <- gls_model_poss_6(data = a3_data)
+              if(class(a3_model_6) == "gls") {
+                set.seed(10)
+                # Run VIF for average temperature + average precipitation + precipitation variation + elevation + plants + mammals + distance to freshwater + distance to coastline
+                a3_vif_6 <- vif(gls(var ~ start_temp_avg + start_prep_avg + start_prep_var  + elevation + plants + mammals + dist_freshwater + dist_coastline, data = a3_data, correlation = corSpher(form = ~ latitude + longitude), na.action = na.omit))
+                # Save output
+                write.csv(a3_vif_6, paste0("./output/a3_vif_6_", var, ".csv"))
+                if(max(a3_vif_6) <= 5) {
+                  # Save output 
+                  if(class(a3_model_6) == "gls") {
+                    saveRDS(a3_model_6, paste0("./output/a3_m_6_", var, ".rds"))
+                  } else {
+                    write.table(a3_model_6, paste0("./output/a3_m_6_", var, ".txt"))
+                  }
+                } 
+              } else {
+                a3_vif_6 <- "The model failed to converge"
+                write.table(a3_vif_6, paste0("./output/a3_m_6_", var, ".txt"))
+              }
+            } else {
+              a3_vif_5 <- "The model failed to converge"
+              write.table(a3_vif_5, paste0("./output/a3_m_5_", var, ".txt"))
+            }
+          } else {
+            a3_vif_4 <- "The model failed to converge"
+            write.table(a3_vif_4, paste0("./output/a3_m_4_", var, ".txt"))
+          }
+        } else {
+          a3_vif_3 <- "The model failed to converge"
+          write.table(a3_vif_3, paste0("./output/a3_m_3_", var, ".txt"))
+        }
+      } else {
+        a3_vif_2 <- "The model failed to converge"
+        write.table(a3_vif_2, paste0("./output/a3_m_2_", var, ".txt"))
+      }
+    }
+  } else {
+    a3_vif_1 <- "The model failed to converge"
+    write.table(a3_vif_1, paste0("./output/a3_m_1_", var, ".txt"))
+  }
+  if(class(a4_model_1) == "gls") {
+    set.seed(10)
+    a4_vif_1 <- vif(gls(var ~ start_temp_avg + start_prep_avg + start_prep_var, data = a4_data, correlation = corSpher(form = ~ latitude + longitude), na.action = na.omit))
+    # Save output
+    write.csv(a4_vif_1, paste0("./output/a4_vif_1_", var, ".csv"))
+    if(max(a4_vif_1) <= 5) {
+      # Save output 
+      if(class(a4_model_1) == "gls") {
+        saveRDS(a4_model_1, paste0("./output/a4_m_1_", var, ".rds"))
+      } else {
+        write.table(a4_mode_1, paste0("./output/a4_m_1_", var, ".txt"))
+      }
+      a4_model_2 <- gls_model_poss_2(data = a4_data)
+      if(class(a4_model_2) == "gls") {
+        set.seed(10)
+        # Run VIF for average temperature + average precipitation + precipitation variation + elevation
+        a4_vif_2 <- vif(gls(var ~ start_temp_avg + start_prep_avg + start_prep_var + elevation, data = a4_data, correlation = corSpher(form = ~ latitude + longitude), na.action = na.omit))
+        # Save output
+        write.csv(a4_vif_2, paste0("./output/a4_vif_2_", var, ".csv"))
+        if(max(a4_vif_2) <= 5) {
+          # Save output 
+          if(class(a4_model_2) == "gls") {
+            saveRDS(a4_model_2, paste0("./output/a4_m_2_", var, ".rds"))
+          } else {
+            write.table(a4_mode_2, paste0("./output/a4_m_2_", var, ".txt"))
+          }
+        }
+        a4_model_3 <- gls_model_poss_3(data = a4_data)
+        if(class(a4_model_3) == "gls") {
+          set.seed(10)
+          # Run VIF for average temperature + average precipitation + precipitation variation + elevation + plants
+          a4_vif_3 <- vif(gls(var ~ start_temp_avg + start_prep_avg + start_prep_var + elevation + plants, data = a4_data, correlation = corSpher(form = ~ latitude + longitude), na.action = na.omit))
+          # Save output
+          write.csv(a4_vif_3, paste0("./output/a4_vif_3_", var, ".csv"))
+          if(max(a4_vif_3) <= 5) {
+            # Save output 
+            if(class(a4_model_3) == "gls") {
+              saveRDS(a4_model_3, paste0("./output/a4_m_3_", var, ".rds"))
+            } else {
+              write.table(a4_mode_3, paste0("./output/a4_m_3_", var, ".txt"))
+            }
+          }
+          a4_model_4 <- gls_model_poss_4(data = a4_data)
+          if(class(a4_model_4) == "gls") {
+            set.seed(10)
+            # Run VIF for average temperature + average precipitation + precipitation variation + elevation + plants + mammals
+            a4_vif_4 <- vif(gls(var ~ start_temp_avg + start_prep_avg + start_prep_var + elevation + plants + mammals, data = a4_data, correlation = corSpher(form = ~ latitude + longitude), na.action = na.omit))
+            # Save output
+            write.csv(a4_vif_4, paste0("./output/a4_vif_4_", var, ".csv"))
+            if(max(a4_vif_4) <= 5) {
+              # Save output 
+              if(class(a4_model_4) == "gls") {
+                saveRDS(a4_model_4, paste0("./output/a4_m_4_", var, ".rds"))
+              } else {
+                write.table(a4_mode_4, paste0("./output/a4_m_4_", var, ".txt"))
+              }
+            }
+            a4_model_5 <- gls_model_poss_5(data = a4_data)
+            if(class(a4_model_5) == "gls") {
+              set.seed(10)
+              # Run VIF for average temperature + average precipitation + precipitation variation + elevation + plants + mammals + distance to freshwater
+              a4_vif_5 <- vif(gls(var ~ start_temp_avg + start_prep_avg + start_prep_var + elevation + plants + mammals + dist_freshwater, data = a4_data, correlation = corSpher(form = ~ latitude + longitude), na.action = na.omit))
+              # Save output
+              write.csv(a4_vif_5, paste0("./output/a4_vif_5_", var, ".csv"))
+              if(max(a4_vif_5) <= 5) {
+                # Save output 
+                if(class(a4_model_5) == "gls") {
+                  saveRDS(a4_model_5, paste0("./output/a4_m_5_", var, ".rds"))
+                } else {
+                  write.table(a4_mode_5, paste0("./output/a4_m_5_", var, ".txt"))
+                }
+              }
+              a4_model_6 <- gls_model_poss_6(data = a4_data)
+              if(class(a4_model_6) == "gls") {
+                set.seed(10)
+                # Run VIF for average temperature + average precipitation + precipitation variation + elevation + plants + mammals + distance to freshwater + distance to coastline
+                a4_vif_6 <- vif(gls(var ~ start_temp_avg + start_prep_avg + start_prep_var + elevation + plants + mammals + dist_freshwater + dist_coastline, data = a4_data, correlation = corSpher(form = ~ latitude + longitude), na.action = na.omit))
+                # Save output
+                write.csv(a4_vif_6, paste0("./output/a4_vif_6_", var, ".csv"))
+                if(max(a4_vif_6) <= 5) {
+                  # Save output 
+                  if(class(a4_model_6) == "gls") {
+                    saveRDS(a4_model_6, paste0("./output/a4_m_6_", var, ".rds"))
+                  } else {
+                    write.table(a4_mode_6, paste0("./output/a4_m_6_", var, ".txt"))
+                  }
+                }
+              } else {
+                a4_vif_6 <- "The model failed to converge"
+                write.table(a4_vif_6, paste0("./output/a4_m_6_", var, ".txt"))
+              }
+            } else {
+              a4_vif_5 <- "The model failed to converge"
+              write.table(a4_vif_5, paste0("./output/a4_m_5_", var, ".txt"))
+            }
+          } else {
+            a4_vif_4 <- "The model failed to converge"
+            write.table(a4_vif_4, paste0("./output/a4_m_4_", var, ".txt"))
+          }
+        } else {
+          a4_vif_3 <- "The model failed to converge"
+          write.table(a4_vif_3, paste0("./output/a4_m_3_", var, ".txt"))
+        }
+      } else {
+        a4_vif_2 <- "The model failed to converge"
+        write.table(a4_vif_2, paste0("./output/a4_m_2_", var, ".txt"))
+      }
+    }
+  } else {
+    a4_vif_1 <- "The model failed to converge"
+    write.table(a4_vif_1, paste0("./output/a4_m_1_", var, ".txt"))
   }
 }
 

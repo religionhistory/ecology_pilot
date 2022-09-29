@@ -4,6 +4,7 @@ rm(list = ls())
 
 source("../project_support.r")
 library(nlme)
+library(car)
 
 # Load data
 data <- readRDS("./input/data_ecology_wide.rds")
@@ -25,8 +26,6 @@ data_area <- data_sf %>%
   # Convert -Inf and NaN to NA
   mutate(across(oa_temp_avg:plants, ~ ifelse(is.nan(.), NA, .))) %>%
   mutate(across(oa_temp_avg:plants, ~ ifelse(is.infinite(.), NA, .))) %>%
-  # Scale distance and numeric variables
-  mutate(across(oa_temp_avg:plants, ~ as.numeric(scale(., center = TRUE)))) %>%
   # Calculate area
   mutate(area = as.numeric(st_area(.)/1000000)) %>%
   mutate(log10_area = log10(area)) %>%
@@ -68,6 +67,7 @@ analysis_data <- data %>%
   mutate(start_temp_var = log(start_temp_var), start_prep_var = log(start_prep_var)) %>%
   # Scale distance and numeric variables
   mutate(across(start_temp_avg:plants, ~ as.numeric(scale(., center = TRUE, scale = TRUE)))) %>%
+  mutate(across(start_temp_var:dist_freshwater, ~ as.numeric(scale(., center = TRUE)))) %>%
   # Join with latitude and longitude
   left_join(lat_lon, by = c("Entry ID", "Region ID")) %>% 
   # Remove duplicate rows
@@ -76,10 +76,12 @@ analysis_data <- data %>%
 # Create output directory
 make.dir("./output")
 
-# Run model for each condition
+# Run models for each condition based on VIF < 5
+
+# Find VIF for each model: average temperature, average precipitation, precipitation variation
 for(i in 1:nrow(analysis_questions)) {
   var = analysis_questions$`Question ID`[i]
-  run_gls(data = analysis_data, var = var)
+  run_models(data = analysis_data, var = var)
 }
 
 # Find sample size for each variable/condition
