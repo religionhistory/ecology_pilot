@@ -1,0 +1,25 @@
+Question,Question ID,Sample,Model,start_temp_avg,start_prep_avg,start_prep_var,elevation,plants,mammals,dist_freshwater,dist_coastline
+Are extra-ritual in-group markers present:,5161,1,1,1.04,1.09,1.08,,,,,
+Are extra-ritual in-group markers present:,5161,1,2,1.23,1.09,1.08,1.19,,,,
+Are extra-ritual in-group markers present:,5161,1,3,1.28,1.23,1.12,1.23,1.25,,,
+Are extra-ritual in-group markers present:,5161,1,4,1.6,1.24,1.13,1.26,1.86,1.87,,
+Are extra-ritual in-group markers present:,5161,1,5,1.67,1.24,1.14,1.27,1.88,1.94,1.05,
+Are extra-ritual in-group markers present:,5161,1,6,1.67,1.27,1.2,1.73,1.94,1.95,1.06,1.58
+Are extra-ritual in-group markers present:,5161,2,1,1.06,1.11,1.13,,,,,
+Are extra-ritual in-group markers present:,5161,2,2,1.33,1.11,1.13,1.27,,,,
+Are extra-ritual in-group markers present:,5161,2,3,1.88,2.53,1.15,1.36,2.68,,,
+Are extra-ritual in-group markers present:,5161,2,4,2.18,2.8,1.15,1.39,3.47,2.72,,
+Are extra-ritual in-group markers present:,5161,2,5,2.18,2.8,1.16,1.39,3.49,2.73,1.02,
+Are extra-ritual in-group markers present:,5161,2,6,2.19,2.82,1.26,1.91,3.56,2.76,1.02,1.65
+Are extra-ritual in-group markers present:,5161,3,1,/,/,/,,,,,
+Are extra-ritual in-group markers present:,5161,3,2,/,/,/,/,,,,
+Are extra-ritual in-group markers present:,5161,3,3,/,/,/,/,/,,,
+Are extra-ritual in-group markers present:,5161,3,4,/,/,/,/,/,/,,
+Are extra-ritual in-group markers present:,5161,3,5,/,/,/,/,/,/,/,
+Are extra-ritual in-group markers present:,5161,3,6,/,/,/,/,/,/,/,/
+Are extra-ritual in-group markers present:,5161,4,1,1.01,2.49,2.49,,,,,
+Are extra-ritual in-group markers present:,5161,4,2,1.56,3.26,3.11,1.68,,,,
+Are extra-ritual in-group markers present:,5161,4,3,1.56,3.4,3.15,1.74,1.16,,,
+Are extra-ritual in-group markers present:,5161,4,4,1.92,3.79,3.35,1.85,1.19,1.59,,
+Are extra-ritual in-group markers present:,5161,4,5,2.65,4.26,3.65,2.15,1.58,2.18,3.18,
+Are extra-ritual in-group markers present:,5161,4,6,2.8,5.17,10.79,3.62,4.02,2.18,3.27,10.74

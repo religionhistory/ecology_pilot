@@ -100,5 +100,8 @@ sample_sizes <- sample_sizes %>%
 # Save output
 write_csv(sample_sizes, "./../results/sample_sizes.csv")
 
+# Create tables of VIF results
+create_vif_results_tables()
+
 # Create tables of results
 create_results_tables()

@@ -1703,6 +1703,70 @@ extract_results <- function(model) {
     relocate(AIC, .after = last_col())
 }
 
+# Create vif results tables
+create_vif_results_tables <- function() {
+  # Load data
+  results_files <- list.files(path = "./output", pattern = "*.csv", full.names = T, recursive = T)
+  results_list <- lapply(results_files, read_csv)
+  results_files_names <- gsub(".csv", "", list.files(path = "./output", pattern = "*.csv", recursive = T))
+  names(results_list) <- results_files_names
+  
+  # Extract vifs for each question
+  for(i in 1:nrow(analysis_questions)) {
+    var = analysis_questions$`Question ID`[i]
+    var_results <- results_list[grepl(var, names(results_list))]
+    combined_results <- map_df(var_results, ~ as.data.frame(.x), .id="id") %>%
+      rename("Variable" = X1, "VIF" = x) %>%
+      separate(id, into = c("Sample", "var", "Model", "Question ID"), sep = "_") %>%
+      select(-var) %>%
+      group_by(Model, `Question ID`, Variable) %>%
+      pivot_wider(names_from = Sample, values_from = VIF) %>%
+      group_by(Model) 
+    # Create missing columns
+    if(!"a1" %in% names(combined_results)) {
+      combined_results$a1 <- "/"
+    } 
+    if(!"a2" %in% names(combined_results)) {
+      combined_results$a2 <- "/"
+    }
+    if(!"a3" %in% names(combined_results)) {
+      combined_results$a3 <- "/"
+    }
+    if(!"a4" %in% names(combined_results)) {
+      combined_results$a4 <- "/"
+    }
+    output <- combined_results %>%
+      select(Model, `Question ID`, Variable, a1, a2, a3, a4) %>%
+      mutate(across(where(is.numeric), ~ round(., 2))) %>%
+      mutate(m1 = max(a1), m2 = max(a2), m3 = max(a3), m4 = max(a4)) %>%
+      mutate(across(a1:a4, ~ as.character(.))) %>%
+      mutate(across(m1:m4, ~ ifelse(lead(.) > 5, 5.1, .))) %>%
+      mutate(across(m1:m4, ~ ifelse(is.na(.), max(., na.rm = TRUE), .))) %>%
+      ungroup() %>%
+      mutate(across(m1:m4, ~ ifelse(lag(.) < 5, lag(.), .))) %>%
+      mutate(m1 = ifelse(is.na(m1), a1, m1)) %>%
+      mutate(m2 = ifelse(is.na(m2), a2, m2)) %>%
+      mutate(m3 = ifelse(is.na(m3), a3, m3)) %>%
+      mutate(m4 = ifelse(is.na(m4), a4, m4)) %>%
+      group_by(Model) %>%
+      mutate(across(m1:m4, ~ min(.))) %>%
+      mutate(a1 = ifelse(m1 > 5, "-", a1)) %>%
+      mutate(a2 = ifelse(m2 > 5, "-", a2)) %>%
+      mutate(a3 = ifelse(m3 > 5, "-", a3)) %>%
+      mutate(a4 = ifelse(m4 > 5, "-", a4)) %>%
+      select(-m1, -m2, -m3, -m4) %>%
+      left_join(analysis_questions, by = "Question ID") %>%
+      pivot_longer(cols = a1:a4, names_to = "Sample", values_to = "VIF") %>%
+      pivot_wider(names_from = Variable, values_from = VIF) %>%
+      mutate(across(start_temp_avg:dist_coastline, ~ ifelse(is.na(.), "", .))) %>%
+      arrange(Sample) %>%
+      mutate(Sample = gsub("a", "", Sample)) %>%
+      select(Question, `Question ID`, Sample, everything()) 
+    # Save output
+    write_csv(output, paste0("../results/", var, "_vif.csv"))
+  }
+}
+
 # Create results tables
 create_results_tables <- function(){
   # Load data

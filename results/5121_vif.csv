@@ -1,0 +1,25 @@
+Question,Question ID,Sample,Model,start_temp_avg,start_prep_avg,start_prep_var,elevation,plants,mammals,dist_freshwater,dist_coastline
+Does membership in this religious group require celibacy (full sexual abstinence):,5121,1,1,1.01,1.1,1.11,,,,,
+Does membership in this religious group require celibacy (full sexual abstinence):,5121,1,2,1.21,1.1,1.11,1.2,,,,
+Does membership in this religious group require celibacy (full sexual abstinence):,5121,1,3,1.23,1.26,1.15,1.21,1.22,,,
+Does membership in this religious group require celibacy (full sexual abstinence):,5121,1,4,1.49,1.27,1.17,1.24,1.92,1.92,,
+Does membership in this religious group require celibacy (full sexual abstinence):,5121,1,5,1.58,1.24,1.16,1.23,2.04,2.04,1.15,
+Does membership in this religious group require celibacy (full sexual abstinence):,5121,1,6,1.59,1.27,1.23,1.55,2.22,2.2,1.16,1.44
+Does membership in this religious group require celibacy (full sexual abstinence):,5121,2,1,1.04,1.12,1.15,,,,,
+Does membership in this religious group require celibacy (full sexual abstinence):,5121,2,2,1.29,1.12,1.15,1.24,,,,
+Does membership in this religious group require celibacy (full sexual abstinence):,5121,2,3,1.55,3.05,1.18,1.29,3.2,,,
+Does membership in this religious group require celibacy (full sexual abstinence):,5121,2,4,1.95,3.36,1.18,1.32,4.26,3.26,,
+Does membership in this religious group require celibacy (full sexual abstinence):,5121,2,5,1.95,3.37,1.19,1.32,4.26,3.27,1.01,
+Does membership in this religious group require celibacy (full sexual abstinence):,5121,2,6,1.97,3.4,1.37,1.84,4.32,3.32,1.01,1.74
+Does membership in this religious group require celibacy (full sexual abstinence):,5121,3,1,1.08,3.89,3.78,,,,,
+Does membership in this religious group require celibacy (full sexual abstinence):,5121,3,2,1.8,4.84,4.36,1.64,,,,
+Does membership in this religious group require celibacy (full sexual abstinence):,5121,3,3,2.16,5.32,4.57,2.12,1.49,,,
+Does membership in this religious group require celibacy (full sexual abstinence):,5121,3,4,-,-,-,-,-,-,,
+Does membership in this religious group require celibacy (full sexual abstinence):,5121,3,5,-,-,-,-,-,-,-,
+Does membership in this religious group require celibacy (full sexual abstinence):,5121,3,6,-,-,-,-,-,-,-,-
+Does membership in this religious group require celibacy (full sexual abstinence):,5121,4,1,1.01,2.55,2.54,,,,,
+Does membership in this religious group require celibacy (full sexual abstinence):,5121,4,2,1.49,2.89,2.72,1.51,,,,
+Does membership in this religious group require celibacy (full sexual abstinence):,5121,4,3,1.77,3.12,2.78,1.84,1.37,,,
+Does membership in this religious group require celibacy (full sexual abstinence):,5121,4,4,1.97,3.4,2.86,1.86,1.54,1.55,,
+Does membership in this religious group require celibacy (full sexual abstinence):,5121,4,5,2.12,3.4,2.87,1.87,1.69,1.83,1.3,
+Does membership in this religious group require celibacy (full sexual abstinence):,5121,4,6,2.25,3.54,2.95,2.28,2.41,2.02,1.34,1.54

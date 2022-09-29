@@ -1,0 +1,25 @@
+Question,Question ID,Sample,Model,start_temp_avg,start_prep_avg,start_prep_var,elevation,plants,mammals,dist_freshwater,dist_coastline
+"Does membership in this religious group require participation in small-scale rituals (private, household):",5152,1,1,1.01,1.01,1.02,,,,,
+"Does membership in this religious group require participation in small-scale rituals (private, household):",5152,1,2,1.18,1.02,1.02,1.17,,,,
+"Does membership in this religious group require participation in small-scale rituals (private, household):",5152,1,3,1.2,1.24,1.03,1.2,1.24,,,
+"Does membership in this religious group require participation in small-scale rituals (private, household):",5152,1,4,1.49,1.24,1.05,1.24,1.85,1.91,,
+"Does membership in this religious group require participation in small-scale rituals (private, household):",5152,1,5,1.57,1.24,1.05,1.24,2.07,2.09,1.17,
+"Does membership in this religious group require participation in small-scale rituals (private, household):",5152,1,6,1.57,1.24,1.11,1.56,2.11,2.12,1.17,1.41
+"Does membership in this religious group require participation in small-scale rituals (private, household):",5152,2,1,1.02,1.02,1.04,,,,,
+"Does membership in this religious group require participation in small-scale rituals (private, household):",5152,2,2,1.27,1.02,1.04,1.25,,,,
+"Does membership in this religious group require participation in small-scale rituals (private, household):",5152,2,3,1.59,3.02,1.06,1.38,3.13,,,
+"Does membership in this religious group require participation in small-scale rituals (private, household):",5152,2,4,1.8,3.44,1.07,1.4,3.72,2.87,,
+"Does membership in this religious group require participation in small-scale rituals (private, household):",5152,2,5,1.8,3.44,1.08,1.41,3.75,2.88,1.04,
+"Does membership in this religious group require participation in small-scale rituals (private, household):",5152,2,6,1.8,3.44,1.21,1.94,3.77,2.89,1.04,1.67
+"Does membership in this religious group require participation in small-scale rituals (private, household):",5152,3,1,1.22,2.22,2.1,,,,,
+"Does membership in this religious group require participation in small-scale rituals (private, household):",5152,3,2,1.29,2.27,2.11,1.1,,,,
+"Does membership in this religious group require participation in small-scale rituals (private, household):",5152,3,3,1.63,2.92,2.48,1.24,1.56,,,
+"Does membership in this religious group require participation in small-scale rituals (private, household):",5152,3,4,2.17,2.92,2.6,1.34,1.58,1.6,,
+"Does membership in this religious group require participation in small-scale rituals (private, household):",5152,3,5,2.56,3.07,2.63,1.35,1.79,2.27,1.65,
+"Does membership in this religious group require participation in small-scale rituals (private, household):",5152,3,6,2.65,3.16,2.69,1.4,1.97,2.29,1.65,1.28
+"Does membership in this religious group require participation in small-scale rituals (private, household):",5152,4,1,1.15,1.62,1.65,,,,,
+"Does membership in this religious group require participation in small-scale rituals (private, household):",5152,4,2,1.26,1.64,1.66,1.16,,,,
+"Does membership in this religious group require participation in small-scale rituals (private, household):",5152,4,3,1.47,2.05,1.79,1.25,1.4,,,
+"Does membership in this religious group require participation in small-scale rituals (private, household):",5152,4,4,1.96,2.06,1.83,1.35,1.43,1.52,,
+"Does membership in this religious group require participation in small-scale rituals (private, household):",5152,4,5,2.24,2.16,1.87,1.37,1.64,2.02,1.55,
+"Does membership in this religious group require participation in small-scale rituals (private, household):",5152,4,6,2.27,2.17,1.87,1.4,1.73,2.06,1.55,1.18
