@@ -1681,28 +1681,6 @@ get_sample_size <- function(var) {
   sample_size <- bind_rows(a1_sample, a2_sample, a3_sample, a4_sample)
 }
 
-# Extract results and apply multiple testing correction
-extract_results <- function(model) {
-  model <- summary(model)
-  variables <- names(model$coefficients)
-  coefficients <- model$coefficients
-  t_table <- as.data.frame(model$tTable)
-  p_value <- t_table$`p-value`
-  log_lik <- model$logLik
-  p_dims <- model$dims$p
-  AIC <- (2 * p_dims) - (2 * log_lik)
-  output <- data.frame(variables = variables, coefficients = coefficients, p_value = p_value, AIC = AIC)
-  output <- output %>%
-    mutate(adjust_p_value = p.adjust(p_value, method = "BH", n = 1768)) %>%
-    mutate(coefficients = round(coefficients, 2), p_value = signif(p_value, 2), adjust_p_value = signif(adjust_p_value, 2)) %>%
-    mutate(AIC = round(AIC, 2)) %>%
-    mutate(sig = case_when(adjust_p_value < 0.001 ~ "***", 
-                           adjust_p_value >= 0.001 & adjust_p_value < 0.01 ~ "**",
-                           adjust_p_value >= 0.01 &  adjust_p_value < 0.05 ~ "*", 
-                           adjust_p_value >= 0.05 ~ "" )) %>%
-    relocate(AIC, .after = last_col())
-}
-
 # Create vif results tables
 create_vif_results_tables <- function() {
   # Load data
@@ -1767,13 +1745,32 @@ create_vif_results_tables <- function() {
   }
 }
 
-# Create results tables
+# Extract results and apply multiple testing correction
+extract_results <- function(model) {
+  model <- summary(model)
+  variables <- names(model$coefficients)
+  coefficients <- model$coefficients
+  t_table <- as.data.frame(model$tTable)
+  p_value <- t_table$`p-value`
+  log_lik <- model$logLik
+  p_dims <- model$dims$p
+  AIC <- (2 * p_dims) - (2 * log_lik)
+  output <- data.frame(variables = variables, coefficients = coefficients, p_value = p_value, AIC = AIC)
+  output <- output %>%
+    mutate(adjust_p_value = p.adjust(p_value, method = "BH", n = 1248)) %>%
+    mutate(coefficients = round(coefficients, 2), p_value = signif(p_value, 2), adjust_p_value = signif(adjust_p_value, 2)) %>%
+    mutate(AIC = round(AIC, 2)) %>%
+    mutate(sig = case_when(adjust_p_value < 0.001 ~ "***", 
+                           adjust_p_value >= 0.001 & adjust_p_value < 0.01 ~ "**",
+                           adjust_p_value >= 0.01 &  adjust_p_value < 0.05 ~ "*", 
+                           adjust_p_value >= 0.05 ~ "" )) %>%
+    relocate(AIC, .after = last_col())
+}
+
 create_results_tables <- function(){
-  # Load data
+  # Load files and names
   results_files <- list.files(path = "./output", pattern = "*.rds", full.names = T, recursive = T)
-  results_list <- lapply(results_files, readRDS)
   results_files_names <- gsub(".rds", "", list.files(path = "./output", pattern = "*.rds", recursive = T))
-  names(results_list) <- results_files_names
   txt_files <- list.files(path = "./output", pattern = "*.txt", full.names = T, recursive = T)
   txt_list <- lapply(txt_files, read.table)
   txt_files_names <- gsub(".txt", "", list.files(path = "./output", pattern = "*.txt",  recursive = T))
@@ -1781,73 +1778,146 @@ create_results_tables <- function(){
   
   # Extract results for each question
   for(i in 1:nrow(analysis_questions)) {
-    var = analysis_questions$`Question ID`[i]
-    var_results <- results_list[grepl(var, names(results_list))]
+    var <- analysis_questions$`Question ID`[i]
+    var_results <- results_files[grepl(var, results_files)]
+    var_results_names <- results_files_names[grepl(var, results_files_names)]
     var_txt <- txt_list[grepl(var, names(txt_list))]
-    if(length(var_results) > 0) {
-      var_results_list <- lapply(var_results, extract_results)
-      var_list <- list()
-      for(i in 1:length(var_results_list)) {
-        name <- names(var_results_list[i])
-        number <- gsub("(.+?)(\\_.*)", "\\1", name)
-        number <- gsub("a", "", number)
-        var_list[[i]] <- var_results_list[[i]] %>% 
-          rename_with(., ~ paste0(., "_", number))
-      }
-      var_tib <- bind_cols(var_list) %>%
-        mutate(`Question ID` = var) %>%
-        select(`Question ID`, everything())  
-      if(var != "5154") {
-        var_tib <- var_tib %>%
-          rename(Variable = variables_1)
-      } else {
-        var_tib <- var_tib %>%
-          rename(Variable = variables_3)
-      }
-    }
-    if(length(var_txt) > 0) {
-      number_list <- list()
-      for(i in 1:length(var_txt)) {
-        name <- names(var_txt[i])
-        number <- gsub("(.+?)(\\_.*)", "\\1", name)
-        number <- gsub("a", "", number) 
-        number_list[[i]] <- number
-      }
-      failed_analysis <- c(number_list)
-    } 
     
-    if(length(var_results) == 4) {
-      var_tib <- var_tib %>%
-        select(-variables_2, -variables_3, - variables_4) 
-      var_tib
-    } else if(length(var_results) > 0 & length(var_txt) > 0) {
-      if(length(var_txt) == 1) {
-        sample_missing <- tibble(coefficients = rep("-", nrow(var_tib)), p_value = rep("-", nrow(var_tib)), adjust_p_value = rep("-", nrow(var_tib)), sig = rep("-", nrow(var_tib)), AIC = rep("-", nrow(var_tib))) %>% 
-          rename_with(., ~ paste0(., "_", failed_analysis[[1]]))
-      } else if(length(var_txt) > 1) {
-        missing_list <- list()
-        for(i in 1:length(failed_analysis)) {
-          number <- failed_analysis[[i]]
-          missing_list[[i]] <- tibble(coefficients = rep("-", nrow(var_tib)), p_value = rep("-", nrow(var_tib)), adjust_p_value = rep("-", nrow(var_tib)), sig = rep("-", nrow(var_tib)), AIC = rep("-", nrow(var_tib))) %>% 
+    for(j in 1:6) {
+      model <- paste0("_", j, "_")
+      var_results_sub <- var_results[grepl(model, var_results)]
+      var_results_names_sub <- var_results_names[grepl(model, var_results_names)]
+      var_txt_sub <- var_txt[grepl(model, names(var_txt))]
+      
+      # Load data
+      results_list <- lapply(var_results_sub, readRDS)
+      names(results_list) <- var_results_names_sub
+      
+      if(length(results_list) > 0) {
+        var_results_list <- lapply(results_list, extract_results)
+        var_list <- list()
+        for(i in 1:length(var_results_list)) {
+          name <- names(var_results_list[i])
+          number <- gsub("(.+?)(\\_.*)", "\\1", name)
+          number <- gsub("a", "", number)
+          var_list[[i]] <- var_results_list[[i]] %>% 
             rename_with(., ~ paste0(., "_", number))
         }
-        sample_missing <- bind_cols(missing_list)
+        var_tib <- bind_cols(var_list) %>%
+          mutate(`Question ID` = var) %>%
+          select(`Question ID`, everything())  
+        if(var != "5143" & var != "5154" & var != "4808") {
+          var_tib <- var_tib %>%
+            rename(Variable = variables_1)
+        } else if(var == "5143") {
+          var_tib <- var_tib %>%
+            rename(Variable = variables_4)
+        } else {
+          var_tib <- var_tib %>%
+            rename(Variable = variables_3)
+        }
       }
-      var_tib <- bind_cols(var_tib, sample_missing) %>%
-        select(`Question ID`, Variable, coefficients_1, p_value_1, adjust_p_value_1, sig_1, AIC_1, coefficients_2, p_value_2, adjust_p_value_2, sig_2, AIC_2, coefficients_3, p_value_3, adjust_p_value_3, sig_3, AIC_3, coefficients_4, p_value_4, adjust_p_value_4, sig_4, AIC_4) 
-    }
-    # Join with question name 
-    if(length(var_results) > 0) {
-      output <- var_tib %>%
-        left_join(analysis_questions, by = "Question ID") %>%
-        select(Question, everything())
-      write_csv(output, paste0("../results/", var, ".csv"))
-    } else {
-      output <- "The algorithm failed to converge in all sample conditions."
-      write.table(output, paste0("../results/", var, ".txt"), quote = FALSE, row.names = FALSE)
+      if(length(var_txt_sub) > 0) {
+        number_list <- list()
+        for(i in 1:length(var_txt_sub)) {
+          name <- names(var_txt_sub[i])
+          number <- gsub("(.+?)(\\_.*)", "\\1", name)
+          number <- gsub("a", "", number) 
+          number_list[[i]] <- number
+        }
+        failed_analysis <- c(number_list)
+      } 
+      
+      if(length(results_list) == 4 & var != "4808") {
+        var_tib <- var_tib %>%
+          select(-variables_2, -variables_3, - variables_4) 
+        var_tib
+      } else if(length(results_list) == 4 & var == "4808") {
+        var_tib <- var_tib %>%
+          select(-variables_1, -variables_2, - variables_4) 
+        var_tib
+      } else if(length(results_list) + length(var_txt_sub)  == 4) {
+        if(length(var_txt_sub) == 1) {
+          sample_missing <- tibble(coefficients = rep("/", nrow(var_tib)), p_value = rep("/", nrow(var_tib)), adjust_p_value = rep("/", nrow(var_tib)), sig = rep("/", nrow(var_tib)), AIC = rep("/", nrow(var_tib))) %>% 
+            rename_with(., ~ paste0(., "_", failed_analysis[[1]]))
+        } else if(length(var_txt_sub) > 1) {
+          missing_list <- list()
+          for(i in 1:length(failed_analysis)) {
+            number <- failed_analysis[[i]]
+            missing_list[[i]] <- tibble(coefficients = rep("/", nrow(var_tib)), p_value = rep("/", nrow(var_tib)), adjust_p_value = rep("/", nrow(var_tib)), sig = rep("/", nrow(var_tib)), AIC = rep("/", nrow(var_tib))) %>% 
+              rename_with(., ~ paste0(., "_", number))
+          }
+          sample_missing <- bind_cols(missing_list)
+        }
+        var_tib <- bind_cols(var_tib, sample_missing) %>%
+          select(`Question ID`, Variable, coefficients_1, p_value_1, adjust_p_value_1, sig_1, AIC_1, coefficients_2, p_value_2, adjust_p_value_2, sig_2, AIC_2, coefficients_3, p_value_3, adjust_p_value_3, sig_3, AIC_3, coefficients_4, p_value_4, adjust_p_value_4, sig_4, AIC_4) 
+      } else if(length(results_list) + length(var_txt_sub) < 4 & length(var_txt_sub) > 0) {
+        if(length(var_txt_sub) == 1) {
+          sample_missing <- tibble(coefficients = rep("/", nrow(var_tib)), p_value = rep("/", nrow(var_tib)), adjust_p_value = rep("/", nrow(var_tib)), sig = rep("/", nrow(var_tib)), AIC = rep("/", nrow(var_tib))) %>% 
+            rename_with(., ~ paste0(., "_", failed_analysis[[1]]))
+        } else if(length(var_txt_sub) > 1) {
+          missing_list <- list()
+          for(i in 1:length(failed_analysis)) {
+            number <- failed_analysis[[i]]
+            missing_list[[i]] <- tibble(coefficients = rep("-", nrow(var_tib)), p_value = rep("-", nrow(var_tib)), adjust_p_value = rep("-", nrow(var_tib)), sig = rep("-", nrow(var_tib)), AIC = rep("-", nrow(var_tib))) %>% 
+              rename_with(., ~ paste0(., "_", number))
+          }
+          sample_missing <- bind_cols(missing_list)
+        }
+        number_list <- list()
+        for(i in 1:length(results_list)) {
+          name <- names(var_results_list[i])
+          number <- gsub("(.+?)(\\_.*)", "\\1", name)
+          number <- gsub("a", "", number) 
+          number_list[[i]] <- number
+        }
+        run_failed_analysis <- c(as.numeric(unlist(number_list)), as.numeric(unlist(failed_analysis)))
+        analysis_numbers <- c(1, 2, 3, 4)
+        non_run_analysis <- analysis_numbers[!analysis_numbers %in% run_failed_analysis]
+        non_run_list <- list()
+        for(i in 1:length(non_run_analysis)) {
+          number <- non_run_analysis[[i]]
+          non_run_list[[i]] <- tibble(coefficients = rep("-", nrow(var_tib)), p_value = rep("-", nrow(var_tib)), adjust_p_value = rep("-", nrow(var_tib)), sig = rep("-", nrow(var_tib)), AIC = rep("-", nrow(var_tib))) %>% 
+            rename_with(., ~ paste0(., "_", number))
+        }
+        non_run <- bind_cols(non_run_list)
+        var_tib <- bind_cols(var_tib, sample_missing, non_run) %>%
+          select(`Question ID`, Variable, coefficients_1, p_value_1, adjust_p_value_1, sig_1, AIC_1, coefficients_2, p_value_2, adjust_p_value_2, sig_2, AIC_2, coefficients_3, p_value_3, adjust_p_value_3, sig_3, AIC_3, coefficients_4, p_value_4, adjust_p_value_4, sig_4, AIC_4) 
+      } else if(length(results_list) < 4 & length(results_list) > 0 & length(var_txt_sub) == 0) {
+        number_list <- list()
+        for(i in 1:length(results_list)) {
+          name <- names(var_results_list[i])
+          number <- gsub("(.+?)(\\_.*)", "\\1", name)
+          number <- gsub("a", "", number) 
+          number_list[[i]] <- number
+        }
+        run_analysis <- as.numeric(unlist(number_list))
+        analysis_numbers <- c(1, 2, 3, 4)
+        non_run_analysis <- analysis_numbers[!analysis_numbers %in% run_analysis]
+        non_run_list <- list()
+        for(i in 1:length(non_run_analysis)) {
+          number <- non_run_analysis[[i]]
+          non_run_list[[i]] <- tibble(coefficients = rep("-", nrow(var_tib)), p_value = rep("-", nrow(var_tib)), adjust_p_value = rep("-", nrow(var_tib)), sig = rep("-", nrow(var_tib)), AIC = rep("-", nrow(var_tib))) %>% 
+            rename_with(., ~ paste0(., "_", number))
+        }
+        non_run <- bind_cols(non_run_list)
+        var_tib <- bind_cols(var_tib, non_run) %>%
+          select(`Question ID`, Variable, coefficients_1, p_value_1, adjust_p_value_1, sig_1, AIC_1, coefficients_2, p_value_2, adjust_p_value_2, sig_2, AIC_2, coefficients_3, p_value_3, adjust_p_value_3, sig_3, AIC_3, coefficients_4, p_value_4, adjust_p_value_4, sig_4, AIC_4) 
+      }
+      model_n <- paste0("_", j)
+      # Join with question name 
+      if(length(results_list) > 0) {
+        output <- var_tib %>%
+          left_join(analysis_questions, by = "Question ID") %>%
+          select(Question, everything())
+        write_csv(output, paste0("../results/", var, model_n, ".csv"))
+      } else {
+        output <- "The algorithm failed to converge in all sample conditions."
+        write.table(output, paste0("../results/", var, model_n, ".txt"), quote = FALSE, row.names = FALSE)
+      }
     }
   }
-}
+}  
 
 # Get descriptive statistics for analysis questions per sample
 get_sample_stats <- function() {

@@ -1,0 +1,5 @@
+Question,Question ID,Variable,coefficients_1,p_value_1,adjust_p_value_1,sig_1,AIC_1,coefficients_2,p_value_2,adjust_p_value_2,sig_2,AIC_2,coefficients_3,p_value_3,adjust_p_value_3,sig_3,AIC_3,coefficients_4,p_value_4,adjust_p_value_4,sig_4,AIC_4
+Mixed human-divine beings are present:,4919,(Intercept),0.45,3.7999999999999995e-24,4.7e-21,***,286.42,0.46,6.8e-15,8.5e-12,***,198.34,0.72,0.0074,1,,38.48,0.76,7.6e-4,0.94,,42.77
+Mixed human-divine beings are present:,4919,start_temp_avg,-0.01,0.74,1,,286.42,-0.01,0.78,1,,198.34,-0.02,0.86,1,,38.48,-0.04,0.69,1,,42.77
+Mixed human-divine beings are present:,4919,start_prep_avg,0.06,0.093,1,,286.42,0.08,0.13,1,,198.34,-0.08,0.68,1,,38.48,0.02,0.87,1,,42.77
+Mixed human-divine beings are present:,4919,start_prep_var,-0.02,0.62,1,,286.42,-0.01,0.88,1,,198.34,-0,0.99,1,,38.48,-0.26,0.53,1,,42.77

@@ -1,0 +1,6 @@
+Question,Question ID,Variable,coefficients_1,p_value_1,adjust_p_value_1,sig_1,AIC_1,coefficients_2,p_value_2,adjust_p_value_2,sig_2,AIC_2,coefficients_3,p_value_3,adjust_p_value_3,sig_3,AIC_3,coefficients_4,p_value_4,adjust_p_value_4,sig_4,AIC_4
+"Does membership in this religious group require participation in small-scale rituals (private, household):",5152,(Intercept),0.74,4.1e-76,5.099999999999999e-73,***,327.31,0.87,9.999999999999998e-74,1.1999999999999997e-70,***,134.24,0.52,0.021,1,,36.58,0.37,0.12,1,,53.57
+"Does membership in this religious group require participation in small-scale rituals (private, household):",5152,start_temp_avg,-0.04,0.17,1,,327.31,-0.01,0.82,1,,134.24,-0.03,0.79,1,,36.58,-0.1,0.4,1,,53.57
+"Does membership in this religious group require participation in small-scale rituals (private, household):",5152,start_prep_avg,0.05,0.063,1,,327.31,-0.05,0.067,1,,134.24,0.32,0.16,1,,36.58,0.03,0.9,1,,53.57
+"Does membership in this religious group require participation in small-scale rituals (private, household):",5152,start_prep_var,-0.06,0.017,1,,327.31,-0.03,0.17,1,,134.24,-0.98,0.067,1,,36.58,-0.14,0.78,1,,53.57
+"Does membership in this religious group require participation in small-scale rituals (private, household):",5152,elevation,-0.03,0.24,1,,327.31,-0.04,0.11,1,,134.24,-0.04,0.69,1,,36.58,0.02,0.87,1,,53.57

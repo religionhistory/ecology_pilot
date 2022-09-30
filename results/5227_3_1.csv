@@ -1,0 +1,5 @@
+Question,Question ID,Variable,coefficients_1,p_value_1,adjust_p_value_1,sig_1,AIC_1,coefficients_2,p_value_2,adjust_p_value_2,sig_2,AIC_2,coefficients_3,p_value_3,adjust_p_value_3,sig_3,AIC_3,coefficients_4,p_value_4,adjust_p_value_4,sig_4,AIC_4
+Fishing,5227_3,(Intercept),0.43,6.1000000000000005e-22,7.6e-19,***,278.13,0.37,1.8e-11,2.2e-8,***,160.07,0.56,0.0036,1,,82.76,0.62,0.0014,1,,88.97
+Fishing,5227_3,start_temp_avg,0.05,0.2,1,,278.13,-0.02,0.71,1,,160.07,0,0.96,1,,82.76,0.05,0.48,1,,88.97
+Fishing,5227_3,start_prep_avg,-0.01,0.8,1,,278.13,-0.03,0.61,1,,160.07,-0.06,0.72,1,,82.76,0.06,0.73,1,,88.97
+Fishing,5227_3,start_prep_var,-0.08,0.23,1,,278.13,-0.11,0.12,1,,160.07,0.37,0.45,1,,82.76,0.1,0.83,1,,88.97

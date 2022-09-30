@@ -1,0 +1,7 @@
+Question,Question ID,Variable,coefficients_1,p_value_1,adjust_p_value_1,sig_1,AIC_1,coefficients_2,p_value_2,adjust_p_value_2,sig_2,AIC_2,coefficients_3,p_value_3,adjust_p_value_3,sig_3,AIC_3,coefficients_4,p_value_4,adjust_p_value_4,sig_4,AIC_4
+Punishment in this life consists of crop failure or bad weather:,5007,(Intercept),0.65,2.4e-33,3.0000000000000003e-30,***,255.21,0.61,6.6e-14,8.3e-11,***,166.24,-,-,-,-,-,1.12,0.0032,1,,39.28
+Punishment in this life consists of crop failure or bad weather:,5007,start_temp_avg,0.09,0.035,1,,255.21,0.05,0.51,1,,166.24,-,-,-,-,-,0.08,0.54,1,,39.28
+Punishment in this life consists of crop failure or bad weather:,5007,start_prep_avg,0.08,0.057,1,,255.21,0.12,0.19,1,,166.24,-,-,-,-,-,0.34,0.25,1,,39.28
+Punishment in this life consists of crop failure or bad weather:,5007,start_prep_var,-0.14,0.057,1,,255.21,-0.17,0.039,1,,166.24,-,-,-,-,-,-0.78,0.28,1,,39.28
+Punishment in this life consists of crop failure or bad weather:,5007,elevation,0.08,0.017,1,,255.21,0.05,0.23,1,,166.24,-,-,-,-,-,0.23,0.17,1,,39.28
+Punishment in this life consists of crop failure or bad weather:,5007,plants,0.02,0.66,1,,255.21,0.01,0.91,1,,166.24,-,-,-,-,-,0.12,0.36,1,,39.28

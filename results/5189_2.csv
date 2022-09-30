@@ -1,0 +1,6 @@
+Question,Question ID,Variable,coefficients_1,p_value_1,adjust_p_value_1,sig_1,AIC_1,coefficients_2,p_value_2,adjust_p_value_2,sig_2,AIC_2,coefficients_3,p_value_3,adjust_p_value_3,sig_3,AIC_3,coefficients_4,p_value_4,adjust_p_value_4,sig_4,AIC_4
+Is public food storage provided to the group’s adherents by an institution(s) other than the religious group in question:,5189,(Intercept),0.4,1.1e-17,1.3e-14,***,275.12,0.48,3e-15,3.7e-12,***,182.18,-,-,-,-,-,-0,1,1,,17.33
+Is public food storage provided to the group’s adherents by an institution(s) other than the religious group in question:,5189,start_temp_avg,-0.04,0.36,1,,275.12,-0.03,0.67,1,,182.18,-,-,-,-,-,-0.15,0.032,1,,17.33
+Is public food storage provided to the group’s adherents by an institution(s) other than the religious group in question:,5189,start_prep_avg,0.01,0.81,1,,275.12,-0.06,0.32,1,,182.18,-,-,-,-,-,-0.13,0.41,1,,17.33
+Is public food storage provided to the group’s adherents by an institution(s) other than the religious group in question:,5189,start_prep_var,-0.06,0.42,1,,275.12,-0.05,0.56,1,,182.18,-,-,-,-,-,0.13,0.79,1,,17.33
+Is public food storage provided to the group’s adherents by an institution(s) other than the religious group in question:,5189,elevation,-0.01,0.75,1,,275.12,-0.01,0.84,1,,182.18,-,-,-,-,-,-0.1,0.062,1,,17.33

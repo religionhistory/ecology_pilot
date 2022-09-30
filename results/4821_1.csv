@@ -1,0 +1,5 @@
+Question,Question ID,Variable,coefficients_1,p_value_1,adjust_p_value_1,sig_1,AIC_1,coefficients_2,p_value_2,adjust_p_value_2,sig_2,AIC_2,coefficients_3,p_value_3,adjust_p_value_3,sig_3,AIC_3,coefficients_4,p_value_4,adjust_p_value_4,sig_4,AIC_4
+Are formal burials present:,4821,(Intercept),0.74,2.3999999999999996e-91,2.9999999999999994e-88,***,375.81,0.75,7.299999999999999e-55,9.1e-52,***,249.73,0.91,9.7e-9,1.2e-5,***,49.25,0.93,1.2e-9,1.5e-6,***,53.58
+Are formal burials present:,4821,start_temp_avg,-0.02,0.4,1,,375.81,-0.01,0.76,1,,249.73,-0.04,0.41,1,,49.25,-0.05,0.34,1,,53.58
+Are formal burials present:,4821,start_prep_avg,-0.04,0.11,1,,375.81,-0.06,0.13,1,,249.73,-0,0.98,1,,49.25,0.03,0.79,1,,53.58
+Are formal burials present:,4821,start_prep_var,0.07,0.0044,1,,375.81,0.08,0.0021,1,,249.73,-0.11,0.76,1,,49.25,-0.21,0.51,1,,53.58

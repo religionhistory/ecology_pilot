@@ -1,0 +1,6 @@
+Question,Question ID,Variable,coefficients_1,p_value_1,adjust_p_value_1,sig_1,AIC_1,coefficients_2,p_value_2,adjust_p_value_2,sig_2,AIC_2,coefficients_3,p_value_3,adjust_p_value_3,sig_3,AIC_3,coefficients_4,p_value_4,adjust_p_value_4,sig_4,AIC_4
+Does membership in this religious group require sacrifice of property/valuable items:,5143,(Intercept),-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,1.2,0.019,1,,19.11
+Does membership in this religious group require sacrifice of property/valuable items:,5143,start_temp_avg,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,0.07,0.67,1,,19.11
+Does membership in this religious group require sacrifice of property/valuable items:,5143,start_prep_avg,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,0.76,0.022,1,,19.11
+Does membership in this religious group require sacrifice of property/valuable items:,5143,start_prep_var,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-2.2,0.058,1,,19.11
+Does membership in this religious group require sacrifice of property/valuable items:,5143,elevation,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,0.18,0.4,1,,19.11

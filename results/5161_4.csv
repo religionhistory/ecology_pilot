@@ -1,0 +1,8 @@
+Question,Question ID,Variable,coefficients_1,p_value_1,adjust_p_value_1,sig_1,AIC_1,coefficients_2,p_value_2,adjust_p_value_2,sig_2,AIC_2,coefficients_3,p_value_3,adjust_p_value_3,sig_3,AIC_3,coefficients_4,p_value_4,adjust_p_value_4,sig_4,AIC_4
+Are extra-ritual in-group markers present:,5161,(Intercept),0.54,2.4e-29,3e-26,***,294.06,0.59,2.7e-15,3.4e-12,***,209.01,-,-,-,-,-,1.02,0.03,1,,29.24
+Are extra-ritual in-group markers present:,5161,start_temp_avg,0.08,0.13,1,,294.06,0.05,0.5,1,,209.01,-,-,-,-,-,0.05,0.73,1,,29.24
+Are extra-ritual in-group markers present:,5161,start_prep_avg,0.06,0.2,1,,294.06,-0.05,0.58,1,,209.01,-,-,-,-,-,0.17,0.53,1,,29.24
+Are extra-ritual in-group markers present:,5161,start_prep_var,-0.02,0.73,1,,294.06,-0.02,0.75,1,,209.01,-,-,-,-,-,-0.5,0.49,1,,29.24
+Are extra-ritual in-group markers present:,5161,elevation,0.02,0.53,1,,294.06,0,0.98,1,,209.01,-,-,-,-,-,0.17,0.31,1,,29.24
+Are extra-ritual in-group markers present:,5161,plants,0.03,0.58,1,,294.06,0.01,0.93,1,,209.01,-,-,-,-,-,-0.03,0.85,1,,29.24
+Are extra-ritual in-group markers present:,5161,mammals,-0.09,0.24,1,,294.06,0.09,0.45,1,,209.01,-,-,-,-,-,-0.38,0.11,1,,29.24

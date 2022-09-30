@@ -1,0 +1,8 @@
+Question,Question ID,Variable,coefficients_1,p_value_1,adjust_p_value_1,sig_1,AIC_1,coefficients_2,p_value_2,adjust_p_value_2,sig_2,AIC_2,coefficients_3,p_value_3,adjust_p_value_3,sig_3,AIC_3,coefficients_4,p_value_4,adjust_p_value_4,sig_4,AIC_4
+A supreme high god is present:,4828,(Intercept),0.75,7.399999999999999e-87,9.299999999999999e-84,***,379.86,0.8,1.2999999999999998e-47,1.6999999999999998e-44,***,236.53,0.81,0.0017,1,,86.36,0.74,0.0017,1,,94.57
+A supreme high god is present:,4828,start_temp_avg,-0.05,0.12,1,,379.86,-0.03,0.47,1,,236.53,0,0.97,1,,86.36,0.02,0.89,1,,94.57
+A supreme high god is present:,4828,start_prep_avg,0.04,0.17,1,,379.86,-0.05,0.41,1,,236.53,0.17,0.44,1,,86.36,0.12,0.53,1,,94.57
+A supreme high god is present:,4828,start_prep_var,-0,0.96,1,,379.86,0.01,0.78,1,,236.53,-0.34,0.57,1,,86.36,-0.14,0.78,1,,94.57
+A supreme high god is present:,4828,elevation,-0.08,0.0037,1,,379.86,-0.08,0.02,1,,236.53,0.05,0.67,1,,86.36,0.04,0.7,1,,94.57
+A supreme high god is present:,4828,plants,-0.06,0.12,1,,379.86,-0.01,0.9,1,,236.53,-0.11,0.2,1,,86.36,-0.08,0.32,1,,94.57
+A supreme high god is present:,4828,mammals,0.03,0.44,1,,379.86,0.11,0.19,1,,236.53,0.03,0.66,1,,86.36,0.02,0.75,1,,94.57

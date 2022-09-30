@@ -1,0 +1,6 @@
+Question,Question ID,Variable,coefficients_1,p_value_1,adjust_p_value_1,sig_1,AIC_1,coefficients_2,p_value_2,adjust_p_value_2,sig_2,AIC_2,coefficients_3,p_value_3,adjust_p_value_3,sig_3,AIC_3,coefficients_4,p_value_4,adjust_p_value_4,sig_4,AIC_4
+"Does the religious group in question provide water management (irrigation, flood control):",5190,(Intercept),0.28,3.3e-17,4.2e-14,***,283.59,0.35,1.5e-15,1.9e-12,***,218.13,-,-,-,-,-,-,-,-,-,-
+"Does the religious group in question provide water management (irrigation, flood control):",5190,start_temp_avg,-0.02,0.64,1,,283.59,-0.04,0.45,1,,218.13,-,-,-,-,-,-,-,-,-,-
+"Does the religious group in question provide water management (irrigation, flood control):",5190,start_prep_avg,-0.01,0.64,1,,283.59,-0.08,0.07,1,,218.13,-,-,-,-,-,-,-,-,-,-
+"Does the religious group in question provide water management (irrigation, flood control):",5190,start_prep_var,-0.12,9.6e-4,0.6,,283.59,-0.1,0.016,1,,218.13,-,-,-,-,-,-,-,-,-,-
+"Does the religious group in question provide water management (irrigation, flood control):",5190,elevation,-0.02,0.55,1,,283.59,-0.04,0.28,1,,218.13,-,-,-,-,-,-,-,-,-,-

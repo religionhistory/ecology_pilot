@@ -1,0 +1,5 @@
+Question,Question ID,Variable,coefficients_1,p_value_1,adjust_p_value_1,sig_1,AIC_1,coefficients_2,p_value_2,adjust_p_value_2,sig_2,AIC_2,coefficients_3,p_value_3,adjust_p_value_3,sig_3,AIC_3,coefficients_4,p_value_4,adjust_p_value_4,sig_4,AIC_4
+Is there a conception of apostasy in the religious group:,4684,(Intercept),0.42,1.2e-25,1.5000000000000002e-22,***,352.24,0.44,7.4e-19,9.2e-16,***,239.52,-0.15,0.38,1,,22.66,-0.12,0.46,1,,33.06
+Is there a conception of apostasy in the religious group:,4684,start_temp_avg,-0,0.95,1,,352.24,-0.02,0.65,1,,239.52,0.03,0.59,1,,22.66,0.09,0.13,1,,33.06
+Is there a conception of apostasy in the religious group:,4684,start_prep_avg,0.01,0.89,1,,352.24,-0.03,0.6,1,,239.52,-0.21,0.22,1,,22.66,-0.13,0.33,1,,33.06
+Is there a conception of apostasy in the religious group:,4684,start_prep_var,0.1,0.089,1,,352.24,0.1,0.12,1,,239.52,0.67,0.18,1,,22.66,0.69,0.075,1,,33.06

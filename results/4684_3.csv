@@ -1,0 +1,7 @@
+Question,Question ID,Variable,coefficients_1,p_value_1,adjust_p_value_1,sig_1,AIC_1,coefficients_2,p_value_2,adjust_p_value_2,sig_2,AIC_2,coefficients_3,p_value_3,adjust_p_value_3,sig_3,AIC_3,coefficients_4,p_value_4,adjust_p_value_4,sig_4,AIC_4
+Is there a conception of apostasy in the religious group:,4684,(Intercept),0.42,7.9e-23,9.9e-20,***,338.32,0.5,1.1e-14,1.4e-11,***,234.81,-,-,-,-,-,0.05,0.78,1,,33.65
+Is there a conception of apostasy in the religious group:,4684,start_temp_avg,-0.02,0.55,1,,338.32,0.01,0.87,1,,234.81,-,-,-,-,-,0.13,0.046,1,,33.65
+Is there a conception of apostasy in the religious group:,4684,start_prep_avg,0.01,0.84,1,,338.32,-0.15,0.087,1,,234.81,-,-,-,-,-,-0.02,0.89,1,,33.65
+Is there a conception of apostasy in the religious group:,4684,start_prep_var,0.09,0.18,1,,338.32,0.07,0.32,1,,234.81,-,-,-,-,-,0.42,0.32,1,,33.65
+Is there a conception of apostasy in the religious group:,4684,elevation,-0.03,0.49,1,,338.32,-0.01,0.88,1,,234.81,-,-,-,-,-,0.05,0.6,1,,33.65
+Is there a conception of apostasy in the religious group:,4684,plants,-0.02,0.58,1,,338.32,0.15,0.077,1,,234.81,-,-,-,-,-,-0.14,0.036,1,,33.65

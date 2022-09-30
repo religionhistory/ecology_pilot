@@ -1,0 +1,7 @@
+Question,Question ID,Variable,coefficients_1,p_value_1,adjust_p_value_1,sig_1,AIC_1,coefficients_2,p_value_2,adjust_p_value_2,sig_2,AIC_2,coefficients_3,p_value_3,adjust_p_value_3,sig_3,AIC_3,coefficients_4,p_value_4,adjust_p_value_4,sig_4,AIC_4
+Are grave goods present:,4814,(Intercept),0.53,2.6e-41,3.2999999999999997e-38,***,401.18,0.55,3.7e-23,4.7e-20,***,261.54,-,-,-,-,-,1.29,1.4e-4,0.17,,72.34
+Are grave goods present:,4814,start_temp_avg,-0.04,0.32,1,,401.18,-0.12,0.021,1,,261.54,-,-,-,-,-,-0.01,0.91,1,,72.34
+Are grave goods present:,4814,start_prep_avg,-0,0.93,1,,401.18,-0.04,0.58,1,,261.54,-,-,-,-,-,0.68,0.014,1,,72.34
+Are grave goods present:,4814,start_prep_var,-0.01,0.8,1,,401.18,0.01,0.72,1,,261.54,-,-,-,-,-,-1.55,0.031,1,,72.34
+Are grave goods present:,4814,elevation,-0.01,0.86,1,,401.18,-0.03,0.35,1,,261.54,-,-,-,-,-,-0.01,0.91,1,,72.34
+Are grave goods present:,4814,plants,-0.04,0.29,1,,401.18,-0.07,0.3,1,,261.54,-,-,-,-,-,0.04,0.69,1,,72.34

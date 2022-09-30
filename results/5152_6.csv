@@ -1,0 +1,10 @@
+Question,Question ID,Variable,coefficients_1,p_value_1,adjust_p_value_1,sig_1,AIC_1,coefficients_2,p_value_2,adjust_p_value_2,sig_2,AIC_2,coefficients_3,p_value_3,adjust_p_value_3,sig_3,AIC_3,coefficients_4,p_value_4,adjust_p_value_4,sig_4,AIC_4
+"Does membership in this religious group require participation in small-scale rituals (private, household):",5152,(Intercept),0.73,2.3e-51,2.8999999999999997e-48,***,307.5,0.95,7.3e-43,9.1e-40,***,138.11,0.68,0.02,1,,50.82,0.34,0.26,1,,65.37
+"Does membership in this religious group require participation in small-scale rituals (private, household):",5152,start_temp_avg,-0.04,0.33,1,,307.5,0.03,0.42,1,,138.11,0.08,0.64,1,,50.82,-0.11,0.5,1,,65.37
+"Does membership in this religious group require participation in small-scale rituals (private, household):",5152,start_prep_avg,0.1,0.0019,1,,307.5,-0.18,8.8e-4,0.55,,138.11,0.5,0.083,1,,50.82,-0.02,0.94,1,,65.37
+"Does membership in this religious group require participation in small-scale rituals (private, household):",5152,start_prep_var,-0.07,0.031,1,,307.5,-0.03,0.25,1,,138.11,-1.34,0.044,1,,50.82,-0.31,0.59,1,,65.37
+"Does membership in this religious group require participation in small-scale rituals (private, household):",5152,elevation,-0.03,0.34,1,,307.5,-0.01,0.67,1,,138.11,-0.05,0.71,1,,50.82,0.02,0.88,1,,65.37
+"Does membership in this religious group require participation in small-scale rituals (private, household):",5152,plants,-0.07,0.084,1,,307.5,0.12,0.024,1,,138.11,0.01,0.89,1,,50.82,0,0.98,1,,65.37
+"Does membership in this religious group require participation in small-scale rituals (private, household):",5152,mammals,-0.03,0.52,1,,307.5,0.06,0.43,1,,138.11,-0.03,0.73,1,,50.82,0.02,0.86,1,,65.37
+"Does membership in this religious group require participation in small-scale rituals (private, household):",5152,dist_freshwater,-0.13,0.34,1,,307.5,0.13,0.49,1,,138.11,-0.23,0.27,1,,50.82,-0.12,0.61,1,,65.37
+"Does membership in this religious group require participation in small-scale rituals (private, household):",5152,dist_coastline,-0.01,0.74,1,,307.5,-0.01,0.79,1,,138.11,-0.07,0.48,1,,50.82,-0.11,0.31,1,,65.37

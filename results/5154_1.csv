@@ -1,0 +1,5 @@
+Question,Question ID,Variable,coefficients_1,p_value_1,adjust_p_value_1,sig_1,AIC_1,coefficients_2,p_value_2,adjust_p_value_2,sig_2,AIC_2,coefficients_3,p_value_3,adjust_p_value_3,sig_3,AIC_3,coefficients_4,p_value_4,adjust_p_value_4,sig_4,AIC_4
+Does membership in this religious group require participation in large-scale rituals:,5154,(Intercept),/,/,/,/,/,/,/,/,/,/,0.44,0.13,1,,52.89,0.52,0.033,1,,60.57
+Does membership in this religious group require participation in large-scale rituals:,5154,start_temp_avg,/,/,/,/,/,/,/,/,/,/,-0.12,0.24,1,,52.89,-0.12,0.13,1,,60.57
+Does membership in this religious group require participation in large-scale rituals:,5154,start_prep_avg,/,/,/,/,/,/,/,/,/,/,-0.2,0.44,1,,52.89,-0.14,0.5,1,,60.57
+Does membership in this religious group require participation in large-scale rituals:,5154,start_prep_var,/,/,/,/,/,/,/,/,/,/,0.88,0.26,1,,52.89,0.69,0.24,1,,60.57

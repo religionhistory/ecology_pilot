@@ -1,0 +1,6 @@
+Question,Question ID,coefficients_1,p_value_1,adjust_p_value_1,sig_1,AIC_1,coefficients_2,p_value_2,adjust_p_value_2,sig_2,AIC_2,Variable,coefficients_3,p_value_3,adjust_p_value_3,sig_3,AIC_3,coefficients_4,p_value_4,adjust_p_value_4,sig_4,AIC_4
+Are co-sacrifices present in tomb/burial:,4808,0.18,9.1e-14,1.1e-10,***,289.47,0.21,4e-10,5e-7,***,222.09,(Intercept),0.13,0.55,1,,51.27,0.23,0.2,1,,53.44
+Are co-sacrifices present in tomb/burial:,4808,-0.04,0.17,1,,289.47,-0.08,0.034,1,,222.09,start_temp_avg,0.03,0.77,1,,51.27,0.03,0.69,1,,53.44
+Are co-sacrifices present in tomb/burial:,4808,0.04,0.079,1,,289.47,0.03,0.43,1,,222.09,start_prep_avg,0.02,0.91,1,,51.27,0.14,0.36,1,,53.44
+Are co-sacrifices present in tomb/burial:,4808,0.01,0.66,1,,289.47,0.03,0.33,1,,222.09,start_prep_var,0.53,0.38,1,,51.27,0.17,0.69,1,,53.44
+Are co-sacrifices present in tomb/burial:,4808,-0.02,0.45,1,,289.47,-0.05,0.079,1,,222.09,elevation,0.08,0.31,1,,51.27,0.08,0.25,1,,53.44

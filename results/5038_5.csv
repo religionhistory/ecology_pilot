@@ -1,0 +1,9 @@
+Question,Question ID,Variable,coefficients_1,p_value_1,adjust_p_value_1,sig_1,AIC_1,coefficients_2,p_value_2,adjust_p_value_2,sig_2,AIC_2,coefficients_3,p_value_3,adjust_p_value_3,sig_3,AIC_3,coefficients_4,p_value_4,adjust_p_value_4,sig_4,AIC_4
+Reward in this life consists of healthy crops or good weather:,5038,(Intercept),0.7,4.8e-36,5.9999999999999997e-33,***,242.04,0.71,1e-12,1.3e-9,***,164.46,-,-,-,-,-,-,-,-,-,-
+Reward in this life consists of healthy crops or good weather:,5038,start_temp_avg,0.03,0.54,1,,242.04,-0.02,0.8,1,,164.46,-,-,-,-,-,-,-,-,-,-
+Reward in this life consists of healthy crops or good weather:,5038,start_prep_avg,0.1,0.029,1,,242.04,0.1,0.25,1,,164.46,-,-,-,-,-,-,-,-,-,-
+Reward in this life consists of healthy crops or good weather:,5038,start_prep_var,-0.07,0.24,1,,242.04,-0.1,0.14,1,,164.46,-,-,-,-,-,-,-,-,-,-
+Reward in this life consists of healthy crops or good weather:,5038,elevation,0.06,0.079,1,,242.04,0.04,0.32,1,,164.46,-,-,-,-,-,-,-,-,-,-
+Reward in this life consists of healthy crops or good weather:,5038,plants,-0,0.95,1,,242.04,-0.05,0.6,1,,164.46,-,-,-,-,-,-,-,-,-,-
+Reward in this life consists of healthy crops or good weather:,5038,mammals,-0.02,0.79,1,,242.04,0.08,0.48,1,,164.46,-,-,-,-,-,-,-,-,-,-
+Reward in this life consists of healthy crops or good weather:,5038,dist_freshwater,0.08,0.36,1,,242.04,0.06,0.84,1,,164.46,-,-,-,-,-,-,-,-,-,-

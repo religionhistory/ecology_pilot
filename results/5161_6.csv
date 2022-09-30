@@ -1,0 +1,10 @@
+Question,Question ID,Variable,coefficients_1,p_value_1,adjust_p_value_1,sig_1,AIC_1,coefficients_2,p_value_2,adjust_p_value_2,sig_2,AIC_2,coefficients_3,p_value_3,adjust_p_value_3,sig_3,AIC_3,coefficients_4,p_value_4,adjust_p_value_4,sig_4,AIC_4
+Are extra-ritual in-group markers present:,5161,(Intercept),0.56,5e-29,6.299999999999999e-26,***,302.17,0.54,4.6e-10,5.7e-7,***,215.1,-,-,-,-,-,-,-,-,-,-
+Are extra-ritual in-group markers present:,5161,start_temp_avg,0.07,0.16,1,,302.17,0.06,0.46,1,,215.1,-,-,-,-,-,-,-,-,-,-
+Are extra-ritual in-group markers present:,5161,start_prep_avg,0.05,0.29,1,,302.17,-0.06,0.53,1,,215.1,-,-,-,-,-,-,-,-,-,-
+Are extra-ritual in-group markers present:,5161,start_prep_var,0,1,1,,302.17,-0.01,0.86,1,,215.1,-,-,-,-,-,-,-,-,-,-
+Are extra-ritual in-group markers present:,5161,elevation,-0.02,0.73,1,,302.17,-0.02,0.67,1,,215.1,-,-,-,-,-,-,-,-,-,-
+Are extra-ritual in-group markers present:,5161,plants,0.05,0.45,1,,302.17,0.03,0.79,1,,215.1,-,-,-,-,-,-,-,-,-,-
+Are extra-ritual in-group markers present:,5161,mammals,-0.09,0.25,1,,302.17,0.07,0.56,1,,215.1,-,-,-,-,-,-,-,-,-,-
+Are extra-ritual in-group markers present:,5161,dist_freshwater,0.05,0.47,1,,302.17,-0.32,0.22,1,,215.1,-,-,-,-,-,-,-,-,-,-
+Are extra-ritual in-group markers present:,5161,dist_coastline,0.1,0.1,1,,302.17,0.05,0.46,1,,215.1,-,-,-,-,-,-,-,-,-,-

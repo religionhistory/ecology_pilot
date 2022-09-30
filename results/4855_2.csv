@@ -1,0 +1,6 @@
+Question,Question ID,Variable,coefficients_1,p_value_1,adjust_p_value_1,sig_1,AIC_1,coefficients_2,p_value_2,adjust_p_value_2,sig_2,AIC_2,coefficients_3,p_value_3,adjust_p_value_3,sig_3,AIC_3,coefficients_4,p_value_4,adjust_p_value_4,sig_4,AIC_4
+The supreme high god possesses hunger:,4855,(Intercept),0.16,1.8e-9,2.2e-6,***,207.67,0.16,4.1e-6,0.0051,**,143.19,-0.09,0.72,1,,34.49,-0.06,0.74,1,,39.7
+The supreme high god possesses hunger:,4855,start_temp_avg,-0,0.97,1,,207.67,0,0.91,1,,143.19,0,0.99,1,,34.49,0.02,0.82,1,,39.7
+The supreme high god possesses hunger:,4855,start_prep_avg,0,0.99,1,,207.67,0.01,0.72,1,,143.19,-0.22,0.3,1,,34.49,-0.19,0.27,1,,39.7
+The supreme high god possesses hunger:,4855,start_prep_var,-0.02,0.53,1,,207.67,-0.02,0.57,1,,143.19,0.54,0.41,1,,34.49,0.51,0.27,1,,39.7
+The supreme high god possesses hunger:,4855,elevation,-0.02,0.37,1,,207.67,-0.02,0.6,1,,143.19,0,1,1,,34.49,-0,0.97,1,,39.7

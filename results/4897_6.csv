@@ -1,0 +1,10 @@
+Question,Question ID,Variable,coefficients_1,p_value_1,adjust_p_value_1,sig_1,AIC_1,coefficients_2,p_value_2,adjust_p_value_2,sig_2,AIC_2,coefficients_3,p_value_3,adjust_p_value_3,sig_3,AIC_3,coefficients_4,p_value_4,adjust_p_value_4,sig_4,AIC_4
+Non-human supernatural beings are present:,4897,(Intercept),0.89,6.499999999999999e-104,8.099999999999999e-101,***,209.04,0.88,1.8e-52,2.2e-49,***,112.54,1.03,3.1e-16,3.8e-13,***,2.39,1.14,1.2e-14,1.5e-11,***,42.27
+Non-human supernatural beings are present:,4897,start_temp_avg,0,0.91,1,,209.04,-0.01,0.81,1,,112.54,-0,0.99,1,,2.39,0.02,0.65,1,,42.27
+Non-human supernatural beings are present:,4897,start_prep_avg,0.03,0.12,1,,209.04,0.04,0.3,1,,112.54,0.03,0.6,1,,2.39,0.18,0.034,1,,42.27
+Non-human supernatural beings are present:,4897,start_prep_var,0.04,0.12,1,,209.04,0.03,0.13,1,,112.54,-0.12,0.47,1,,2.39,-0.39,0.083,1,,42.27
+Non-human supernatural beings are present:,4897,elevation,0.03,0.27,1,,209.04,0.02,0.45,1,,112.54,0.04,0.28,1,,2.39,0.09,0.096,1,,42.27
+Non-human supernatural beings are present:,4897,plants,-0.07,0.027,1,,209.04,-0.08,0.12,1,,112.54,-0.03,0.35,1,,2.39,-0.09,0.046,1,,42.27
+Non-human supernatural beings are present:,4897,mammals,0.04,0.2,1,,209.04,0.05,0.41,1,,112.54,0.03,0.25,1,,2.39,0.08,0.032,1,,42.27
+Non-human supernatural beings are present:,4897,dist_freshwater,0.03,0.73,1,,209.04,-0.07,0.62,1,,112.54,0.01,0.86,1,,2.39,0.09,0.3,1,,42.27
+Non-human supernatural beings are present:,4897,dist_coastline,-0.03,0.39,1,,209.04,-0.06,0.16,1,,112.54,-0.08,0.0037,1,,2.39,-0.08,0.033,1,,42.27

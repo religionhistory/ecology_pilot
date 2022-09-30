@@ -1,0 +1,8 @@
+Question,Question ID,Variable,coefficients_1,p_value_1,adjust_p_value_1,sig_1,AIC_1,coefficients_2,p_value_2,adjust_p_value_2,sig_2,AIC_2,coefficients_3,p_value_3,adjust_p_value_3,sig_3,AIC_3,coefficients_4,p_value_4,adjust_p_value_4,sig_4,AIC_4
+Mixed human-divine beings are present:,4919,(Intercept),0.48,2.7e-23,3.3e-20,***,254.35,0.45,5.6e-11,7e-8,***,176.58,0.71,0.026,1,,43.86,0.77,0.0024,1,,49.72
+Mixed human-divine beings are present:,4919,start_temp_avg,0.03,0.51,1,,254.35,0.02,0.72,1,,176.58,0.1,0.63,1,,43.86,0.06,0.71,1,,49.72
+Mixed human-divine beings are present:,4919,start_prep_avg,0.1,0.018,1,,254.35,0.19,0.027,1,,176.58,-0.11,0.67,1,,43.86,0.05,0.74,1,,49.72
+Mixed human-divine beings are present:,4919,start_prep_var,0.05,0.16,1,,254.35,0.05,0.19,1,,176.58,0.38,0.62,1,,43.86,-0.09,0.85,1,,49.72
+Mixed human-divine beings are present:,4919,elevation,0.09,0.024,1,,254.35,0.08,0.08,1,,176.58,0.09,0.61,1,,43.86,0.07,0.62,1,,49.72
+Mixed human-divine beings are present:,4919,plants,-0.11,0.047,1,,254.35,-0.14,0.11,1,,176.58,-0.23,0.18,1,,43.86,-0.21,0.13,1,,49.72
+Mixed human-divine beings are present:,4919,mammals,0,0.96,1,,254.35,-0.03,0.78,1,,176.58,-0.05,0.67,1,,43.86,-0.06,0.59,1,,49.72

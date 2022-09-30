@@ -1,0 +1,10 @@
+Question,Question ID,Variable,coefficients_1,p_value_1,adjust_p_value_1,sig_1,AIC_1,coefficients_2,p_value_2,adjust_p_value_2,sig_2,AIC_2,coefficients_3,p_value_3,adjust_p_value_3,sig_3,AIC_3,coefficients_4,p_value_4,adjust_p_value_4,sig_4,AIC_4
+Previously human spirits are present:,4866,(Intercept),0.74,4.7e-62,5.900000000000001e-59,***,288.32,0.67,2.9e-21,3.6e-18,***,169.14,0.96,2.2e-9,2.7e-6,***,45.04,1.11,1.2e-9,1.5e-6,***,63.99
+Previously human spirits are present:,4866,start_temp_avg,0.03,0.36,1,,288.32,-0.06,0.29,1,,169.14,-0,0.99,1,,45.04,0.03,0.68,1,,63.99
+Previously human spirits are present:,4866,start_prep_avg,0.08,0.0081,1,,288.32,0.15,0.024,1,,169.14,0.05,0.66,1,,45.04,0.24,0.037,1,,63.99
+Previously human spirits are present:,4866,start_prep_var,0.01,0.56,1,,288.32,0.01,0.77,1,,169.14,0.02,0.95,1,,45.04,-0.48,0.11,1,,63.99
+Previously human spirits are present:,4866,elevation,-0.01,0.83,1,,288.32,-0.01,0.89,1,,169.14,-0.03,0.71,1,,45.04,-0.05,0.6,1,,63.99
+Previously human spirits are present:,4866,plants,-0.03,0.51,1,,288.32,-0.19,0.013,1,,169.14,0,0.98,1,,45.04,-0.05,0.42,1,,63.99
+Previously human spirits are present:,4866,mammals,0.06,0.19,1,,288.32,0.22,0.026,1,,169.14,0.02,0.56,1,,45.04,0.07,0.18,1,,63.99
+Previously human spirits are present:,4866,dist_freshwater,0.07,0.31,1,,288.32,-0.12,0.57,1,,169.14,0.02,0.85,1,,45.04,0.08,0.5,1,,63.99
+Previously human spirits are present:,4866,dist_coastline,0.02,0.59,1,,288.32,-0.05,0.43,1,,169.14,-0.01,0.78,1,,45.04,-0.01,0.88,1,,63.99

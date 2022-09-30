@@ -1,0 +1,8 @@
+Question,Question ID,Variable,coefficients_1,p_value_1,adjust_p_value_1,sig_1,AIC_1,coefficients_2,p_value_2,adjust_p_value_2,sig_2,AIC_2,coefficients_3,p_value_3,adjust_p_value_3,sig_3,AIC_3,coefficients_4,p_value_4,adjust_p_value_4,sig_4,AIC_4
+The supreme high god possesses hunger:,4855,(Intercept),0.16,2.6e-8,3.2e-5,***,196.55,0.11,0.0092,1,,127.19,-,-,-,-,-,-0.1,0.7,1,,49.74
+The supreme high god possesses hunger:,4855,start_temp_avg,-0.01,0.66,1,,196.55,-0.04,0.47,1,,127.19,-,-,-,-,-,0.01,0.94,1,,49.74
+The supreme high god possesses hunger:,4855,start_prep_avg,0.01,0.78,1,,196.55,0.09,0.14,1,,127.19,-,-,-,-,-,-0.2,0.33,1,,49.74
+The supreme high god possesses hunger:,4855,start_prep_var,-0,0.94,1,,196.55,-0,0.93,1,,127.19,-,-,-,-,-,0.58,0.31,1,,49.74
+The supreme high god possesses hunger:,4855,elevation,-0.03,0.33,1,,196.55,-0.02,0.53,1,,127.19,-,-,-,-,-,-0.03,0.86,1,,49.74
+The supreme high god possesses hunger:,4855,plants,-0.06,0.12,1,,196.55,-0.16,0.021,1,,127.19,-,-,-,-,-,0.01,0.93,1,,49.74
+The supreme high god possesses hunger:,4855,mammals,0.06,0.12,1,,196.55,0.06,0.49,1,,127.19,-,-,-,-,-,0.02,0.79,1,,49.74

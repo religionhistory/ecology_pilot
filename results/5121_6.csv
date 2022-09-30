@@ -1,0 +1,10 @@
+Question,Question ID,Variable,coefficients_1,p_value_1,adjust_p_value_1,sig_1,AIC_1,coefficients_2,p_value_2,adjust_p_value_2,sig_2,AIC_2,coefficients_3,p_value_3,adjust_p_value_3,sig_3,AIC_3,coefficients_4,p_value_4,adjust_p_value_4,sig_4,AIC_4
+Does membership in this religious group require celibacy (full sexual abstinence):,5121,(Intercept),0.14,1.9e-5,0.023,*,251.48,0.19,0.0019,1,,170.62,-,-,-,-,-,-0.06,0.53,1,,32.51
+Does membership in this religious group require celibacy (full sexual abstinence):,5121,start_temp_avg,0.03,0.36,1,,251.48,-0.03,0.54,1,,170.62,-,-,-,-,-,0.02,0.75,1,,32.51
+Does membership in this religious group require celibacy (full sexual abstinence):,5121,start_prep_avg,0.03,0.27,1,,251.48,-0.05,0.41,1,,170.62,-,-,-,-,-,-0.09,0.37,1,,32.51
+Does membership in this religious group require celibacy (full sexual abstinence):,5121,start_prep_var,0.09,0.038,1,,251.48,0.12,0.012,1,,170.62,-,-,-,-,-,0.2,0.33,1,,32.51
+Does membership in this religious group require celibacy (full sexual abstinence):,5121,elevation,-0.02,0.6,1,,251.48,-0.06,0.086,1,,170.62,-,-,-,-,-,-0.02,0.72,1,,32.51
+Does membership in this religious group require celibacy (full sexual abstinence):,5121,plants,0.06,0.12,1,,251.48,0.09,0.2,1,,170.62,-,-,-,-,-,0.01,0.79,1,,32.51
+Does membership in this religious group require celibacy (full sexual abstinence):,5121,mammals,-0.07,0.11,1,,251.48,-0.06,0.52,1,,170.62,-,-,-,-,-,-0.01,0.75,1,,32.51
+Does membership in this religious group require celibacy (full sexual abstinence):,5121,dist_freshwater,-0.18,0.12,1,,251.48,-0.2,0.33,1,,170.62,-,-,-,-,-,-0.03,0.7,1,,32.51
+Does membership in this religious group require celibacy (full sexual abstinence):,5121,dist_coastline,0.09,0.019,1,,251.48,0.21,2.7e-4,0.34,,170.62,-,-,-,-,-,0,0.91,1,,32.51

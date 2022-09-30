@@ -1,0 +1,10 @@
+Question,Question ID,Variable,coefficients_1,p_value_1,adjust_p_value_1,sig_1,AIC_1,coefficients_2,p_value_2,adjust_p_value_2,sig_2,AIC_2,coefficients_3,p_value_3,adjust_p_value_3,sig_3,AIC_3,coefficients_4,p_value_4,adjust_p_value_4,sig_4,AIC_4
+Does membership in this religious group require participation in large-scale rituals:,5154,(Intercept),-,-,-,-,-,-,-,-,-,-,1.04,0.01,1,,53.31,1.01,0.0015,0.95,,59.25
+Does membership in this religious group require participation in large-scale rituals:,5154,start_temp_avg,-,-,-,-,-,-,-,-,-,-,0.01,0.93,1,,53.31,-0.06,0.57,1,,59.25
+Does membership in this religious group require participation in large-scale rituals:,5154,start_prep_avg,-,-,-,-,-,-,-,-,-,-,0.14,0.6,1,,53.31,0.15,0.45,1,,59.25
+Does membership in this religious group require participation in large-scale rituals:,5154,start_prep_var,-,-,-,-,-,-,-,-,-,-,0.2,0.84,1,,53.31,0.12,0.86,1,,59.25
+Does membership in this religious group require participation in large-scale rituals:,5154,elevation,-,-,-,-,-,-,-,-,-,-,0.3,0.019,1,,53.31,0.21,0.047,1,,59.25
+Does membership in this religious group require participation in large-scale rituals:,5154,plants,-,-,-,-,-,-,-,-,-,-,-0.42,7.6e-4,0.95,,53.31,-0.37,2.6e-4,0.32,,59.25
+Does membership in this religious group require participation in large-scale rituals:,5154,mammals,-,-,-,-,-,-,-,-,-,-,0.11,0.17,1,,53.31,0.14,0.048,1,,59.25
+Does membership in this religious group require participation in large-scale rituals:,5154,dist_freshwater,-,-,-,-,-,-,-,-,-,-,0.04,0.84,1,,53.31,0.05,0.79,1,,59.25
+Does membership in this religious group require participation in large-scale rituals:,5154,dist_coastline,-,-,-,-,-,-,-,-,-,-,-0.16,0.11,1,,53.31,-0.15,0.1,1,,59.25
