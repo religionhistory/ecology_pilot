@@ -148,49 +148,58 @@ pdf("../figures/question_maps.pdf", width = 15, height = 20)
 questions_map
 dev.off()
 
-### Plot maps of elevation and fishing
-# Extract fishing data
-fish_s2 <- data_centroid_ans %>%
-  filter(Question == "Fishing") %>%
-  # Add ID
-  mutate(id = paste0(`Entry ID`, "_", gsub(",", "", `Branching question`), "_", `Region ID`, "_", start_year, "_", end_year)) %>%
-  filter(id %in% analysis_2_sample$ID) %>%
+### Plot maps of precipitation and public food storage
+# Extract public food storage data
+food_s1 <- data_centroid_ans %>%
+  filter(Question == "Does the religious group in question provide public food storage:") %>%
   filter(Answers != "Missing") %>%
-  rename("Fishing" = Answers) %>%
-  mutate(Fishing = case_when(Fishing == "Yes" ~ "Present", Fishing == "No" ~ "Absent"))
+  rename("Public Food Storage" = Answers) %>%
+  mutate(`Public Food Storage` = case_when(`Public Food Storage` == "Yes" ~ "Present", `Public Food Storage` == "No" ~ "Absent"))
 
-# Extract elevation data
-elevation_s2 <- data %>%
-  select(`Entry ID`, `Entry name`, `Branching question`, `Region ID`, `Region name`, start_year, end_year, elevation, geometry) %>%
-  # Add ID
-  mutate(id = paste0(`Entry ID`, "_", gsub(",", "", `Branching question`), "_", `Region ID`, "_", start_year, "_", end_year)) %>%
-  filter(id %in% fish_s2$id) %>%
-  rename("Elevation" = elevation) %>%
-  filter(!is.na(Elevation))
+# Extract precipitation data
+precipitation_s1 <- data %>%
+  mutate(`Precipitation Variation` = start_prep_max - start_prep_min) %>%
+  select(`Entry ID`, `Entry name`, `Branching question`, `Region ID`, `Region name`, start_year, end_year, `Precipitation Variation`, geometry) %>%
+  filter(!is.na(`Precipitation Variation`)) %>%
+  filter(`Precipitation Variation` != -Inf)
 
 # Convert to sf
-elevation_s2 <- st_as_sf(elevation_s2)
+precipitation_s1 <- st_as_sf(precipitation_s1)
 
-# Plot map of fishing
-fishing_map <- tm_shape(World) +
+# Plot map of public food storage
+food_map <- tm_shape(World) +
   tm_fill() +
-  tm_shape(fish_s2) +  
-  tm_symbols(col = "Fishing", palette = "Dark2", size = 0.5) +
+  tm_shape(food_s1) +  
+  tm_symbols(col = "Public Food Storage", palette = "Dark2", size = 0.5) +
   tm_layout(title= 'A')
 
-# Plot map of elevation
-elevation_map <- tm_shape(World) +
+# Create new bounding box, to add extra margin space, so that the legend is readable
+new_bbox <- st_bbox(World) 
+
+# Extract ranges
+x_range <- new_bbox$xmax - new_bbox$xmin
+y_range <- new_bbox$ymax - new_bbox$ymin 
+
+# Add space to the bottom left of the bbox
+new_bbox[1] <- new_bbox[1] - (0.19 * x_range) 
+new_bbox[2] <- new_bbox[2] - (0.19 * y_range)
+
+# Convert to sf
+new_bbox <- st_as_sfc(new_bbox)
+
+# Plot map of precipitation variation
+precipitation_map <- tm_shape(World, bbox = new_bbox) + 
   tm_fill() +
-  tm_shape(elevation_s2) +  
-  tm_symbols(col = "Elevation", palette = "-viridis", size = 0.5,
-             breaks = c(0, 200, 400, 600, 800, 1000, 2000, 3000, 4000, Inf),
+  tm_shape(precipitation_s1) +  
+  tm_symbols(col = "Precipitation Variation", palette = "-viridis", size = 0.5,
+             breaks = c(0, 250, 500, 1000, 2000, 3000, 4000, 5000, Inf),
              legend.hist = TRUE, legend.size.z = 1) +
   tm_layout(title= 'B')
-
+  
 # Combine maps
-figure_maps <- tmap_arrange(fishing_map, elevation_map)
+figure_maps <- tmap_arrange(food_map, precipitation_map)
 
 # Save maps
-pdf("../figures/elevation_fishing_maps.pdf", width = 6, height = 6.5)
+pdf("../figures/precipitaion_food_storage_maps.pdf", width = 6, height = 6.5)
 figure_maps
 dev.off()
