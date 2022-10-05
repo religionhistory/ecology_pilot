@@ -16,6 +16,7 @@ All data preprocessing and analysis was performed using [R version 4.0.5](https:
   - [exactextractr version 0.7.2](https://cran.r-project.org/web/packages/exactextractr/index.html)
   - [naniar version 0.6.1](https://cran.r-project.org/web/packages/naniar/index.html)
   - [testthat version 3.0.2](https://cran.r-project.org/web/packages/testthat/index.html)
+  - [car 3.0-10](https://cran.r-project.org/web/packages/car/index.html)
 
 For data visualization the following packages were used:
   - [corrplot version 0.88](https://cran.r-project.org/web/packages/corrplot/index.html)
