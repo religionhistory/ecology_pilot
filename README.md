@@ -1,5 +1,5 @@
 # Pilot Religion and Ecology Analysis
-Code used for the analysis described in **Religion and Ecology: A Pilot Study Employing the Database of Religious History**. 
+Code used for the analysis described in [Religion and Ecology: A Pilot Study Employing the Database of Religious History](https://www.sciencedirect.com/science/article/pii/S2666622722000405). 
 
 ## Data 
 
